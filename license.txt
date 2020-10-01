@@ -1,0 +1,7 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}Copyright (c) 2020 Self-Order Kiosk
+<#if licenseLast??>
+${licenseLast}
+</#if>
