@@ -18,7 +18,7 @@
 ## Stack
 
 - Java Swing
-- FlatLaf
+- [FlatLaf](https://www.formdev.com/flatlaf)
 - MySQL
 - Maven
 
@@ -27,11 +27,30 @@
 - JDK 8
 - NetBeans
 
-## Setup
+## Getting Started
 
-1. Open the project in NetBeans.
-2. Run the build command to download Maven dependencies.
-3. Finally, run the project.
+1. Follow [these steps](#database) to set up the database.
+2. Open the project in NetBeans.
+3. Run the build command to download Maven dependencies.
+4. Finally, run the project.
+
+## Database
+
+1. Create a MySQL database named **self_order_kiosk**.
+2. Run the SQL queries located in the `/migrations` folder.
+3. Create a new file named **db.properties** in `/src/main/resources/app`.
+4. Enter the following details:
+
+```properties
+url=jdbc:mysql://<HOST>:<PORT>/self_order_kiosk?serverTimeZone=UTC
+username=<USERNAME>
+password=<PASSWORD>
+```
+
+**Demo Login**
+
+- Username: bob
+- Password: 123
 
 ## Production
 
@@ -42,6 +61,13 @@
 
 ## Changelog
 
+### v0.2.0 - 2020-10-04
+
+- New feature to manage items in Admin area
+- New Launcher menubar
+- New About window
+- Theme settings moved to Launcher menubar
+
 ### v0.1.0 - 2020-09-30
 
 - Initial alpha release
@@ -49,3 +75,7 @@
 ## License
 
 [MIT License](LICENSE)
+
+## Credits
+
+Icons made by [Freepik](https://www.flaticon.com/authors/basic-gradient/gradient) from [www.flaticon.com](https://www.flaticon.com)
