@@ -22,13 +22,11 @@ public class SplashFrame extends javax.swing.JFrame {
   @SuppressWarnings("unchecked")
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
-    java.awt.GridBagConstraints gridBagConstraints;
 
     progressBar = new javax.swing.JProgressBar();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-    java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("app/global"); // NOI18N
-    setTitle(bundle.getString("appTitle")); // NOI18N
+    setTitle("Splash");
     setBackground(java.awt.Color.decode(java.util.ResourceBundle.getBundle("app/global").getString("colorPrimary")));
     setMinimumSize(new java.awt.Dimension(480, 280));
     setName(""); // NOI18N
@@ -44,8 +42,6 @@ public class SplashFrame extends javax.swing.JFrame {
     progressBar.setPreferredSize(new java.awt.Dimension(480, 4));
     progressBar.setString("");
     getContentPane().add(progressBar, java.awt.BorderLayout.SOUTH);
-
-    getAccessibleContext().setAccessibleName("");
 
     pack();
     setLocationRelativeTo(null);

@@ -11,6 +11,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <name>${project.name}</name> 
+    <version>${project.version}</version>
   </properties>
   <dependencies>
     <dependency>
@@ -21,6 +23,22 @@
   </dependencies>
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId> 
+        <artifactId>properties-maven-plugin</artifactId> 
+        <version>1.0.0</version> 
+        <executions> 
+          <execution> 
+            <phase>generate-resources</phase> 
+            <goals> 
+              <goal>write-project-properties</goal> 
+            </goals> 
+            <configuration> 
+              <outputFile>${project.build.outputDirectory}/properties-from-pom.properties</outputFile> 
+            </configuration> 
+          </execution> 
+        </executions> 
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
