@@ -20,6 +20,11 @@
       <artifactId>flatlaf</artifactId>
       <version>0.42</version>
     </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.21</version>
+    </dependency>
   </dependencies>
   <build>
     <plugins>

@@ -8,6 +8,7 @@
 **/nbproject/private/
 build/
 buildNumber.properties
+db.properties
 dependency-reduced-pom.xml
 dist/
 manifest.mf
