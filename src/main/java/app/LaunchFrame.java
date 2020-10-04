@@ -24,6 +24,7 @@ public class LaunchFrame extends javax.swing.JFrame {
   private void initComponents() {
     java.awt.GridBagConstraints gridBagConstraints;
 
+    btgTheme = new javax.swing.ButtonGroup();
     pnlContainer = new javax.swing.JPanel();
     lblAppLogo = new javax.swing.JLabel();
     lblAppName = new javax.swing.JLabel();
@@ -33,6 +34,9 @@ public class LaunchFrame extends javax.swing.JFrame {
     menuBar = new javax.swing.JMenuBar();
     mnuFile = new javax.swing.JMenu();
     mniExit = new javax.swing.JMenuItem();
+    mnuTheme = new javax.swing.JMenu();
+    cmuLight = new javax.swing.JCheckBoxMenuItem();
+    cmuDark = new javax.swing.JCheckBoxMenuItem();
     mnuHelp = new javax.swing.JMenu();
     mniAbout = new javax.swing.JMenuItem();
 
@@ -112,6 +116,29 @@ public class LaunchFrame extends javax.swing.JFrame {
 
     menuBar.add(mnuFile);
 
+    mnuTheme.setText("Theme");
+
+    btgTheme.add(cmuLight);
+    cmuLight.setSelected(true);
+    cmuLight.setText("Light");
+    cmuLight.addItemListener(new java.awt.event.ItemListener() {
+      public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        cmuLightItemStateChanged(evt);
+      }
+    });
+    mnuTheme.add(cmuLight);
+
+    btgTheme.add(cmuDark);
+    cmuDark.setText("Dark");
+    cmuDark.addItemListener(new java.awt.event.ItemListener() {
+      public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        cmuDarkItemStateChanged(evt);
+      }
+    });
+    mnuTheme.add(cmuDark);
+
+    menuBar.add(mnuTheme);
+
     mnuHelp.setText("Help");
 
     mniAbout.setText("About");
@@ -154,6 +181,14 @@ public class LaunchFrame extends javax.swing.JFrame {
     new AboutDialog().setVisible(true);
   }//GEN-LAST:event_mniAboutActionPerformed
 
+  private void cmuLightItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmuLightItemStateChanged
+    setTheme(evt, "light");
+  }//GEN-LAST:event_cmuLightItemStateChanged
+
+  private void cmuDarkItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmuDarkItemStateChanged
+    setTheme(evt, "dark");
+  }//GEN-LAST:event_cmuDarkItemStateChanged
+
   /**
    * @param args the command line arguments
    */
@@ -177,9 +212,25 @@ public class LaunchFrame extends javax.swing.JFrame {
     }
   }
 
+  private void setTheme(java.awt.event.ItemEvent evt, String name) {
+    if (evt.getStateChange() == 1) {
+      if ("light".equals(name)) {
+        app.Global.setDefaultTheme();
+      } else {
+        com.formdev.flatlaf.FlatDarculaLaf.install();
+      }
+      for (java.awt.Window window : javax.swing.JFrame.getWindows()) {
+        javax.swing.SwingUtilities.updateComponentTreeUI(window);
+      }
+    }
+  }
+
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.ButtonGroup btgTheme;
   private javax.swing.JButton btnLaunchAdmin;
   private javax.swing.JButton btnLaunchKiosk;
+  private javax.swing.JCheckBoxMenuItem cmuDark;
+  private javax.swing.JCheckBoxMenuItem cmuLight;
   private javax.swing.JLabel lblAppLogo;
   private javax.swing.JLabel lblAppName;
   private javax.swing.JMenuBar menuBar;
@@ -187,6 +238,7 @@ public class LaunchFrame extends javax.swing.JFrame {
   private javax.swing.JMenuItem mniExit;
   private javax.swing.JMenu mnuFile;
   private javax.swing.JMenu mnuHelp;
+  private javax.swing.JMenu mnuTheme;
   private javax.swing.JPanel pnlActions;
   private javax.swing.JPanel pnlContainer;
   // End of variables declaration//GEN-END:variables

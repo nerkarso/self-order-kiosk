@@ -23,7 +23,6 @@ public class AdminFrame extends javax.swing.JFrame {
   private void initComponents() {
     java.awt.GridBagConstraints gridBagConstraints;
 
-    btgTheme = new javax.swing.ButtonGroup();
     tabbedPane = new javax.swing.JTabbedPane();
     pnlOrders = new javax.swing.JPanel();
     scpOrders = new javax.swing.JScrollPane();
@@ -72,10 +71,6 @@ public class AdminFrame extends javax.swing.JFrame {
     btnUserSave = new javax.swing.JButton();
     btnUserNew = new javax.swing.JButton();
     btnUserDelete = new javax.swing.JButton();
-    pnlSettings = new javax.swing.JPanel();
-    lblSettingTheme = new javax.swing.JLabel();
-    radThemeLight = new javax.swing.JRadioButton();
-    radThemeDark = new javax.swing.JRadioButton();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     setTitle("Admin");
@@ -411,56 +406,6 @@ public class AdminFrame extends javax.swing.JFrame {
 
     tabbedPane.addTab("Users", pnlUsers);
 
-    lblSettingTheme.setFont(new java.awt.Font("SF Pro Text", 1, 17)); // NOI18N
-    lblSettingTheme.setText("Theme");
-    lblSettingTheme.setAlignmentY(0.0F);
-
-    btgTheme.add(radThemeLight);
-    radThemeLight.setSelected(true);
-    radThemeLight.setText("Light");
-    radThemeLight.setAlignmentY(0.0F);
-    radThemeLight.addItemListener(new java.awt.event.ItemListener() {
-      public void itemStateChanged(java.awt.event.ItemEvent evt) {
-        radThemeLightItemStateChanged(evt);
-      }
-    });
-
-    btgTheme.add(radThemeDark);
-    radThemeDark.setText("Dark");
-    radThemeDark.addItemListener(new java.awt.event.ItemListener() {
-      public void itemStateChanged(java.awt.event.ItemEvent evt) {
-        radThemeDarkItemStateChanged(evt);
-      }
-    });
-
-    javax.swing.GroupLayout pnlSettingsLayout = new javax.swing.GroupLayout(pnlSettings);
-    pnlSettings.setLayout(pnlSettingsLayout);
-    pnlSettingsLayout.setHorizontalGroup(
-      pnlSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(pnlSettingsLayout.createSequentialGroup()
-        .addGap(17, 17, 17)
-        .addGroup(pnlSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(pnlSettingsLayout.createSequentialGroup()
-            .addComponent(radThemeLight)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(radThemeDark))
-          .addComponent(lblSettingTheme))
-        .addContainerGap(554, Short.MAX_VALUE))
-    );
-    pnlSettingsLayout.setVerticalGroup(
-      pnlSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(pnlSettingsLayout.createSequentialGroup()
-        .addGap(17, 17, 17)
-        .addComponent(lblSettingTheme)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-        .addGroup(pnlSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(radThemeLight)
-          .addComponent(radThemeDark))
-        .addContainerGap(482, Short.MAX_VALUE))
-    );
-
-    tabbedPane.addTab("Settings", pnlSettings);
-
     getContentPane().add(tabbedPane, java.awt.BorderLayout.CENTER);
 
     getAccessibleContext().setAccessibleName("");
@@ -468,14 +413,6 @@ public class AdminFrame extends javax.swing.JFrame {
     pack();
     setLocationRelativeTo(null);
   }// </editor-fold>//GEN-END:initComponents
-
-  private void radThemeLightItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radThemeLightItemStateChanged
-    setTheme(evt, "light");
-  }//GEN-LAST:event_radThemeLightItemStateChanged
-
-  private void radThemeDarkItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radThemeDarkItemStateChanged
-    setTheme(evt, "dark");
-  }//GEN-LAST:event_radThemeDarkItemStateChanged
 
   /**
    * @param args the command line arguments
@@ -490,24 +427,7 @@ public class AdminFrame extends javax.swing.JFrame {
     });
   }
 
-  private void setTheme(java.awt.event.ItemEvent evt, String name) {
-    if (evt.getStateChange() == 1) {
-      // IntelliJTheme.install(AdminFrame.class.getResourceAsStream("/app/" + name + ".theme.json"));
-
-      if ("light".equals(name)) {
-        app.Global.setDefaultTheme();
-      } else {
-        com.formdev.flatlaf.FlatDarculaLaf.install();
-      }
-
-      for (java.awt.Window window : javax.swing.JFrame.getWindows()) {
-        javax.swing.SwingUtilities.updateComponentTreeUI(window);
-      }
-    }
-  }
-
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.ButtonGroup btgTheme;
   private javax.swing.JButton btnCategoryDelete;
   private javax.swing.JButton btnCategoryNew;
   private javax.swing.JButton btnCategoryRefresh;
@@ -527,7 +447,6 @@ public class AdminFrame extends javax.swing.JFrame {
   private javax.swing.JLabel lblItemImagePreview;
   private javax.swing.JLabel lblItemName;
   private javax.swing.JLabel lblItemPrice;
-  private javax.swing.JLabel lblSettingTheme;
   private javax.swing.JLabel lblUserName;
   private javax.swing.JLabel lblUserPassword;
   private javax.swing.JLabel lblUserUsername;
@@ -538,12 +457,9 @@ public class AdminFrame extends javax.swing.JFrame {
   private javax.swing.JPanel pnlItemFields;
   private javax.swing.JPanel pnlItems;
   private javax.swing.JPanel pnlOrders;
-  private javax.swing.JPanel pnlSettings;
   private javax.swing.JPanel pnlUserActions;
   private javax.swing.JPanel pnlUserFields;
   private javax.swing.JPanel pnlUsers;
-  private javax.swing.JRadioButton radThemeDark;
-  private javax.swing.JRadioButton radThemeLight;
   private javax.swing.JScrollPane scpCategories;
   private javax.swing.JScrollPane scpItems;
   private javax.swing.JScrollPane scpOrders;
