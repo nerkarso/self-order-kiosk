@@ -11,6 +11,7 @@ public class LaunchFrame extends javax.swing.JFrame {
   public LaunchFrame() {
     initComponents();
     app.Global.setAppIcon(this);
+    setAppName();
   }
 
   /**
@@ -24,11 +25,16 @@ public class LaunchFrame extends javax.swing.JFrame {
     java.awt.GridBagConstraints gridBagConstraints;
 
     pnlContainer = new javax.swing.JPanel();
-    lblLogo = new javax.swing.JLabel();
-    lblTitle = new javax.swing.JLabel();
+    lblAppLogo = new javax.swing.JLabel();
+    lblAppName = new javax.swing.JLabel();
     pnlActions = new javax.swing.JPanel();
     btnLaunchKiosk = new javax.swing.JButton();
     btnLaunchAdmin = new javax.swing.JButton();
+    menuBar = new javax.swing.JMenuBar();
+    mnuFile = new javax.swing.JMenu();
+    mniExit = new javax.swing.JMenuItem();
+    mnuHelp = new javax.swing.JMenu();
+    mniAbout = new javax.swing.JMenuItem();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Launcher");
@@ -41,21 +47,19 @@ public class LaunchFrame extends javax.swing.JFrame {
     pnlContainer.setPreferredSize(new java.awt.Dimension(640, 480));
     pnlContainer.setLayout(new java.awt.GridBagLayout());
 
-    lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/app-logo-1x.png"))); // NOI18N
+    lblAppLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/app-logo-1x.png"))); // NOI18N
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 0;
-    pnlContainer.add(lblLogo, gridBagConstraints);
+    pnlContainer.add(lblAppLogo, gridBagConstraints);
 
-    lblTitle.setFont(lblTitle.getFont().deriveFont(lblTitle.getFont().getSize()+13f));
-    java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("app/global"); // NOI18N
-    lblTitle.setText(bundle.getString("appTitle")); // NOI18N
+    lblAppName.setFont(lblAppName.getFont().deriveFont(lblAppName.getFont().getSize()+13f));
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 1;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
     gridBagConstraints.insets = new java.awt.Insets(20, 0, 50, 0);
-    pnlContainer.add(lblTitle, gridBagConstraints);
+    pnlContainer.add(lblAppName, gridBagConstraints);
 
     pnlActions.setMaximumSize(null);
     pnlActions.setPreferredSize(new java.awt.Dimension(420, 180));
@@ -96,6 +100,32 @@ public class LaunchFrame extends javax.swing.JFrame {
 
     getContentPane().add(pnlContainer, new java.awt.GridBagConstraints());
 
+    mnuFile.setText("File");
+
+    mniExit.setText("Exit");
+    mniExit.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        mniExitActionPerformed(evt);
+      }
+    });
+    mnuFile.add(mniExit);
+
+    menuBar.add(mnuFile);
+
+    mnuHelp.setText("Help");
+
+    mniAbout.setText("About");
+    mniAbout.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        mniAboutActionPerformed(evt);
+      }
+    });
+    mnuHelp.add(mniAbout);
+
+    menuBar.add(mnuHelp);
+
+    setJMenuBar(menuBar);
+
     getAccessibleContext().setAccessibleName("");
 
     pack();
@@ -116,6 +146,14 @@ public class LaunchFrame extends javax.swing.JFrame {
     // setState(javax.swing.JFrame.ICONIFIED);
   }//GEN-LAST:event_btnLaunchKioskActionPerformed
 
+  private void mniExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniExitActionPerformed
+    System.exit(0);
+  }//GEN-LAST:event_mniExitActionPerformed
+
+  private void mniAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniAboutActionPerformed
+    new AboutDialog().setVisible(true);
+  }//GEN-LAST:event_mniAboutActionPerformed
+
   /**
    * @param args the command line arguments
    */
@@ -129,11 +167,26 @@ public class LaunchFrame extends javax.swing.JFrame {
     });
   }
 
+  private void setAppName() {
+    try {
+      app.PropertiesReader reader = new app.PropertiesReader("properties-from-pom.properties");
+      String name = reader.getProperty("name");
+      lblAppName.setText(name);
+    } catch (java.io.IOException ex) {
+      java.util.logging.Logger.getLogger(LaunchFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+  }
+
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton btnLaunchAdmin;
   private javax.swing.JButton btnLaunchKiosk;
-  private javax.swing.JLabel lblLogo;
-  private javax.swing.JLabel lblTitle;
+  private javax.swing.JLabel lblAppLogo;
+  private javax.swing.JLabel lblAppName;
+  private javax.swing.JMenuBar menuBar;
+  private javax.swing.JMenuItem mniAbout;
+  private javax.swing.JMenuItem mniExit;
+  private javax.swing.JMenu mnuFile;
+  private javax.swing.JMenu mnuHelp;
   private javax.swing.JPanel pnlActions;
   private javax.swing.JPanel pnlContainer;
   // End of variables declaration//GEN-END:variables
