@@ -3,14 +3,27 @@
  */
 package kiosk;
 
-public class CustomizeFrame extends javax.swing.JFrame {
+public class CustomizeDialog extends javax.swing.JDialog implements StateObservable {
+
+  models.OrderDetail currentItem;
+  java.util.ArrayList<StateObserver> observers;
 
   /**
-   * Creates new form CustomizeFrame
+   * Creates new form CustomizeDialog
    */
-  public CustomizeFrame() {
+  public CustomizeDialog(models.OrderDetail currentItem) {
+    setModal(true);
+
+    /**
+     * Get the item passed from menu
+     */
+    this.currentItem = currentItem;
+
+    /**
+     * Initialize
+     */
     initComponents();
-    app.Global.setAppIcon(this);
+    initState();
   }
 
   /**
@@ -216,13 +229,34 @@ public class CustomizeFrame extends javax.swing.JFrame {
     setLocationRelativeTo(null);
   }// </editor-fold>//GEN-END:initComponents
 
+  private void initState() {
+    observers = new java.util.ArrayList<>();
+  }
+
   private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
     dispose();
   }//GEN-LAST:event_btnCancelActionPerformed
 
   private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    addItemToOrder();
+    notifyObservers();
     dispose();
   }//GEN-LAST:event_btnAddActionPerformed
+
+  private void addItemToOrder() {
+    StateManager.setOrderedItem(currentItem);
+  }
+
+  private void notifyObservers() {
+    for (StateObserver observer : observers) {
+      observer.onStateChange();
+    }
+  }
+
+  @Override
+  public void addObserver(StateObserver observer) {
+    observers.add(observer);
+  }
 
   /**
    * @param args the command line arguments
@@ -233,7 +267,7 @@ public class CustomizeFrame extends javax.swing.JFrame {
 
     /* Create and display the form */
     java.awt.EventQueue.invokeLater(() -> {
-      new CustomizeFrame().setVisible(true);
+      new CustomizeDialog(null).setVisible(true);
     });
   }
 

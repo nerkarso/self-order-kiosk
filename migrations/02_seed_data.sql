@@ -34,10 +34,10 @@ INSERT INTO `items` (`item_name`, `item_price`, `item_image`, `category_id`) VAL
   ('Orange Juice', 1.66, 'https://b.zmtcdn.com/data/dish_photos/ca5/3891a51f9ba71bd9f37ee1616bcceca5.png', 4),
   ('Cold Coffee', 2.30, 'https://b.zmtcdn.com/data/dish_photos/1fe/715ff2c6ed6b30b5b26fbeca40d4c1fe.jpg', 4);
 
-INSERT INTO `orders` (`order_status`) VALUES
-  (1),
-  (0),
-  (0);
+INSERT INTO `orders` (`order_eating_location`, `order_payment_method`, `order_status`) VALUES
+  ('EAT_IN', 'PAY_HERE', 1),
+  ('TAKE_OUT', 'PAY_HERE', 0),
+  ('TAKE_OUT', 'PAY_COUNTER', 0);
 
 INSERT INTO `order_details` (`order_id`, `item_id`, `item_quantity`, `item_size`, `item_order_price`) VALUES
   (1, 1, 1, 'm', 5.15),

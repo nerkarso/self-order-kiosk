@@ -5,12 +5,20 @@ package kiosk;
 
 public class OrderSummaryFrame extends javax.swing.JFrame {
 
+  javax.swing.table.DefaultTableModel tbmOrder;
+
   /**
    * Creates new form OrderSummaryFrame
    */
   public OrderSummaryFrame() {
-    initComponents();
     app.Global.setAppIcon(this);
+
+    /**
+     * Initialize
+     */
+    initModels();
+    initComponents();
+    initState();
   }
 
   /**
@@ -67,22 +75,7 @@ public class OrderSummaryFrame extends javax.swing.JFrame {
 
     scpOrder.setPreferredSize(new java.awt.Dimension(452, 200));
 
-    tblOrder.setModel(new javax.swing.table.DefaultTableModel(
-      new Object [][] {
-        {"1x Krusty Burger (Medium)", "$ 1.99"}
-      },
-      new String [] {
-        "Item", "Price"
-      }
-    ) {
-      boolean[] canEdit = new boolean [] {
-        false, false
-      };
-
-      public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return canEdit [columnIndex];
-      }
-    });
+    tblOrder.setModel(tbmOrder);
     scpOrder.setViewportView(tblOrder);
 
     pnlContent.add(scpOrder);
@@ -118,6 +111,11 @@ public class OrderSummaryFrame extends javax.swing.JFrame {
     tgbEatIn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
     tgbEatIn.setIconTextGap(15);
     tgbEatIn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    tgbEatIn.addItemListener(new java.awt.event.ItemListener() {
+      public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        tgbEatInItemStateChanged(evt);
+      }
+    });
     pnlEatingLocationOptions.add(tgbEatIn);
 
     btgEatingLocation.add(tgbTakeOut);
@@ -126,6 +124,11 @@ public class OrderSummaryFrame extends javax.swing.JFrame {
     tgbTakeOut.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
     tgbTakeOut.setIconTextGap(15);
     tgbTakeOut.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    tgbTakeOut.addItemListener(new java.awt.event.ItemListener() {
+      public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        tgbTakeOutItemStateChanged(evt);
+      }
+    });
     pnlEatingLocationOptions.add(tgbTakeOut);
 
     pnlEatingLocation.add(pnlEatingLocationOptions);
@@ -147,6 +150,11 @@ public class OrderSummaryFrame extends javax.swing.JFrame {
     tgbPayHere.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
     tgbPayHere.setIconTextGap(10);
     tgbPayHere.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    tgbPayHere.addItemListener(new java.awt.event.ItemListener() {
+      public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        tgbPayHereItemStateChanged(evt);
+      }
+    });
     pnlPaymentOptions.add(tgbPayHere);
 
     btgPayment.add(tgbPayCounter);
@@ -155,6 +163,11 @@ public class OrderSummaryFrame extends javax.swing.JFrame {
     tgbPayCounter.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
     tgbPayCounter.setIconTextGap(15);
     tgbPayCounter.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    tgbPayCounter.addItemListener(new java.awt.event.ItemListener() {
+      public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        tgbPayCounterItemStateChanged(evt);
+      }
+    });
     pnlPaymentOptions.add(tgbPayCounter);
 
     pnlPayment.add(pnlPaymentOptions);
@@ -193,15 +206,105 @@ public class OrderSummaryFrame extends javax.swing.JFrame {
     setLocationRelativeTo(null);
   }// </editor-fold>//GEN-END:initComponents
 
+  private void initModels() {
+    tbmOrder = new javax.swing.table.DefaultTableModel(new Object[][]{}, new String[]{"Item", "Price"}) {
+      @Override
+      public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return false;
+      }
+    };
+  }
+
+  private void initState() {
+    getAllOrderedItems();
+
+    String eatingLocation = StateManager.getEatingLocation();
+    if (eatingLocation != null) {
+      switch (eatingLocation) {
+        case models.Order.EAT_IN:
+          tgbEatIn.setSelected(true);
+          break;
+        case models.Order.TAKE_OUT:
+          tgbTakeOut.setSelected(true);
+          break;
+      }
+    }
+
+    String paymentMethod = StateManager.getPaymentMethod();
+    if (paymentMethod != null) {
+      switch (paymentMethod) {
+        case models.Order.PAY_HERE:
+          tgbPayHere.setSelected(true);
+          break;
+        case models.Order.PAY_COUNTER:
+          tgbPayCounter.setSelected(true);
+          break;
+      }
+    }
+  }
+
   private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
     new MenuFrame().setVisible(true);
     dispose();
   }//GEN-LAST:event_btnBackActionPerformed
 
   private void btnCheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckOutActionPerformed
-    new EndFrame().setVisible(true);
-    dispose();
+    if (getValidOptions()) {
+      new EndFrame().setVisible(true);
+      dispose();
+    }
   }//GEN-LAST:event_btnCheckOutActionPerformed
+
+  private void tgbEatInItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tgbEatInItemStateChanged
+    if (evt.getStateChange() == 1) {
+      StateManager.setEatingLocation(models.Order.EAT_IN);
+    }
+  }//GEN-LAST:event_tgbEatInItemStateChanged
+
+  private void tgbTakeOutItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tgbTakeOutItemStateChanged
+    if (evt.getStateChange() == 1) {
+      StateManager.setEatingLocation(models.Order.TAKE_OUT);
+    }
+  }//GEN-LAST:event_tgbTakeOutItemStateChanged
+
+  private void tgbPayHereItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tgbPayHereItemStateChanged
+    if (evt.getStateChange() == 1) {
+      StateManager.setPaymentMethod(models.Order.PAY_HERE);
+    }
+  }//GEN-LAST:event_tgbPayHereItemStateChanged
+
+  private void tgbPayCounterItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tgbPayCounterItemStateChanged
+    if (evt.getStateChange() == 1) {
+      StateManager.setPaymentMethod(models.Order.PAY_COUNTER);
+    }
+  }//GEN-LAST:event_tgbPayCounterItemStateChanged
+
+  private void addRows(java.util.ArrayList<models.OrderDetail> items) {
+    tbmOrder.setRowCount(0);
+    items.forEach(item -> {
+      tbmOrder.addRow(new Object[]{
+        item.getName(), item.getPrice()
+      });
+    });
+  }
+
+  private void getAllOrderedItems() {
+    java.util.ArrayList<models.OrderDetail> orderedItems = StateManager.getOrderedItems();
+    if (orderedItems != null && orderedItems.size() > 0) {
+      addRows(orderedItems);
+    }
+  }
+
+  private boolean getValidOptions() {
+    if (StateManager.getEatingLocation() == null) {
+      javax.swing.JOptionPane.showMessageDialog(null, "Please specify where you want to eat.", "Eating Location", javax.swing.JOptionPane.ERROR_MESSAGE);
+    } else if (StateManager.getPaymentMethod() == null) {
+      javax.swing.JOptionPane.showMessageDialog(null, "Please specify how you will pay.", "Payment Method", javax.swing.JOptionPane.ERROR_MESSAGE);
+    } else {
+      return true;
+    }
+    return false;
+  }
 
   /**
    * @param args the command line arguments

@@ -3,14 +3,22 @@
  */
 package kiosk;
 
-public class MenuFrame extends javax.swing.JFrame {
+public class MenuFrame extends javax.swing.JFrame implements StateObserver {
+
+  javax.swing.table.DefaultTableModel tbmOrder;
 
   /**
    * Creates new form MenuFrame
    */
   public MenuFrame() {
-    initComponents();
     app.Global.setAppIcon(this);
+
+    /**
+     * Initialize
+     */
+    initModels();
+    initComponents();
+    initState();
   }
 
   /**
@@ -23,8 +31,6 @@ public class MenuFrame extends javax.swing.JFrame {
   private void initComponents() {
     java.awt.GridBagConstraints gridBagConstraints;
 
-    pnlHeader = new javax.swing.JPanel();
-    lblHeaderTitle = new javax.swing.JLabel();
     pnlContent = new javax.swing.JPanel();
     tabbedPane = new javax.swing.JTabbedPane();
     pnlMealCombos = new javax.swing.JPanel();
@@ -67,26 +73,15 @@ public class MenuFrame extends javax.swing.JFrame {
     setName(""); // NOI18N
     setPreferredSize(new java.awt.Dimension(720, 860));
 
-    pnlHeader.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
-    pnlHeader.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
-
-    lblHeaderTitle.setFont(lblHeaderTitle.getFont().deriveFont(lblHeaderTitle.getFont().getSize()+10f));
-    lblHeaderTitle.setText("Meal Combos");
-    pnlHeader.add(lblHeaderTitle);
-
-    getContentPane().add(pnlHeader, java.awt.BorderLayout.NORTH);
-
     pnlContent.setLayout(new java.awt.GridBagLayout());
 
     tabbedPane.setTabPlacement(javax.swing.JTabbedPane.LEFT);
-    tabbedPane.addChangeListener(new javax.swing.event.ChangeListener() {
-      public void stateChanged(javax.swing.event.ChangeEvent evt) {
-        tabbedPaneStateChanged(evt);
-      }
-    });
+    tabbedPane.setMinimumSize(new java.awt.Dimension(574, 400));
+    tabbedPane.setPreferredSize(new java.awt.Dimension(700, 400));
 
     pnlMealCombos.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 20, 0, 20));
     pnlMealCombos.setMaximumSize(new java.awt.Dimension(0, 0));
+    pnlMealCombos.setPreferredSize(new java.awt.Dimension(560, 500));
     pnlMealCombos.setLayout(new java.awt.GridLayout(0, 3, 20, 20));
 
     btnItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
@@ -398,8 +393,10 @@ public class MenuFrame extends javax.swing.JFrame {
     gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
     gridBagConstraints.weightx = 1.0;
     gridBagConstraints.weighty = 1.0;
+    gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
     pnlContent.add(tabbedPane, gridBagConstraints);
 
+    pnlOrder.setPreferredSize(new java.awt.Dimension(472, 600));
     java.awt.GridBagLayout jPanel1Layout = new java.awt.GridBagLayout();
     jPanel1Layout.columnWidths = new int[] {140, 0};
     pnlOrder.setLayout(jPanel1Layout);
@@ -413,22 +410,9 @@ public class MenuFrame extends javax.swing.JFrame {
     gridBagConstraints.insets = new java.awt.Insets(20, 0, 10, 0);
     pnlOrder.add(lblOrder, gridBagConstraints);
 
-    tblOrder.setModel(new javax.swing.table.DefaultTableModel(
-      new Object [][] {
-        {"1x Krusty Burger (Medium)", "$ 1.99"}
-      },
-      new String [] {
-        "Item", "Price"
-      }
-    ) {
-      boolean[] canEdit = new boolean [] {
-        false, false
-      };
+    scpOrder.setPreferredSize(new java.awt.Dimension(452, 500));
 
-      public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return canEdit [columnIndex];
-      }
-    });
+    tblOrder.setModel(tbmOrder);
     scpOrder.setViewportView(tblOrder);
 
     gridBagConstraints = new java.awt.GridBagConstraints();
@@ -497,12 +481,27 @@ public class MenuFrame extends javax.swing.JFrame {
     setLocationRelativeTo(null);
   }// </editor-fold>//GEN-END:initComponents
 
-  private void tabbedPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabbedPaneStateChanged
-    setTabTitle();
-  }//GEN-LAST:event_tabbedPaneStateChanged
+  private void initModels() {
+    tbmOrder = new javax.swing.table.DefaultTableModel(new Object[][]{}, new String[]{"Item", "Price"}) {
+      @Override
+      public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return false;
+      }
+    };
+  }
+
+  private void initState() {
+    getAllOrderedItems();
+  }
 
   private void itemActionPeformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemActionPeformed
-    new CustomizeFrame().setVisible(true);
+    models.OrderDetail item = new models.OrderDetail();
+    item.setName("Krabby Patty");
+    item.setPrice(1.99);
+
+    CustomizeDialog customizeDialog = new CustomizeDialog(item);
+    customizeDialog.addObserver(this);
+    customizeDialog.setVisible(true);
   }//GEN-LAST:event_itemActionPeformed
 
   private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -515,6 +514,27 @@ public class MenuFrame extends javax.swing.JFrame {
     dispose();
   }//GEN-LAST:event_btnContinueActionPerformed
 
+  private void addRows(java.util.ArrayList<models.OrderDetail> items) {
+    tbmOrder.setRowCount(0);
+    items.forEach(item -> {
+      tbmOrder.addRow(new Object[]{
+        item.getName(), item.getPrice()
+      });
+    });
+  }
+
+  private void getAllOrderedItems() {
+    java.util.ArrayList<models.OrderDetail> orderedItems = StateManager.getOrderedItems();
+    if (orderedItems != null && orderedItems.size() > 0) {
+      addRows(orderedItems);
+    }
+  }
+
+  @Override
+  public void onStateChange() {
+    getAllOrderedItems();
+  }
+
   /**
    * @param args the command line arguments
    */
@@ -526,12 +546,6 @@ public class MenuFrame extends javax.swing.JFrame {
     java.awt.EventQueue.invokeLater(() -> {
       new MenuFrame().setVisible(true);
     });
-  }
-
-  private void setTabTitle() {
-    int index = tabbedPane.getSelectedIndex();
-    String title = tabbedPane.getTitleAt(index);
-    lblHeaderTitle.setText(title);
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -556,7 +570,6 @@ public class MenuFrame extends javax.swing.JFrame {
   private javax.swing.JButton btnItem7;
   private javax.swing.JButton btnItem8;
   private javax.swing.JButton btnItem9;
-  private javax.swing.JLabel lblHeaderTitle;
   private javax.swing.JLabel lblOrder;
   private javax.swing.JLabel lblTotal;
   private javax.swing.JLabel lblTotalValue;
@@ -564,7 +577,6 @@ public class MenuFrame extends javax.swing.JFrame {
   private javax.swing.JPanel pnlContent;
   private javax.swing.JPanel pnlDesserts;
   private javax.swing.JPanel pnlFooter;
-  private javax.swing.JPanel pnlHeader;
   private javax.swing.JPanel pnlMealCombos;
   private javax.swing.JPanel pnlOrder;
   private javax.swing.JPanel pnlSides;

@@ -3,21 +3,12 @@
  */
 package models;
 
-public class OrderDetail {
+public class OrderDetail extends Item {
 
-  private int id;
   private int quantity;
   private String size;
   private double orderPrice;
   private int orderId;
-
-  public int getId() {
-    return this.id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
-  }
 
   public int getQuantity() {
     return this.quantity;

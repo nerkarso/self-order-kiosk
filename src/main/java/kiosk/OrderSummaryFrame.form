@@ -95,15 +95,8 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="tblOrder">
               <Properties>
-                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="2" rowCount="1">
-                    <Column editable="false" title="Item" type="java.lang.Object">
-                      <Data value="1x Krusty Burger (Medium)"/>
-                    </Column>
-                    <Column editable="false" title="Price" type="java.lang.Object">
-                      <Data value="$ 1.99"/>
-                    </Column>
-                  </Table>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="tbmOrder" type="code"/>
                 </Property>
               </Properties>
             </Component>
@@ -198,6 +191,9 @@
                     <Property name="iconTextGap" type="int" value="15"/>
                     <Property name="verticalTextPosition" type="int" value="3"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="tgbEatInItemStateChanged"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JToggleButton" name="tgbTakeOut">
                   <Properties>
@@ -212,6 +208,9 @@
                     <Property name="iconTextGap" type="int" value="15"/>
                     <Property name="verticalTextPosition" type="int" value="3"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="tgbTakeOutItemStateChanged"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -260,6 +259,9 @@
                     <Property name="iconTextGap" type="int" value="10"/>
                     <Property name="verticalTextPosition" type="int" value="3"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="tgbPayHereItemStateChanged"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JToggleButton" name="tgbPayCounter">
                   <Properties>
@@ -274,6 +276,9 @@
                     <Property name="iconTextGap" type="int" value="15"/>
                     <Property name="verticalTextPosition" type="int" value="3"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="tgbPayCounterItemStateChanged"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

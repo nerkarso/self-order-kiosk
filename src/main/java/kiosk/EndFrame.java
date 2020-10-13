@@ -90,6 +90,7 @@ public class EndFrame extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void btnFinishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinishActionPerformed
+    StateManager.reset();
     new StartFrame().setVisible(true);
     dispose();
   }//GEN-LAST:event_btnFinishActionPerformed

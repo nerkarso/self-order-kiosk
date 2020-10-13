@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS order_items;
+DROP TABLE IF EXISTS order_details;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS items;
 DROP TABLE IF EXISTS categories;
@@ -24,6 +24,8 @@ CREATE TABLE `items` (
 
 CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_eating_location` varchar(100) NOT NULL,
+  `order_payment_method` varchar(100) NOT NULL,
   `order_status` int(1) NULL DEFAULT 0,
   `order_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`order_id`)
