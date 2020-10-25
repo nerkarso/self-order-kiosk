@@ -88,7 +88,7 @@ public class OrderSummaryFrame extends javax.swing.JFrame {
     pnlTotal.add(lblTotal);
 
     lblTotalValue.setFont(lblTotalValue.getFont().deriveFont(lblTotalValue.getFont().getStyle() | java.awt.Font.BOLD));
-    lblTotalValue.setText("$ 1.99");
+    lblTotalValue.setText("$ 0.00");
     pnlTotal.add(lblTotalValue);
 
     pnlContent.add(pnlTotal);
@@ -292,6 +292,7 @@ public class OrderSummaryFrame extends javax.swing.JFrame {
     java.util.ArrayList<models.OrderDetail> orderedItems = StateManager.getOrderedItems();
     if (orderedItems != null && orderedItems.size() > 0) {
       addRows(orderedItems);
+      app.Global.setTotalPrice(orderedItems, lblTotalValue);
     }
   }
 

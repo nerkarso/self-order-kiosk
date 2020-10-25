@@ -132,7 +132,7 @@
                     <Font bold="true" component="lblTotalValue" property="font" relativeSize="true" size="0"/>
                   </FontInfo>
                 </Property>
-                <Property name="text" type="java.lang.String" value="$ 1.99"/>
+                <Property name="text" type="java.lang.String" value="$ 0.00"/>
               </Properties>
             </Component>
           </SubComponents>

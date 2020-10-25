@@ -5,7 +5,12 @@ package kiosk;
 
 public class MenuFrame extends javax.swing.JFrame implements StateObserver {
 
+  services.ItemService itemService;
   javax.swing.table.DefaultTableModel tbmOrder;
+  java.util.ArrayList<models.Item> itemsMealCombos;
+  java.util.ArrayList<models.Item> itemsSides;
+  java.util.ArrayList<models.Item> itemsDesserts;
+  java.util.ArrayList<models.Item> itemsBeverages;
 
   /**
    * Creates new form MenuFrame
@@ -18,6 +23,7 @@ public class MenuFrame extends javax.swing.JFrame implements StateObserver {
      */
     initModels();
     initComponents();
+    initCustomComponents();
     initState();
   }
 
@@ -34,28 +40,9 @@ public class MenuFrame extends javax.swing.JFrame implements StateObserver {
     pnlContent = new javax.swing.JPanel();
     tabbedPane = new javax.swing.JTabbedPane();
     pnlMealCombos = new javax.swing.JPanel();
-    btnItem1 = new javax.swing.JButton();
-    btnItem2 = new javax.swing.JButton();
-    btnItem3 = new javax.swing.JButton();
-    btnItem4 = new javax.swing.JButton();
-    btnItem5 = new javax.swing.JButton();
-    btnItem6 = new javax.swing.JButton();
-    btnItem7 = new javax.swing.JButton();
-    btnItem8 = new javax.swing.JButton();
-    btnItem9 = new javax.swing.JButton();
     pnlSides = new javax.swing.JPanel();
-    btnItem10 = new javax.swing.JButton();
-    btnItem11 = new javax.swing.JButton();
-    btnItem12 = new javax.swing.JButton();
     pnlDesserts = new javax.swing.JPanel();
-    btnItem13 = new javax.swing.JButton();
-    btnItem14 = new javax.swing.JButton();
-    btnItem15 = new javax.swing.JButton();
-    btnItem16 = new javax.swing.JButton();
     pnlBeverages = new javax.swing.JPanel();
-    btnItem17 = new javax.swing.JButton();
-    btnItem18 = new javax.swing.JButton();
-    btnItem19 = new javax.swing.JButton();
     pnlOrder = new javax.swing.JPanel();
     lblOrder = new javax.swing.JLabel();
     scpOrder = new javax.swing.JScrollPane();
@@ -83,307 +70,18 @@ public class MenuFrame extends javax.swing.JFrame implements StateObserver {
     pnlMealCombos.setMaximumSize(new java.awt.Dimension(0, 0));
     pnlMealCombos.setPreferredSize(new java.awt.Dimension(560, 500));
     pnlMealCombos.setLayout(new java.awt.GridLayout(0, 3, 20, 20));
-
-    btnItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem1.setText("Meal");
-    btnItem1.setAlignmentY(0.0F);
-    btnItem1.setHideActionText(true);
-    btnItem1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem1.setIconTextGap(20);
-    btnItem1.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem1.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlMealCombos.add(btnItem1);
-
-    btnItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem2.setText("Meal");
-    btnItem2.setAlignmentY(0.0F);
-    btnItem2.setHideActionText(true);
-    btnItem2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem2.setIconTextGap(20);
-    btnItem2.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem2.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlMealCombos.add(btnItem2);
-
-    btnItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem3.setText("Meal");
-    btnItem3.setAlignmentY(0.0F);
-    btnItem3.setHideActionText(true);
-    btnItem3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem3.setIconTextGap(20);
-    btnItem3.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem3.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlMealCombos.add(btnItem3);
-
-    btnItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem4.setText("Meal");
-    btnItem4.setAlignmentY(0.0F);
-    btnItem4.setHideActionText(true);
-    btnItem4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem4.setIconTextGap(20);
-    btnItem4.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem4.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlMealCombos.add(btnItem4);
-
-    btnItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem5.setText("Meal");
-    btnItem5.setAlignmentY(0.0F);
-    btnItem5.setHideActionText(true);
-    btnItem5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem5.setIconTextGap(20);
-    btnItem5.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem5.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlMealCombos.add(btnItem5);
-
-    btnItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem6.setText("Meal");
-    btnItem6.setAlignmentY(0.0F);
-    btnItem6.setHideActionText(true);
-    btnItem6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem6.setIconTextGap(20);
-    btnItem6.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem6.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlMealCombos.add(btnItem6);
-
-    btnItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem7.setText("Meal");
-    btnItem7.setAlignmentY(0.0F);
-    btnItem7.setHideActionText(true);
-    btnItem7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem7.setIconTextGap(20);
-    btnItem7.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem7.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlMealCombos.add(btnItem7);
-
-    btnItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem8.setText("Meal");
-    btnItem8.setAlignmentY(0.0F);
-    btnItem8.setHideActionText(true);
-    btnItem8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem8.setIconTextGap(20);
-    btnItem8.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem8.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlMealCombos.add(btnItem8);
-
-    btnItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem9.setText("Meal");
-    btnItem9.setAlignmentY(0.0F);
-    btnItem9.setHideActionText(true);
-    btnItem9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem9.setIconTextGap(20);
-    btnItem9.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem9.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem9.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlMealCombos.add(btnItem9);
-
     tabbedPane.addTab("Meal Combos", pnlMealCombos);
 
     pnlSides.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 20, 0, 20));
     pnlSides.setLayout(new java.awt.GridLayout(2, 3, 20, 20));
-
-    btnItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem10.setText("Meal");
-    btnItem10.setAlignmentY(0.0F);
-    btnItem10.setHideActionText(true);
-    btnItem10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem10.setIconTextGap(20);
-    btnItem10.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem10.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlSides.add(btnItem10);
-
-    btnItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem11.setText("Meal");
-    btnItem11.setAlignmentY(0.0F);
-    btnItem11.setHideActionText(true);
-    btnItem11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem11.setIconTextGap(20);
-    btnItem11.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem11.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem11.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlSides.add(btnItem11);
-
-    btnItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem12.setText("Meal");
-    btnItem12.setAlignmentY(0.0F);
-    btnItem12.setHideActionText(true);
-    btnItem12.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem12.setIconTextGap(20);
-    btnItem12.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem12.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem12.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlSides.add(btnItem12);
-
     tabbedPane.addTab("Sides", pnlSides);
 
     pnlDesserts.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 20, 0, 20));
     pnlDesserts.setLayout(new java.awt.GridLayout(3, 3, 20, 20));
-
-    btnItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem13.setText("Meal");
-    btnItem13.setAlignmentY(0.0F);
-    btnItem13.setHideActionText(true);
-    btnItem13.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem13.setIconTextGap(20);
-    btnItem13.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem13.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem13.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlDesserts.add(btnItem13);
-
-    btnItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem14.setText("Meal");
-    btnItem14.setAlignmentY(0.0F);
-    btnItem14.setHideActionText(true);
-    btnItem14.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem14.setIconTextGap(20);
-    btnItem14.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem14.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem14.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlDesserts.add(btnItem14);
-
-    btnItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem15.setText("Meal");
-    btnItem15.setAlignmentY(0.0F);
-    btnItem15.setHideActionText(true);
-    btnItem15.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem15.setIconTextGap(20);
-    btnItem15.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem15.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem15.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlDesserts.add(btnItem15);
-
-    btnItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem16.setText("Meal");
-    btnItem16.setAlignmentY(0.0F);
-    btnItem16.setHideActionText(true);
-    btnItem16.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem16.setIconTextGap(20);
-    btnItem16.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem16.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem16.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlDesserts.add(btnItem16);
-
     tabbedPane.addTab("Desserts", pnlDesserts);
 
     pnlBeverages.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 20, 0, 20));
     pnlBeverages.setLayout(new java.awt.GridLayout(2, 3, 20, 20));
-
-    btnItem17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem17.setText("Meal");
-    btnItem17.setAlignmentY(0.0F);
-    btnItem17.setHideActionText(true);
-    btnItem17.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem17.setIconTextGap(20);
-    btnItem17.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem17.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem17.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlBeverages.add(btnItem17);
-
-    btnItem18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem18.setText("Meal");
-    btnItem18.setAlignmentY(0.0F);
-    btnItem18.setHideActionText(true);
-    btnItem18.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem18.setIconTextGap(20);
-    btnItem18.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem18.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem18.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlBeverages.add(btnItem18);
-
-    btnItem19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem19.setText("Meal");
-    btnItem19.setAlignmentY(0.0F);
-    btnItem19.setHideActionText(true);
-    btnItem19.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem19.setIconTextGap(20);
-    btnItem19.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem19.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem19.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlBeverages.add(btnItem19);
-
     tabbedPane.addTab("Beverages", pnlBeverages);
 
     gridBagConstraints = new java.awt.GridBagConstraints();
@@ -431,7 +129,7 @@ public class MenuFrame extends javax.swing.JFrame implements StateObserver {
     pnlTotal.add(lblTotal);
 
     lblTotalValue.setFont(lblTotalValue.getFont().deriveFont(lblTotalValue.getFont().getStyle() | java.awt.Font.BOLD));
-    lblTotalValue.setText("$ 1.99");
+    lblTotalValue.setText("$ 0.00");
     pnlTotal.add(lblTotalValue);
 
     gridBagConstraints = new java.awt.GridBagConstraints();
@@ -482,7 +180,13 @@ public class MenuFrame extends javax.swing.JFrame implements StateObserver {
   }// </editor-fold>//GEN-END:initComponents
 
   private void initModels() {
-    tbmOrder = new javax.swing.table.DefaultTableModel(new Object[][]{}, new String[]{"Item", "Price"}) {
+    itemService = new services.ItemService();
+    itemsMealCombos = itemService.getAllByCategory(1);
+    itemsSides = itemService.getAllByCategory(2);
+    itemsDesserts = itemService.getAllByCategory(3);
+    itemsBeverages = itemService.getAllByCategory(4);
+
+    tbmOrder = new javax.swing.table.DefaultTableModel(new Object[][]{}, new String[]{"Item", "Size", "Price"}) {
       @Override
       public boolean isCellEditable(int rowIndex, int columnIndex) {
         return false;
@@ -494,15 +198,28 @@ public class MenuFrame extends javax.swing.JFrame implements StateObserver {
     getAllOrderedItems();
   }
 
-  private void itemActionPeformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemActionPeformed
-    models.OrderDetail item = new models.OrderDetail();
-    item.setName("Krabby Patty");
-    item.setPrice(1.99);
-
-    CustomizeDialog customizeDialog = new CustomizeDialog(item);
-    customizeDialog.addObserver(this);
-    customizeDialog.setVisible(true);
-  }//GEN-LAST:event_itemActionPeformed
+  private void initCustomComponents() {
+    itemsMealCombos.forEach((item) -> {
+      BtnItem btnItem = new BtnItem(item);
+      btnItem.addActionListener((java.awt.event.ActionEvent evt) -> itemActionPeformed(item));
+      pnlMealCombos.add(btnItem);
+    });
+    itemsSides.forEach((item) -> {
+      BtnItem btnItem = new BtnItem(item);
+      btnItem.addActionListener((java.awt.event.ActionEvent evt) -> itemActionPeformed(item));
+      pnlSides.add(btnItem);
+    });
+    itemsDesserts.forEach((item) -> {
+      BtnItem btnItem = new BtnItem(item);
+      btnItem.addActionListener((java.awt.event.ActionEvent evt) -> itemActionPeformed(item));
+      pnlDesserts.add(btnItem);
+    });
+    itemsBeverages.forEach((item) -> {
+      BtnItem btnItem = new BtnItem(item);
+      btnItem.addActionListener((java.awt.event.ActionEvent evt) -> itemActionPeformed(item));
+      pnlBeverages.add(btnItem);
+    });
+  }
 
   private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
     new StartFrame().setVisible(true);
@@ -514,11 +231,21 @@ public class MenuFrame extends javax.swing.JFrame implements StateObserver {
     dispose();
   }//GEN-LAST:event_btnContinueActionPerformed
 
+  private void itemActionPeformed(models.Item item) {
+    models.OrderDetail orderDetail = new models.OrderDetail();
+    orderDetail.setName(item.getName());
+    orderDetail.setPrice(item.getPrice());
+
+    CustomizeDialog customizeDialog = new CustomizeDialog(orderDetail);
+    customizeDialog.addObserver(this);
+    customizeDialog.setVisible(true);
+  }
+
   private void addRows(java.util.ArrayList<models.OrderDetail> items) {
     tbmOrder.setRowCount(0);
     items.forEach(item -> {
       tbmOrder.addRow(new Object[]{
-        item.getName(), item.getPrice()
+        item.getName(), "Medium", item.getPrice()
       });
     });
   }
@@ -527,6 +254,7 @@ public class MenuFrame extends javax.swing.JFrame implements StateObserver {
     java.util.ArrayList<models.OrderDetail> orderedItems = StateManager.getOrderedItems();
     if (orderedItems != null && orderedItems.size() > 0) {
       addRows(orderedItems);
+      app.Global.setTotalPrice(orderedItems, lblTotalValue);
     }
   }
 
@@ -538,6 +266,7 @@ public class MenuFrame extends javax.swing.JFrame implements StateObserver {
   /**
    * @param args the command line arguments
    */
+  /* Create and display the form */
   public static void main(String args[]) {
     /* Set default theme */
     app.Global.setDefaultTheme();
@@ -551,25 +280,6 @@ public class MenuFrame extends javax.swing.JFrame implements StateObserver {
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton btnBack;
   private javax.swing.JButton btnContinue;
-  private javax.swing.JButton btnItem1;
-  private javax.swing.JButton btnItem10;
-  private javax.swing.JButton btnItem11;
-  private javax.swing.JButton btnItem12;
-  private javax.swing.JButton btnItem13;
-  private javax.swing.JButton btnItem14;
-  private javax.swing.JButton btnItem15;
-  private javax.swing.JButton btnItem16;
-  private javax.swing.JButton btnItem17;
-  private javax.swing.JButton btnItem18;
-  private javax.swing.JButton btnItem19;
-  private javax.swing.JButton btnItem2;
-  private javax.swing.JButton btnItem3;
-  private javax.swing.JButton btnItem4;
-  private javax.swing.JButton btnItem5;
-  private javax.swing.JButton btnItem6;
-  private javax.swing.JButton btnItem7;
-  private javax.swing.JButton btnItem8;
-  private javax.swing.JButton btnItem9;
   private javax.swing.JLabel lblOrder;
   private javax.swing.JLabel lblTotal;
   private javax.swing.JLabel lblTotalValue;
@@ -585,4 +295,18 @@ public class MenuFrame extends javax.swing.JFrame implements StateObserver {
   private javax.swing.JTabbedPane tabbedPane;
   private javax.swing.JTable tblOrder;
   // End of variables declaration//GEN-END:variables
+}
+
+class BtnItem extends javax.swing.JButton {
+
+  BtnItem(models.Item item) {
+    setIcon(app.Global.getImagePreview(item.getImage()));
+    setText(item.getName());
+    setAlignmentY(0.0F);
+    setHideActionText(true);
+    setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    setIconTextGap(20);
+    setPreferredSize(new java.awt.Dimension(160, 160));
+    setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+  }
 }
