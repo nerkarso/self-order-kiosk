@@ -5,12 +5,15 @@ package admin;
 
 public class LoginFrame extends javax.swing.JFrame {
 
+  services.AuthService authService;
+
   /**
    * Creates new form LoginFrame
    */
   public LoginFrame() {
     initComponents();
     app.Global.setAppIcon(this);
+    authService = new services.AuthService();
   }
 
   /**
@@ -99,9 +102,31 @@ public class LoginFrame extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-    new AdminFrame().setVisible(true);
-    dispose();
+    if (getValidFields()) {
+      models.User user = new models.User();
+      user.setUsername(txtUsername.getText());
+      user.setPassword(new String(txtPassword.getPassword()));
+
+      if (authService.getAuth(user)) {
+        new AdminFrame().setVisible(true);
+        dispose();
+      } else {
+        javax.swing.JOptionPane.showMessageDialog(null, "Invalid username or password", "Authentication Failed", javax.swing.JOptionPane.ERROR_MESSAGE);
+      }
+    }
   }//GEN-LAST:event_btnLoginActionPerformed
+
+  private boolean getValidFields() {
+    if (txtUsername.getText().isEmpty()) {
+      javax.swing.JOptionPane.showMessageDialog(null, "Username is required", "Warning", javax.swing.JOptionPane.WARNING_MESSAGE);
+      return false;
+    } else if (new String(txtPassword.getPassword()).isEmpty()) {
+      javax.swing.JOptionPane.showMessageDialog(null, "Password is required", "Warning", javax.swing.JOptionPane.WARNING_MESSAGE);
+      return false;
+    } else {
+      return true;
+    }
+  }
 
   /**
    * @param args the command line arguments
