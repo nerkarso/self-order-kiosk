@@ -5,11 +5,63 @@ package admin;
 
 public class OrdersPanel extends javax.swing.JPanel {
 
+  services.OrderService orderService;
+
+  javax.swing.table.DefaultTableModel tbmOrders;
+
   /**
    * Creates new form OrdersPanel
    */
   public OrdersPanel() {
+    /**
+     * Initialize
+     */
+    orderService = new services.OrderService();
+    tbmOrders = new javax.swing.table.DefaultTableModel(
+            new Object[][]{},
+            new String[]{"ID", "Eating Location", "Payment", "Status", "Date"}
+    ) {
+      @Override
+      public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return false;
+      }
+    };
+
     initComponents();
+
+    /**
+     * Populate on load
+     */
+    getAllOrders();
+  }
+
+  private void addRow(models.Order order) {
+    tbmOrders.addRow(new Object[]{
+      order.getId(), app.Global.toTitleCase(order.getEatingLocation()), app.Global.toTitleCase(order.getPaymentMethod()), getStatusValue(order.getStatus()), order.getDate()
+    });
+  }
+
+  private void addRows(java.util.ArrayList<models.Order> orders) {
+    tbmOrders.setRowCount(0);
+    orders.forEach(order -> addRow(order));
+    resizeColumns();
+  }
+
+  private void resizeColumns() {
+    javax.swing.table.TableColumnModel model = (javax.swing.table.TableColumnModel) tblOrders.getColumnModel();
+    model.getColumn(0).setPreferredWidth(50);
+    model.getColumn(0).setMaxWidth(50);
+  }
+
+  private void getAllOrders() {
+    java.util.ArrayList<models.Order> orders = orderService.getAll();
+    if (orders.size() > 0) {
+      addRows(orders);
+    }
+  }
+
+  private String getStatusValue(int status) {
+    return (status == 1) ? "Ready" : "Pending";
   }
 
   /**
@@ -27,27 +79,11 @@ public class OrdersPanel extends javax.swing.JPanel {
     setPreferredSize(new java.awt.Dimension(720, 600));
     setLayout(new java.awt.BorderLayout());
 
-    tblOrders.setModel(new javax.swing.table.DefaultTableModel(
-      new Object [][] {
-        {"1", "Pending", "2020-09-29"}
-      },
-      new String [] {
-        "ID", "Status", "Date"
-      }
-    ) {
-      boolean[] canEdit = new boolean [] {
-        false, false, false
-      };
-
-      public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return canEdit [columnIndex];
-      }
-    });
+    tblOrders.setModel(tbmOrders);
     scpOrders.setViewportView(tblOrders);
 
     add(scpOrders, java.awt.BorderLayout.CENTER);
   }// </editor-fold>//GEN-END:initComponents
-
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JScrollPane scpOrders;
