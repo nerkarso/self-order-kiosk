@@ -49,7 +49,7 @@ password=<PASSWORD>
 
 **Demo Login**
 
-- Username: bob
+- Username: krabs
 - Password: 123
 
 ## Production
@@ -61,14 +61,21 @@ password=<PASSWORD>
 
 ## Changelog
 
-### v0.2.0 - 2020-10-04
+### [v0.3.0] - 2020-10-28
 
-- New feature to manage items in Admin area
-- New Launcher menubar
-- New About window
-- Theme settings moved to Launcher menubar
+- New authentication feature in login window
+- New feature to manage orders in admin module
+- New feature to manage categories in admin module
+- New feature to manage users in admin module
 
-### v0.1.0 - 2020-09-30
+### [v0.2.0] - 2020-10-04
+
+- New feature to manage items in admin module
+- New menubar in launcher window
+- New about window
+- Theme settings moved to launcher window menubar
+
+### [v0.1.0] - 2020-09-30
 
 - Initial alpha release
 
@@ -79,3 +86,7 @@ password=<PASSWORD>
 ## Credits
 
 Icons made by [Freepik](https://www.flaticon.com/authors/basic-gradient/gradient) from [www.flaticon.com](https://www.flaticon.com)
+
+[v0.3.0]: https://github.com/nerkarso/self-order-kiosk/releases/tag/v0.3.0
+[v0.2.0]: https://github.com/nerkarso/self-order-kiosk/releases/tag/v0.2.0
+[v0.1.0]: https://github.com/nerkarso/self-order-kiosk/releases/tag/v0.1.0
