@@ -6,7 +6,7 @@ package models;
 public class User {
 
   private int id;
-  private String name;
+  private String fullName;
   private String username;
   private String password;
 
@@ -18,12 +18,12 @@ public class User {
     this.id = id;
   }
 
-  public String getName() {
-    return this.name;
+  public String getFullName() {
+    return this.fullName;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setFullName(String fullName) {
+    this.fullName = fullName;
   }
 
   public String getUsername() {
