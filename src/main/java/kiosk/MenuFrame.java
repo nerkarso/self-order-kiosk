@@ -65,6 +65,11 @@ public class MenuFrame extends javax.swing.JFrame implements StateObserver {
     tabbedPane.setTabPlacement(javax.swing.JTabbedPane.LEFT);
     tabbedPane.setMinimumSize(new java.awt.Dimension(574, 400));
     tabbedPane.setPreferredSize(new java.awt.Dimension(700, 400));
+    tabbedPane.addChangeListener(new javax.swing.event.ChangeListener() {
+      public void stateChanged(javax.swing.event.ChangeEvent evt) {
+        tabbedPaneStateChanged(evt);
+      }
+    });
 
     pnlMealCombos.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 20, 0, 20));
     pnlMealCombos.setMaximumSize(new java.awt.Dimension(0, 0));
@@ -187,9 +192,6 @@ public class MenuFrame extends javax.swing.JFrame implements StateObserver {
   private void initModels() {
     itemService = new services.ItemService();
     itemsMealCombos = itemService.getAllByCategory(1);
-    itemsSides = itemService.getAllByCategory(2);
-    itemsDesserts = itemService.getAllByCategory(3);
-    itemsBeverages = itemService.getAllByCategory(4);
 
     tbmOrder = new OrderTable();
   }
@@ -203,21 +205,6 @@ public class MenuFrame extends javax.swing.JFrame implements StateObserver {
       BtnItem btnItem = new BtnItem(item);
       btnItem.addActionListener((java.awt.event.ActionEvent evt) -> itemActionPeformed(item));
       pnlMealCombos.add(btnItem);
-    });
-    itemsSides.forEach((item) -> {
-      BtnItem btnItem = new BtnItem(item);
-      btnItem.addActionListener((java.awt.event.ActionEvent evt) -> itemActionPeformed(item));
-      pnlSides.add(btnItem);
-    });
-    itemsDesserts.forEach((item) -> {
-      BtnItem btnItem = new BtnItem(item);
-      btnItem.addActionListener((java.awt.event.ActionEvent evt) -> itemActionPeformed(item));
-      pnlDesserts.add(btnItem);
-    });
-    itemsBeverages.forEach((item) -> {
-      BtnItem btnItem = new BtnItem(item);
-      btnItem.addActionListener((java.awt.event.ActionEvent evt) -> itemActionPeformed(item));
-      pnlBeverages.add(btnItem);
     });
   }
 
@@ -242,6 +229,37 @@ public class MenuFrame extends javax.swing.JFrame implements StateObserver {
     customizeDialog.addObserver(this);
     customizeDialog.setVisible(true);
   }//GEN-LAST:event_tblOrderMouseClicked
+
+  private void tabbedPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabbedPaneStateChanged
+    int tabIndex = tabbedPane.getSelectedIndex();
+
+    if (tabIndex == 1 && itemsSides == null) {
+      itemsSides = itemService.getAllByCategory(2);
+      itemsSides.forEach((item) -> {
+        BtnItem btnItem = new BtnItem(item);
+        btnItem.addActionListener((java.awt.event.ActionEvent e) -> itemActionPeformed(item));
+        pnlSides.add(btnItem);
+      });
+    }
+
+    if (tabIndex == 2 && itemsDesserts == null) {
+      itemsDesserts = itemService.getAllByCategory(3);
+      itemsDesserts.forEach((item) -> {
+        BtnItem btnItem = new BtnItem(item);
+        btnItem.addActionListener((java.awt.event.ActionEvent e) -> itemActionPeformed(item));
+        pnlDesserts.add(btnItem);
+      });
+    }
+
+    if (tabIndex == 3 && itemsBeverages == null) {
+      itemsBeverages = itemService.getAllByCategory(4);
+      itemsBeverages.forEach((item) -> {
+        BtnItem btnItem = new BtnItem(item);
+        btnItem.addActionListener((java.awt.event.ActionEvent e) -> itemActionPeformed(item));
+        pnlBeverages.add(btnItem);
+      });
+    }
+  }//GEN-LAST:event_tabbedPaneStateChanged
 
   private void itemActionPeformed(models.Item item) {
     CustomizeDialog customizeDialog = new CustomizeDialog(item);
