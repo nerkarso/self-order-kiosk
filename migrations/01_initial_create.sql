@@ -35,7 +35,7 @@ CREATE TABLE `order_details` (
   `order_id` int(11) NOT NULL,
   `item_id` int(11) NULL,
   `item_quantity` int(3) NOT NULL,
-  `item_size` varchar(1) NULL,
+  `item_size` varchar(10) NULL,
   `item_order_price` double NOT NULL,
   FOREIGN KEY (`order_id`) REFERENCES `orders`(`order_id`)
   	ON UPDATE CASCADE

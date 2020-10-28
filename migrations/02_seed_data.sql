@@ -32,21 +32,25 @@ INSERT INTO `items` (`item_name`, `item_price`, `item_image`, `category_id`) VAL
   ('Strawberry Soft Serve', 3.65, 'https://b.zmtcdn.com/data/dish_photos/32e/cc1d9c77ced500c2b1df7c019b0c632e.jpg', 3),
   ('Squid Ink Drink', 1.40, 'https://b.zmtcdn.com/data/dish_photos/441/4a5318a0ce6e68ae345c91a0f3139441.png', 4),
   ('Orange Juice', 1.66, 'https://b.zmtcdn.com/data/dish_photos/ca5/3891a51f9ba71bd9f37ee1616bcceca5.png', 4),
-  ('Cold Coffee', 2.30, 'https://b.zmtcdn.com/data/dish_photos/1fe/715ff2c6ed6b30b5b26fbeca40d4c1fe.jpg', 4);
+  ('Cold Coffee', 2.30, 'https://b.zmtcdn.com/data/dish_photos/1fe/715ff2c6ed6b30b5b26fbeca40d4c1fe.jpg', 4),
+  ('Filet-O-Fish Double Patty Meal', 6.79, 'https://b.zmtcdn.com/data/dish_photos/64d/f35d02b08a7217af87c914de5afe564d.jpg', 1),
+  ('Shark Strips', 1.98, 'https://b.zmtcdn.com/data/dish_photos/fd7/cb17d44f6a9cd3de58076a2ceb4e0fd7.jpg', 2),
+  ('Chocolate Soft Serve', 3.65, 'https://b.zmtcdn.com/data/dish_photos/6dd/d40c1df21491e53d782803bf3e56d6dd.jpg', 3),
+  ('Polar Ice Tea', 1.59, 'https://b.zmtcdn.com/data/dish_photos/2c4/fda620c078759d62dc052b60c7c682c4.jpg', 4);
 
-INSERT INTO `orders` (`order_eating_location`, `order_payment_method`, `order_status`) VALUES
-  ('EAT_IN', 'PAY_HERE', 1),
-  ('TAKE_OUT', 'PAY_HERE', 0),
-  ('TAKE_OUT', 'PAY_COUNTER', 0);
+INSERT INTO `orders` (`order_eating_location`, `order_payment_method`, `order_status`, `order_date`) VALUES
+  ('EAT_IN', 'PAY_HERE', 1, '2020-10-01 12:00:00'),
+  ('TAKE_OUT', 'PAY_HERE', 0, '2020-10-03 13:00:00'),
+  ('TAKE_OUT', 'PAY_COUNTER', 0, '2020-10-06 14:00:00');
 
 INSERT INTO `order_details` (`order_id`, `item_id`, `item_quantity`, `item_size`, `item_order_price`) VALUES
-  (1, 1, 1, 'm', 5.15),
-  (1, 10, 1, 'm', 1.40),
-  (2, 2, 1, 's', 3.89),
-  (2, 11, 1, 's', 1.66),
-  (3, 4, 2, 'm', 1.99),
-  (3, 6, 2, 'm', 1.31),
-  (3, 12, 2, 'l', 2.30);
+  (1, 1, 1, 'MEDIUM', 5.15),
+  (1, 10, 1, 'MEDIUM', 1.40),
+  (2, 2, 1, 'SMALL', 3.89),
+  (2, 11, 1, 'SMALL', 1.66),
+  (3, 4, 2, 'MEDIUM', 1.99),
+  (3, 6, 2, 'MEDIUM', 1.31),
+  (3, 12, 2, 'LARGE', 2.30);
 
 INSERT INTO `users` (`user_fullname`, `username`, `password`) VALUES
   ('Eugene Krabs', 'krabs', '123'),
