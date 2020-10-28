@@ -61,7 +61,15 @@ password=<PASSWORD>
 
 ## Changelog
 
-### [v0.3.0] - 2020-10-28
+### [v0.4.0] - 2020-10-28
+
+- New feature to customize item in customize dialog
+- New feature where orders will be saved in database
+- New items in migration
+- Changed items in menu window to be populated
+- Changed order table to be populated
+
+### [v0.3.0] - 2020-10-27
 
 - New authentication feature in login window
 - New feature to manage orders in admin module
@@ -87,6 +95,7 @@ password=<PASSWORD>
 
 Icons made by [Freepik](https://www.flaticon.com/authors/basic-gradient/gradient) from [www.flaticon.com](https://www.flaticon.com)
 
+[v0.4.0]: https://github.com/nerkarso/self-order-kiosk/releases/tag/v0.4.0
 [v0.3.0]: https://github.com/nerkarso/self-order-kiosk/releases/tag/v0.3.0
 [v0.2.0]: https://github.com/nerkarso/self-order-kiosk/releases/tag/v0.2.0
 [v0.1.0]: https://github.com/nerkarso/self-order-kiosk/releases/tag/v0.1.0
