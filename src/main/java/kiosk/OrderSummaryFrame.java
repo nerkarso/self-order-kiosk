@@ -5,7 +5,9 @@ package kiosk;
 
 public class OrderSummaryFrame extends javax.swing.JFrame {
 
-  javax.swing.table.DefaultTableModel tbmOrder;
+  OrderTable tbmOrder;
+  models.Order order;
+  
 
   /**
    * Creates new form OrderSummaryFrame
@@ -207,12 +209,7 @@ public class OrderSummaryFrame extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void initModels() {
-    tbmOrder = new javax.swing.table.DefaultTableModel(new Object[][]{}, new String[]{"Item", "Price"}) {
-      @Override
-      public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return false;
-      }
-    };
+    tbmOrder = new OrderTable();
   }
 
   private void initState() {
@@ -250,6 +247,13 @@ public class OrderSummaryFrame extends javax.swing.JFrame {
 
   private void btnCheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckOutActionPerformed
     if (getValidOptions()) {
+      services.OrderService orderService = new services.OrderService();
+      java.util.ArrayList<models.OrderDetail> orderedItems = StateManager.getOrderedItems();
+      models.Order order = new models.Order();
+      order.setPaymentMethod(StateManager.getPaymentMethod());
+      order.setEatingLocation(StateManager.getEatingLocation());
+      int orderId = orderService.createOne(order);
+      orderService.createOneDetails(orderId,orderedItems);
       new EndFrame().setVisible(true);
       dispose();
     }
@@ -279,19 +283,11 @@ public class OrderSummaryFrame extends javax.swing.JFrame {
     }
   }//GEN-LAST:event_tgbPayCounterItemStateChanged
 
-  private void addRows(java.util.ArrayList<models.OrderDetail> items) {
-    tbmOrder.setRowCount(0);
-    items.forEach(item -> {
-      tbmOrder.addRow(new Object[]{
-        item.getName(), item.getPrice()
-      });
-    });
-  }
 
   private void getAllOrderedItems() {
     java.util.ArrayList<models.OrderDetail> orderedItems = StateManager.getOrderedItems();
     if (orderedItems != null && orderedItems.size() > 0) {
-      addRows(orderedItems);
+      tbmOrder.addRows(orderedItems);
       app.Global.setTotalPrice(orderedItems, lblTotalValue);
     }
   }

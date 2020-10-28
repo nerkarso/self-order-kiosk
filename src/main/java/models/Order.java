@@ -43,7 +43,7 @@ public class Order {
     return this.eatingLocation;
   }
 
-  public void setStatus(String eatingLocation) {
+  public void setEatingLocation(String eatingLocation) {
     this.eatingLocation = eatingLocation;
   }
 

@@ -6,6 +6,7 @@ package kiosk;
 public class CustomizeDialog extends javax.swing.JDialog implements StateObservable {
 
   models.OrderDetail currentItem;
+  double originalPrice;
   java.util.ArrayList<StateObserver> observers;
 
   /**
@@ -18,12 +19,15 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
      * Get the item passed from menu
      */
     this.currentItem = currentItem;
+    originalPrice = currentItem.getOrderPrice();
 
     /**
      * Initialize
      */
     initComponents();
     initState();
+    initCustomComponents(currentItem);
+    setItemQuantity();
   }
 
   /**
@@ -104,15 +108,30 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
 
     btgSize.add(tgbSizeSmall);
     tgbSizeSmall.setText("Small");
+    tgbSizeSmall.addItemListener(new java.awt.event.ItemListener() {
+      public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        tgbStateChanged(evt);
+      }
+    });
     pnlSizeOptions.add(tgbSizeSmall);
 
     btgSize.add(tgbSizeMedium);
     tgbSizeMedium.setSelected(true);
     tgbSizeMedium.setText("Medium");
+    tgbSizeMedium.addItemListener(new java.awt.event.ItemListener() {
+      public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        tgbStateChanged(evt);
+      }
+    });
     pnlSizeOptions.add(tgbSizeMedium);
 
     btgSize.add(tgbSizeLarge);
     tgbSizeLarge.setText("Large");
+    tgbSizeLarge.addItemListener(new java.awt.event.ItemListener() {
+      public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        tgbStateChanged(evt);
+      }
+    });
     pnlSizeOptions.add(tgbSizeLarge);
 
     gridBagConstraints = new java.awt.GridBagConstraints();
@@ -158,7 +177,7 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
     pnlQuantityOptions.add(btnQuantityAdd, gridBagConstraints);
 
     lblQuantityValue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    lblQuantityValue.setText("0");
+    lblQuantityValue.setText("1");
     lblQuantityValue.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 1;
@@ -186,7 +205,7 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
     pnlTotal.add(lblTotal);
 
     lblTotalValue.setFont(lblTotalValue.getFont().deriveFont(lblTotalValue.getFont().getStyle() | java.awt.Font.BOLD));
-    lblTotalValue.setText("$ 1.99");
+    lblTotalValue.setText("$ 0.00");
     pnlTotal.add(lblTotalValue);
 
     gridBagConstraints = new java.awt.GridBagConstraints();
@@ -233,15 +252,90 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
     observers = new java.util.ArrayList<>();
   }
 
+  // calls update function and sets the quantity initial quantity and price.
+  private void initCustomComponents(models.OrderDetail currentItem) {
+    updateScreen(currentItem);
+    currentItem.setQuantity(1);
+    currentItem.setSize(models.OrderDetail.MEDIUM);
+ }
+
+  //Updates the screen with the header, image, and order total.
+  private void updateScreen(models.OrderDetail currentItem) {
+    lblHeaderTitle.setText(currentItem.getName());
+    lblImage.setIcon(app.Global.getImagePreview(currentItem.getImage()));
+    lblTotalValue.setText("$ " + currentItem.getOrderPrice());
+  }                                          
+
   private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
     dispose();
   }//GEN-LAST:event_btnCancelActionPerformed
 
   private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    calculateTotal();
     addItemToOrder();
     notifyObservers();
     dispose();
   }//GEN-LAST:event_btnAddActionPerformed
+
+    // Action performed by toggle action listeners
+    private void tgbStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tgbStateChanged
+       if(evt.getStateChange()==1){
+        if(evt.getItem()==tgbSizeSmall){
+        currentItem.setSize(models.OrderDetail.SMALL);
+        }else
+        if(evt.getItem()==tgbSizeLarge){
+        currentItem.setSize(models.OrderDetail.LARGE);
+       
+        }else{
+          currentItem.setSize(models.OrderDetail.MEDIUM);
+        }
+      calculateTotal();
+    }
+        
+    }//GEN-LAST:event_tgbStateChanged
+
+  
+
+ 
+
+  //Adds action listeners to the quantity buttons
+  private void setItemQuantity() {
+    btnQuantityAdd.addActionListener((java.awt.event.ActionEvent evt) -> qtyActionPeformed(1));
+    btnQuantityRemove.addActionListener((java.awt.event.ActionEvent evt) -> qtyActionPeformed(-1));
+  }
+
+  //Action performed by Quantity button action listeners
+  private void qtyActionPeformed(int i) {
+    
+   // Action for increment order quantity 
+      if (i==-1 && currentItem.getQuantity() == 1){}else
+      {
+        currentItem.setQuantity(currentItem.getQuantity() + i);
+        lblQuantityValue.setText(Integer.toString(currentItem.getQuantity()));
+        calculateTotal();
+     }
+    
+  }
+ 
+    private Double getSizeFee(String size) {
+      switch (size) {
+      case models.OrderDetail.SMALL:
+        return -2.00;
+      case models.OrderDetail.LARGE:
+        return 2.00;
+      default:
+        return 0.00;
+    }
+
+  }
+    private void calculateTotal(){
+     currentItem.setOrderPrice(originalPrice + getSizeFee(currentItem.getSize()));
+     currentItem.setOrderTotal(currentItem.getOrderPrice() * currentItem.getQuantity());
+     String formattedTotal = String.format("%.02f", currentItem.getOrderTotal());
+     lblTotalValue.setText("$ " + formattedTotal);
+    }
+    
+    
 
   private void addItemToOrder() {
     StateManager.setOrderedItem(currentItem);

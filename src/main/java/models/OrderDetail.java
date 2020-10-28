@@ -5,10 +5,18 @@ package models;
 
 public class OrderDetail extends Item {
 
+  /**
+   * Constants
+   */
+  public static final String SMALL = "SMALL";
+  public static final String MEDIUM = "MEDIUM";
+  public static final String LARGE = "LARGE";
+  
   private int quantity;
   private String size;
   private double orderPrice;
   private int orderId;
+  private double orderTotal;
 
   public int getQuantity() {
     return this.quantity;
@@ -42,4 +50,11 @@ public class OrderDetail extends Item {
     this.orderId = orderId;
   }
 
+  public void setOrderTotal(double orderTotal) {
+    this.orderTotal = orderTotal;
+  }
+
+  public double getOrderTotal() {
+    return this.orderTotal;
+  }
 }

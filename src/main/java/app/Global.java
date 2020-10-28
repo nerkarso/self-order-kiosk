@@ -48,9 +48,10 @@ public class Global {
   public static void setTotalPrice(java.util.ArrayList<models.OrderDetail> items, javax.swing.JLabel lblTotalValue) {
     double total = 0;
     for (int i = 0; i < items.size(); i++) {
-      total += items.get(i).getPrice();
+      total += items.get(i).getOrderTotal();
     }
-    lblTotalValue.setText(Double.toString(total));
+    String formattedTotal = String.format("%.02f", total);
+    lblTotalValue.setText("$ "+formattedTotal);
   }
 
 }

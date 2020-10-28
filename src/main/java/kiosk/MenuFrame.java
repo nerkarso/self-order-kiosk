@@ -6,7 +6,7 @@ package kiosk;
 public class MenuFrame extends javax.swing.JFrame implements StateObserver {
 
   services.ItemService itemService;
-  javax.swing.table.DefaultTableModel tbmOrder;
+  OrderTable tbmOrder;
   java.util.ArrayList<models.Item> itemsMealCombos;
   java.util.ArrayList<models.Item> itemsSides;
   java.util.ArrayList<models.Item> itemsDesserts;
@@ -186,12 +186,8 @@ public class MenuFrame extends javax.swing.JFrame implements StateObserver {
     itemsDesserts = itemService.getAllByCategory(3);
     itemsBeverages = itemService.getAllByCategory(4);
 
-    tbmOrder = new javax.swing.table.DefaultTableModel(new Object[][]{}, new String[]{"Item", "Size", "Price"}) {
-      @Override
-      public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return false;
-      }
-    };
+    tbmOrder = new OrderTable();
+
   }
 
   private void initState() {
@@ -227,33 +223,31 @@ public class MenuFrame extends javax.swing.JFrame implements StateObserver {
   }//GEN-LAST:event_btnBackActionPerformed
 
   private void btnContinueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinueActionPerformed
-    new OrderSummaryFrame().setVisible(true);
-    dispose();
+    java.util.ArrayList<models.OrderDetail> orderedItems = StateManager.getOrderedItems();
+    if (orderedItems != null && orderedItems.size() > 0) {
+      new OrderSummaryFrame().setVisible(true);
+      dispose();
+    } else {
+      javax.swing.JOptionPane.showMessageDialog(null, "Please order something so\nMr. Krabs can get some cash!", "No Items Ordered", javax.swing.JOptionPane.WARNING_MESSAGE);
+    }
+
   }//GEN-LAST:event_btnContinueActionPerformed
 
   private void itemActionPeformed(models.Item item) {
     models.OrderDetail orderDetail = new models.OrderDetail();
     orderDetail.setName(item.getName());
-    orderDetail.setPrice(item.getPrice());
+    orderDetail.setOrderPrice(item.getPrice());
+    orderDetail.setImage(item.getImage());
 
     CustomizeDialog customizeDialog = new CustomizeDialog(orderDetail);
     customizeDialog.addObserver(this);
     customizeDialog.setVisible(true);
   }
 
-  private void addRows(java.util.ArrayList<models.OrderDetail> items) {
-    tbmOrder.setRowCount(0);
-    items.forEach(item -> {
-      tbmOrder.addRow(new Object[]{
-        item.getName(), "Medium", item.getPrice()
-      });
-    });
-  }
-
   private void getAllOrderedItems() {
     java.util.ArrayList<models.OrderDetail> orderedItems = StateManager.getOrderedItems();
     if (orderedItems != null && orderedItems.size() > 0) {
-      addRows(orderedItems);
+      tbmOrder.addRows(orderedItems);
       app.Global.setTotalPrice(orderedItems, lblTotalValue);
     }
   }

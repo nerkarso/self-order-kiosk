@@ -163,6 +163,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Small"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="tgbStateChanged"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JToggleButton" name="tgbSizeMedium">
                   <Properties>
@@ -172,6 +175,9 @@
                     <Property name="selected" type="boolean" value="true"/>
                     <Property name="text" type="java.lang.String" value="Medium"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="tgbStateChanged"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JToggleButton" name="tgbSizeLarge">
                   <Properties>
@@ -180,6 +186,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Large"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="tgbStateChanged"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -241,7 +250,7 @@
                 <Component class="javax.swing.JLabel" name="lblQuantityValue">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="0"/>
+                    <Property name="text" type="java.lang.String" value="1"/>
                     <Property name="horizontalTextPosition" type="int" value="0"/>
                   </Properties>
                   <Constraints>
@@ -284,7 +293,7 @@
                     <Font bold="true" component="lblTotalValue" property="font" relativeSize="true" size="0"/>
                   </FontInfo>
                 </Property>
-                <Property name="text" type="java.lang.String" value="$ 1.99"/>
+                <Property name="text" type="java.lang.String" value="$ 0.00"/>
               </Properties>
             </Component>
           </SubComponents>

@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import models.Order;
+import models.OrderDetail;
 
 public class OrderService extends DatabaseService {
 
@@ -58,7 +59,50 @@ public class OrderService extends DatabaseService {
   }
 
   public int createOne(Order order) {
-    return 0;
+
+    int rowCount = 0;
+
+    this.connect();
+
+    try {
+      String sql = "INSERT INTO orders (order_eating_location, order_payment_method, order_status) VALUES (?, ?, ?)";
+      PreparedStatement stmt = this.conn.prepareStatement(sql);
+      stmt.setString(1, order.getEatingLocation());
+      stmt.setString(2, order.getPaymentMethod());
+      stmt.setInt(3, order.getStatus());
+      rowCount = stmt.executeUpdate();
+    } catch (SQLException e) {
+      System.out.println(e);
+    }
+
+    this.disconnect();
+
+    return rowCount;
+  }
+
+  public int createOneDetails(int orderId,ArrayList<OrderDetail> orderDetails) {
+
+    int rowCount = 0;
+
+    this.connect();
+    for (int i = 0; i < orderDetails.size(); i++) {
+      try {
+        String sql = "INSERT INTO order_details (order_id, item_id, item_quantity , item_size , item_order_price ) VALUES (?, ?, ?, ?, ?)";
+        PreparedStatement stmt = this.conn.prepareStatement(sql);
+        stmt.setInt(1, orderDetails.get(i).getOrderId());
+        stmt.setInt(2, orderDetails.get(i).getId());
+        stmt.setInt(3, orderDetails.get(i).getQuantity());
+        stmt.setString(4, orderDetails.get(i).getSize());
+        stmt.setDouble(5, orderDetails.get(i).getOrderPrice());
+        rowCount = stmt.executeUpdate();
+      } catch (SQLException e) {
+        System.out.println(e);
+      }
+    }
+
+    this.disconnect();
+
+    return rowCount;
   }
 
   private Order mapResultOneOrder(ResultSet result) {
