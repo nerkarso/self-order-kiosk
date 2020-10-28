@@ -61,6 +61,14 @@ password=<PASSWORD>
 
 ## Changelog
 
+### [v0.5.0] - 2020-10-29
+
+- New feature to update ordered item in kiosk
+- New feature to show order details in orders window
+- New feature to show item ordered price in customize window
+- Fixed issue where item size is not updating in customize window
+- Improve load time of menu window
+
 ### [v0.4.0] - 2020-10-28
 
 - New feature to customize item in customize dialog
@@ -95,6 +103,7 @@ password=<PASSWORD>
 
 Icons made by [Freepik](https://www.flaticon.com/authors/basic-gradient/gradient) from [www.flaticon.com](https://www.flaticon.com)
 
+[v0.5.0]: https://github.com/nerkarso/self-order-kiosk/releases/tag/v0.5.0
 [v0.4.0]: https://github.com/nerkarso/self-order-kiosk/releases/tag/v0.4.0
 [v0.3.0]: https://github.com/nerkarso/self-order-kiosk/releases/tag/v0.3.0
 [v0.2.0]: https://github.com/nerkarso/self-order-kiosk/releases/tag/v0.2.0
