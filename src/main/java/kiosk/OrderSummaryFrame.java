@@ -3,7 +3,7 @@
  */
 package kiosk;
 
-public class OrderSummaryFrame extends javax.swing.JFrame {
+public class OrderSummaryFrame extends javax.swing.JFrame implements StateObserver {
 
   OrderTable tbmOrder;
   models.Order order;
@@ -77,6 +77,11 @@ public class OrderSummaryFrame extends javax.swing.JFrame {
     scpOrder.setPreferredSize(new java.awt.Dimension(452, 200));
 
     tblOrder.setModel(tbmOrder);
+    tblOrder.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        tblOrderMouseClicked(evt);
+      }
+    });
     scpOrder.setViewportView(tblOrder);
 
     pnlContent.add(scpOrder);
@@ -289,9 +294,16 @@ public class OrderSummaryFrame extends javax.swing.JFrame {
     }
   }//GEN-LAST:event_tgbPayCounterItemStateChanged
 
+  private void tblOrderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOrderMouseClicked
+    int rowIndex = tblOrder.getSelectedRow();
+    CustomizeDialog customizeDialog = new CustomizeDialog(StateManager.getOrderedItem(rowIndex), rowIndex);
+    customizeDialog.addObserver(this);
+    customizeDialog.setVisible(true);
+  }//GEN-LAST:event_tblOrderMouseClicked
+
   private void getAllOrderedItems() {
     java.util.ArrayList<models.OrderDetail> orderedItems = StateManager.getOrderedItems();
-    if (orderedItems != null && orderedItems.size() > 0) {
+    if (orderedItems != null) {
       tbmOrder.addRows(orderedItems);
       tbmOrder.resizeColumns(tblOrder.getColumnModel());
       app.Global.setTotalPrice(orderedItems, lblTotalValue);
@@ -307,6 +319,11 @@ public class OrderSummaryFrame extends javax.swing.JFrame {
       return true;
     }
     return false;
+  }
+
+  @Override
+  public void onStateChange() {
+    getAllOrderedItems();
   }
 
   /**

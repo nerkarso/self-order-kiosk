@@ -16,11 +16,23 @@ public class StateManager {
     return orderedItems;
   }
 
-  public static void setOrderedItem(OrderDetail item) {
+  public static OrderDetail getOrderedItem(int index) {
+    if (orderedItems != null && orderedItems.size() > 0) {
+      return orderedItems.get(index);
+    } else {
+      return null;
+    }
+  }
+
+  public static void setOrderedItem(OrderDetail orderDetail) {
     if (orderedItems == null) {
       orderedItems = new ArrayList<OrderDetail>();
     }
-    orderedItems.add(item);
+    orderedItems.add(orderDetail);
+  }
+
+  public static void setOrderedItem(OrderDetail orderDetail, int index) {
+    orderedItems.set(index, orderDetail);
   }
 
   public static void removeOrderedItem(int index) {

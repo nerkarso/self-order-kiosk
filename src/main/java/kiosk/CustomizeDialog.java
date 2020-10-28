@@ -5,17 +5,18 @@ package kiosk;
 
 public class CustomizeDialog extends javax.swing.JDialog implements StateObservable {
 
+  int orderedItemIndex = -1;
   models.OrderDetail currentItem;
   java.util.ArrayList<StateObserver> observers;
 
   /**
-   * Creates new form CustomizeDialog
+   * A new item to be added
    */
   public CustomizeDialog(models.Item currentItem) {
     setModal(true);
 
     /**
-     * Get the item passed from menu
+     * Convert item to order detail
      */
     this.currentItem = new models.OrderDetail();
     this.currentItem.setId(currentItem.getId());
@@ -32,6 +33,32 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
     initComponents();
     initCustomComponents();
     initState();
+
+    // Update UI with item
+    lblQuantityValue.setText("1");
+    lblTotalValue.setText(app.Global.toCurrency(currentItem.getPrice()));
+  }
+
+  /**
+   * Customize an existing item
+   */
+  public CustomizeDialog(models.OrderDetail orderDetail, int index) {
+    setModal(true);
+
+    this.currentItem = orderDetail;
+    orderedItemIndex = index;
+
+    /**
+     * Initialize
+     */
+    initComponents();
+    initCustomComponents();
+    initState();
+
+    // Update UI with order detail
+    lblQuantityValue.setText(Integer.toString(currentItem.getQuantity()));
+    lblTotalValue.setText(app.Global.toCurrency(currentItem.getSubTotal()));
+    btnAdd.setText("Update");
   }
 
   /**
@@ -181,7 +208,7 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
     pnlQuantityOptions.add(btnQuantityAdd, gridBagConstraints);
 
     lblQuantityValue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    lblQuantityValue.setText("1");
+    lblQuantityValue.setText("0");
     lblQuantityValue.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 1;
@@ -253,8 +280,6 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
   }// </editor-fold>//GEN-END:initComponents
 
   private void initCustomComponents() {
-    updateScreen();
-
     // Adds action listeners to the quantity buttons
     btnQuantityAdd.addActionListener((java.awt.event.ActionEvent evt) -> qtyActionPeformed(1));
     btnQuantityRemove.addActionListener((java.awt.event.ActionEvent evt) -> qtyActionPeformed(-1));
@@ -262,13 +287,9 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
 
   private void initState() {
     observers = new java.util.ArrayList<>();
-  }
 
-  // Updates the screen with the header, image, and order total
-  private void updateScreen() {
     lblHeaderTitle.setText(currentItem.getName());
     lblImage.setIcon(app.Global.getImagePreview(currentItem.getImage(), 300, 300, this));
-    lblTotalValue.setText(app.Global.toCurrency(currentItem.getPrice()));
   }
 
   private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
@@ -276,8 +297,21 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
   }//GEN-LAST:event_btnCancelActionPerformed
 
   private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-    calculateSubTotal();
-    addItemToOrder();
+    // Item is not ordered yet
+    if (orderedItemIndex == -1) {
+      if (currentItem.getQuantity() > 0) {
+        StateManager.setOrderedItem(currentItem);
+        calculateSubTotal();
+      }
+    } else {
+      if (currentItem.getQuantity() > 0) {
+        // Update ordered item
+        StateManager.setOrderedItem(currentItem, orderedItemIndex);
+      } else {
+        // Remove ordered item
+        StateManager.removeOrderedItem(orderedItemIndex);
+      }
+    }
     notifyObservers();
     dispose();
   }//GEN-LAST:event_btnAddActionPerformed
@@ -298,7 +332,7 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
 
   // Action for increment order quantity
   private void qtyActionPeformed(int i) {
-    if (!(i == -1 && currentItem.getQuantity() == 1)) {
+    if (!(i == -1 && currentItem.getQuantity() == 0)) {
       currentItem.setQuantity(currentItem.getQuantity() + i);
       lblQuantityValue.setText(Integer.toString(currentItem.getQuantity()));
       calculateSubTotal();
@@ -320,10 +354,6 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
     currentItem.setOrderPrice(currentItem.getPrice() + getSizeFee(currentItem.getSize()));
     currentItem.setSubTotal(currentItem.getOrderPrice() * currentItem.getQuantity());
     lblTotalValue.setText(app.Global.toCurrency(currentItem.getSubTotal()));
-  }
-
-  private void addItemToOrder() {
-    StateManager.setOrderedItem(currentItem);
   }
 
   private void notifyObservers() {

@@ -211,6 +211,9 @@
                       <Connection code="tbmOrder" type="code"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblOrderMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
