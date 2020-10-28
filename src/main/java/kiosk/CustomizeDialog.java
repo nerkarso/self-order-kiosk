@@ -171,7 +171,6 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
     pnlSizeOptions.add(tgbSizeSmall);
 
     btgSize.add(tgbSizeMedium);
-    tgbSizeMedium.setSelected(true);
     tgbSizeMedium.setText("Medium");
     tgbSizeMedium.addItemListener(new java.awt.event.ItemListener() {
       public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -314,6 +313,17 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
 
     lblHeaderTitle.setText(currentItem.getName());
     lblImage.setIcon(app.Global.getImagePreview(currentItem.getImage(), 300, 300, this));
+
+    switch (currentItem.getSize()) {
+      case models.OrderDetail.SMALL:
+        tgbSizeSmall.setSelected(true);
+        break;
+      case models.OrderDetail.LARGE:
+        tgbSizeLarge.setSelected(true);
+        break;
+      default:
+        tgbSizeMedium.setSelected(true);
+    }
   }
 
   private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
