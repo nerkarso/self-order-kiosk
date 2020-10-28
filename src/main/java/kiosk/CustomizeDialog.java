@@ -36,6 +36,7 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
 
     // Update UI with item
     lblQuantityValue.setText("1");
+    lblPriceValue.setText(app.Global.toCurrency(currentItem.getPrice()));
     lblTotalValue.setText(app.Global.toCurrency(currentItem.getPrice()));
   }
 
@@ -56,6 +57,7 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
     initState();
 
     // Update UI with order detail
+    lblPriceValue.setText(app.Global.toCurrency(currentItem.getOrderPrice()));
     lblQuantityValue.setText(Integer.toString(currentItem.getQuantity()));
     lblTotalValue.setText(app.Global.toCurrency(currentItem.getSubTotal()));
     btnAdd.setText("Update");
@@ -77,6 +79,9 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
     pnlContent = new javax.swing.JPanel();
     pnlImage = new javax.swing.JPanel();
     lblImage = new javax.swing.JLabel();
+    pnlPrice = new javax.swing.JPanel();
+    lblPrice = new javax.swing.JLabel();
+    lblPriceValue = new javax.swing.JLabel();
     pnlSize = new javax.swing.JPanel();
     lblSize = new javax.swing.JLabel();
     pnlSizeOptions = new javax.swing.JPanel();
@@ -127,6 +132,25 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
     gridBagConstraints.weighty = 1.0;
     pnlContent.add(pnlImage, gridBagConstraints);
 
+    pnlPrice.setLayout(new java.awt.GridBagLayout());
+
+    lblPrice.setText("Price");
+    pnlPrice.add(lblPrice, new java.awt.GridBagConstraints());
+
+    lblPriceValue.setFont(lblPriceValue.getFont().deriveFont(lblPriceValue.getFont().getStyle() | java.awt.Font.BOLD));
+    lblPriceValue.setText("$ 0.00");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+    gridBagConstraints.weightx = 1.0;
+    pnlPrice.add(lblPriceValue, gridBagConstraints);
+    lblPriceValue.getAccessibleContext().setAccessibleName("");
+
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 1;
+    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+    pnlContent.add(pnlPrice, gridBagConstraints);
+
     pnlSize.setPreferredSize(new java.awt.Dimension(720, 80));
     pnlSize.setLayout(new java.awt.GridBagLayout());
 
@@ -175,7 +199,7 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
 
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 1;
+    gridBagConstraints.gridy = 2;
     gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
     gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
@@ -223,7 +247,7 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
 
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 2;
+    gridBagConstraints.gridy = 3;
     gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
     gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
@@ -232,7 +256,7 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
     pnlTotal.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.TRAILING, 20, 0));
 
     lblTotal.setFont(lblTotal.getFont().deriveFont(lblTotal.getFont().getStyle() | java.awt.Font.BOLD));
-    lblTotal.setText("Total:");
+    lblTotal.setText("Subtotal:");
     pnlTotal.add(lblTotal);
 
     lblTotalValue.setFont(lblTotalValue.getFont().deriveFont(lblTotalValue.getFont().getStyle() | java.awt.Font.BOLD));
@@ -241,7 +265,7 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
 
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 3;
+    gridBagConstraints.gridy = 4;
     gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
     gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, -20);
@@ -353,6 +377,7 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
   private void calculateSubTotal() {
     currentItem.setOrderPrice(currentItem.getPrice() + getSizeFee(currentItem.getSize()));
     currentItem.setSubTotal(currentItem.getOrderPrice() * currentItem.getQuantity());
+    lblPriceValue.setText(app.Global.toCurrency(currentItem.getOrderPrice()));
     lblTotalValue.setText(app.Global.toCurrency(currentItem.getSubTotal()));
   }
 
@@ -388,6 +413,8 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
   private javax.swing.JButton btnQuantityRemove;
   private javax.swing.JLabel lblHeaderTitle;
   private javax.swing.JLabel lblImage;
+  private javax.swing.JLabel lblPrice;
+  private javax.swing.JLabel lblPriceValue;
   private javax.swing.JLabel lblQuantity;
   private javax.swing.JLabel lblQuantityValue;
   private javax.swing.JLabel lblSize;
@@ -397,6 +424,7 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
   private javax.swing.JPanel pnlFooter;
   private javax.swing.JPanel pnlHeader;
   private javax.swing.JPanel pnlImage;
+  private javax.swing.JPanel pnlPrice;
   private javax.swing.JPanel pnlQuantity;
   private javax.swing.JPanel pnlQuantityOptions;
   private javax.swing.JPanel pnlSize;

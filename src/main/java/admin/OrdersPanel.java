@@ -4,11 +4,11 @@
 package admin;
 
 public class OrdersPanel extends javax.swing.JPanel {
-  
+
   services.OrderService orderService;
-  
+
   javax.swing.table.DefaultTableModel tbmOrders;
-  javax.swing.table.DefaultTableModel tbmOrderDetails;
+  kiosk.OrderTable tbmOrderDetails;
 
   /**
    * Creates new form OrdersPanel
@@ -27,16 +27,8 @@ public class OrdersPanel extends javax.swing.JPanel {
         return false;
       }
     };
-    tbmOrderDetails = new javax.swing.table.DefaultTableModel(
-            new Object[][]{},
-            new String[]{"Item", "Size", "Qty", "Price"}
-    ) {
-      @Override
-      public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return false;
-      }
-    };
-    
+    tbmOrderDetails = new kiosk.OrderTable();
+
     initComponents();
 
     /**
@@ -44,62 +36,41 @@ public class OrdersPanel extends javax.swing.JPanel {
      */
     getAllOrders();
   }
-  
+
   private void tblOrderAddRow(models.Order order) {
     tbmOrders.addRow(new Object[]{
       order.getId(), app.Global.toTitleCase(order.getEatingLocation()), app.Global.toTitleCase(order.getPaymentMethod()), getStatusValue(order.getStatus()), order.getDate()
     });
   }
-  
+
   private void tblOrderAddRows(java.util.ArrayList<models.Order> orders) {
     tbmOrders.setRowCount(0);
     orders.forEach(order -> tblOrderAddRow(order));
     tblOrderResizeColumns();
   }
-  
+
   private void tblOrderResizeColumns() {
     javax.swing.table.TableColumnModel model = (javax.swing.table.TableColumnModel) tblOrders.getColumnModel();
     model.getColumn(0).setPreferredWidth(50);
     model.getColumn(0).setMaxWidth(50);
   }
-  
+
   private void getAllOrders() {
     java.util.ArrayList<models.Order> orders = orderService.getAll();
     if (orders.size() > 0) {
       tblOrderAddRows(orders);
     }
   }
-  
+
   private String getStatusValue(int status) {
     return (status == 1) ? "Ready" : "Pending";
   }
-  
-  private void tblOrderDetailsAddRow(models.OrderDetail orderDetail) {
-    tbmOrderDetails.addRow(new Object[]{
-      orderDetail.getName(), app.Global.toTitleCase(orderDetail.getSize()), orderDetail.getQuantity(), app.Global.toCurrency(orderDetail.getSubTotal())
-    });
-  }
-  
-  private void tblOrderDetailsAddRows(java.util.ArrayList<models.OrderDetail> orderDetails) {
-    tbmOrderDetails.setRowCount(0);
-    orderDetails.forEach(orderDetail -> tblOrderDetailsAddRow(orderDetail));
-    tblOrderDetailsResizeColumns();
-  }
-  
-  private void tblOrderDetailsResizeColumns() {
-    javax.swing.table.TableColumnModel model = (javax.swing.table.TableColumnModel) tblOrderDetails.getColumnModel();
-    model.getColumn(1).setPreferredWidth(100);
-    model.getColumn(1).setMaxWidth(100);
-    model.getColumn(2).setPreferredWidth(50);
-    model.getColumn(2).setMaxWidth(50);
-    model.getColumn(3).setPreferredWidth(120);
-    model.getColumn(3).setMaxWidth(120);
-  }
-  
+
   private void getOrderDetails(int id) {
     java.util.ArrayList<models.OrderDetail> orderDetails = orderService.getOneDetails(id);
     if (orderDetails.size() > 0) {
-      tblOrderDetailsAddRows(orderDetails);
+      tbmOrderDetails.addRows(orderDetails);
+      tbmOrderDetails.resizeColumns(tblOrderDetails.getColumnModel());
       app.Global.setTotalPrice(orderDetails, lblTotalValue);
     }
   }
