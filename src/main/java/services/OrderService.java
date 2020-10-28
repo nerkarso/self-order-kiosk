@@ -36,19 +36,18 @@ public class OrderService extends DatabaseService {
     return orders;
   }
 
-  public Order getOne(int id) {
-    Order order = null;
+  public ArrayList<OrderDetail> getOneDetails(int id) {
+    ArrayList<OrderDetail> orderDetails = new ArrayList<>();
 
     this.connect();
 
     try {
-      String sql = queryOrders.concat(" WHERE order_id = ? LIMIT 1");
+      String sql = queryOrders.concat(" AS ord JOIN order_details AS odd ON odd.order_id = ord.order_id JOIN items AS itm ON itm.item_id = odd.item_id WHERE ord.order_id = ?");
       PreparedStatement stmt = this.conn.prepareStatement(sql);
       stmt.setInt(1, id);
-
       ResultSet result = stmt.executeQuery();
-      if (result.next()) {
-        order = mapResultOneOrder(result);
+      while (result.next()) {
+        orderDetails.add(mapResultOneOrderDetail(result));
       }
     } catch (SQLException e) {
       System.out.println(e);
@@ -56,7 +55,7 @@ public class OrderService extends DatabaseService {
 
     this.disconnect();
 
-    return order;
+    return orderDetails;
   }
 
   public int createOne(Order order) {
@@ -124,6 +123,28 @@ public class OrderService extends DatabaseService {
     }
 
     return order;
+  }
+
+  private OrderDetail mapResultOneOrderDetail(ResultSet result) {
+    OrderDetail orderDetail = null;
+
+    try {
+      double orderPrice = result.getDouble("item_order_price");
+      int qty = result.getInt("item_quantity");
+
+      orderDetail = new OrderDetail();
+      orderDetail.setId(result.getInt("item_id"));
+      orderDetail.setName(result.getString("item_name"));
+      orderDetail.setOrderId(result.getInt("order_id"));
+      orderDetail.setQuantity(qty);
+      orderDetail.setSize(result.getString("item_size"));
+      orderDetail.setOrderPrice(orderPrice);
+      orderDetail.setSubTotal(orderPrice * qty);
+    } catch (SQLException e) {
+      System.out.println(e);
+    }
+
+    return orderDetail;
   }
 
 }

@@ -4,10 +4,11 @@
 package admin;
 
 public class OrdersPanel extends javax.swing.JPanel {
-
+  
   services.OrderService orderService;
-
+  
   javax.swing.table.DefaultTableModel tbmOrders;
+  javax.swing.table.DefaultTableModel tbmOrderDetails;
 
   /**
    * Creates new form OrdersPanel
@@ -26,7 +27,16 @@ public class OrdersPanel extends javax.swing.JPanel {
         return false;
       }
     };
-
+    tbmOrderDetails = new javax.swing.table.DefaultTableModel(
+            new Object[][]{},
+            new String[]{"Item", "Size", "Qty", "Price"}
+    ) {
+      @Override
+      public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return false;
+      }
+    };
+    
     initComponents();
 
     /**
@@ -34,34 +44,64 @@ public class OrdersPanel extends javax.swing.JPanel {
      */
     getAllOrders();
   }
-
-  private void addRow(models.Order order) {
+  
+  private void tblOrderAddRow(models.Order order) {
     tbmOrders.addRow(new Object[]{
       order.getId(), app.Global.toTitleCase(order.getEatingLocation()), app.Global.toTitleCase(order.getPaymentMethod()), getStatusValue(order.getStatus()), order.getDate()
     });
   }
-
-  private void addRows(java.util.ArrayList<models.Order> orders) {
+  
+  private void tblOrderAddRows(java.util.ArrayList<models.Order> orders) {
     tbmOrders.setRowCount(0);
-    orders.forEach(order -> addRow(order));
-    resizeColumns();
+    orders.forEach(order -> tblOrderAddRow(order));
+    tblOrderResizeColumns();
   }
-
-  private void resizeColumns() {
+  
+  private void tblOrderResizeColumns() {
     javax.swing.table.TableColumnModel model = (javax.swing.table.TableColumnModel) tblOrders.getColumnModel();
     model.getColumn(0).setPreferredWidth(50);
     model.getColumn(0).setMaxWidth(50);
   }
-
+  
   private void getAllOrders() {
     java.util.ArrayList<models.Order> orders = orderService.getAll();
     if (orders.size() > 0) {
-      addRows(orders);
+      tblOrderAddRows(orders);
     }
   }
-
+  
   private String getStatusValue(int status) {
     return (status == 1) ? "Ready" : "Pending";
+  }
+  
+  private void tblOrderDetailsAddRow(models.OrderDetail orderDetail) {
+    tbmOrderDetails.addRow(new Object[]{
+      orderDetail.getName(), app.Global.toTitleCase(orderDetail.getSize()), orderDetail.getQuantity(), app.Global.toCurrency(orderDetail.getSubTotal())
+    });
+  }
+  
+  private void tblOrderDetailsAddRows(java.util.ArrayList<models.OrderDetail> orderDetails) {
+    tbmOrderDetails.setRowCount(0);
+    orderDetails.forEach(orderDetail -> tblOrderDetailsAddRow(orderDetail));
+    tblOrderDetailsResizeColumns();
+  }
+  
+  private void tblOrderDetailsResizeColumns() {
+    javax.swing.table.TableColumnModel model = (javax.swing.table.TableColumnModel) tblOrderDetails.getColumnModel();
+    model.getColumn(1).setPreferredWidth(100);
+    model.getColumn(1).setMaxWidth(100);
+    model.getColumn(2).setPreferredWidth(50);
+    model.getColumn(2).setMaxWidth(50);
+    model.getColumn(3).setPreferredWidth(120);
+    model.getColumn(3).setMaxWidth(120);
+  }
+  
+  private void getOrderDetails(int id) {
+    java.util.ArrayList<models.OrderDetail> orderDetails = orderService.getOneDetails(id);
+    if (orderDetails.size() > 0) {
+      tblOrderDetailsAddRows(orderDetails);
+      app.Global.setTotalPrice(orderDetails, lblTotalValue);
+    }
   }
 
   /**
@@ -72,21 +112,92 @@ public class OrdersPanel extends javax.swing.JPanel {
   @SuppressWarnings("unchecked")
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
+    java.awt.GridBagConstraints gridBagConstraints;
 
     scpOrders = new javax.swing.JScrollPane();
     tblOrders = new javax.swing.JTable();
+    pnlDetails = new javax.swing.JPanel();
+    scpOrderDetails = new javax.swing.JScrollPane();
+    tblOrderDetails = new javax.swing.JTable();
+    pnlActions = new javax.swing.JPanel();
+    btnRefresh = new javax.swing.JButton();
+    lblTotal = new javax.swing.JLabel();
+    lblTotalValue = new javax.swing.JLabel();
 
     setPreferredSize(new java.awt.Dimension(720, 600));
-    setLayout(new java.awt.BorderLayout());
+    setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
     tblOrders.setModel(tbmOrders);
+    tblOrders.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        tblOrdersMouseClicked(evt);
+      }
+    });
     scpOrders.setViewportView(tblOrders);
 
-    add(scpOrders, java.awt.BorderLayout.CENTER);
+    add(scpOrders);
+
+    pnlDetails.setLayout(new java.awt.BorderLayout());
+
+    tblOrderDetails.setModel(tbmOrderDetails);
+    scpOrderDetails.setViewportView(tblOrderDetails);
+
+    pnlDetails.add(scpOrderDetails, java.awt.BorderLayout.CENTER);
+
+    pnlActions.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+    pnlActions.setLayout(new java.awt.GridBagLayout());
+
+    btnRefresh.setText("Refresh");
+    btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnRefreshActionPerformed(evt);
+      }
+    });
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+    gridBagConstraints.weightx = 1.0;
+    pnlActions.add(btnRefresh, gridBagConstraints);
+    btnRefresh.getAccessibleContext().setAccessibleName("");
+
+    lblTotal.setFont(lblTotal.getFont().deriveFont(lblTotal.getFont().getStyle() | java.awt.Font.BOLD));
+    lblTotal.setText("Total:");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
+    pnlActions.add(lblTotal, gridBagConstraints);
+    lblTotal.getAccessibleContext().setAccessibleName("");
+
+    lblTotalValue.setFont(lblTotalValue.getFont().deriveFont(lblTotalValue.getFont().getStyle() | java.awt.Font.BOLD));
+    lblTotalValue.setText("$ 0.00");
+    pnlActions.add(lblTotalValue, new java.awt.GridBagConstraints());
+    lblTotalValue.getAccessibleContext().setAccessibleName("");
+
+    pnlDetails.add(pnlActions, java.awt.BorderLayout.SOUTH);
+
+    add(pnlDetails);
   }// </editor-fold>//GEN-END:initComponents
 
+  private void tblOrdersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOrdersMouseClicked
+    javax.swing.table.TableModel tableModel = (javax.swing.table.TableModel) tblOrders.getModel();
+    int rowIndex = tblOrders.getSelectedRow();
+    int orderId = Integer.parseInt(tableModel.getValueAt(rowIndex, 0).toString());
+    getOrderDetails(orderId);
+  }//GEN-LAST:event_tblOrdersMouseClicked
+
+  private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+    getAllOrders();
+    tbmOrderDetails.setRowCount(0);
+    lblTotalValue.setText("$ 0.00");
+  }//GEN-LAST:event_btnRefreshActionPerformed
+
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JButton btnRefresh;
+  private javax.swing.JLabel lblTotal;
+  private javax.swing.JLabel lblTotalValue;
+  private javax.swing.JPanel pnlActions;
+  private javax.swing.JPanel pnlDetails;
+  private javax.swing.JScrollPane scpOrderDetails;
   private javax.swing.JScrollPane scpOrders;
+  private javax.swing.JTable tblOrderDetails;
   private javax.swing.JTable tblOrders;
   // End of variables declaration//GEN-END:variables
 }
