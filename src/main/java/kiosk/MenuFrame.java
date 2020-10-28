@@ -235,6 +235,7 @@ public class MenuFrame extends javax.swing.JFrame implements StateObserver {
 
   private void itemActionPeformed(models.Item item) {
     models.OrderDetail orderDetail = new models.OrderDetail();
+    orderDetail.setId(item.getId());
     orderDetail.setName(item.getName());
     orderDetail.setOrderPrice(item.getPrice());
     orderDetail.setImage(item.getImage());

@@ -6,6 +6,7 @@ package services;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import models.Order;
 import models.OrderDetail;
@@ -60,27 +61,31 @@ public class OrderService extends DatabaseService {
 
   public int createOne(Order order) {
 
-    int rowCount = 0;
+    int orderId = 0;
 
     this.connect();
 
     try {
       String sql = "INSERT INTO orders (order_eating_location, order_payment_method, order_status) VALUES (?, ?, ?)";
-      PreparedStatement stmt = this.conn.prepareStatement(sql);
+      PreparedStatement stmt = this.conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
       stmt.setString(1, order.getEatingLocation());
       stmt.setString(2, order.getPaymentMethod());
       stmt.setInt(3, order.getStatus());
-      rowCount = stmt.executeUpdate();
+      stmt.executeUpdate();
+      ResultSet rs = stmt.getGeneratedKeys();
+      if (rs.next()) {
+        orderId = rs.getInt(1);
+      }
     } catch (SQLException e) {
       System.out.println(e);
     }
 
     this.disconnect();
 
-    return rowCount;
+    return orderId;
   }
 
-  public int createOneDetails(int orderId,ArrayList<OrderDetail> orderDetails) {
+  public int createOneDetails(int orderId, ArrayList<OrderDetail> orderDetails) {
 
     int rowCount = 0;
 
@@ -89,7 +94,7 @@ public class OrderService extends DatabaseService {
       try {
         String sql = "INSERT INTO order_details (order_id, item_id, item_quantity , item_size , item_order_price ) VALUES (?, ?, ?, ?, ?)";
         PreparedStatement stmt = this.conn.prepareStatement(sql);
-        stmt.setInt(1, orderDetails.get(i).getOrderId());
+        stmt.setInt(1, orderId);
         stmt.setInt(2, orderDetails.get(i).getId());
         stmt.setInt(3, orderDetails.get(i).getQuantity());
         stmt.setString(4, orderDetails.get(i).getSize());
@@ -99,7 +104,6 @@ public class OrderService extends DatabaseService {
         System.out.println(e);
       }
     }
-
     this.disconnect();
 
     return rowCount;

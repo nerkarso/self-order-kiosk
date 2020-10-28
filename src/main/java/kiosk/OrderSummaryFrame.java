@@ -252,7 +252,7 @@ public class OrderSummaryFrame extends javax.swing.JFrame {
       models.Order order = new models.Order();
       order.setPaymentMethod(StateManager.getPaymentMethod());
       order.setEatingLocation(StateManager.getEatingLocation());
-      int orderId = orderService.createOne(order);
+      int orderId=orderService.createOne(order);
       orderService.createOneDetails(orderId,orderedItems);
       new EndFrame().setVisible(true);
       dispose();
