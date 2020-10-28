@@ -11,12 +11,12 @@ public class OrderDetail extends Item {
   public static final String SMALL = "SMALL";
   public static final String MEDIUM = "MEDIUM";
   public static final String LARGE = "LARGE";
-  
+
   private int quantity;
   private String size;
+  private double subTotal;
   private double orderPrice;
   private int orderId;
-  private double orderTotal;
 
   public int getQuantity() {
     return this.quantity;
@@ -50,11 +50,12 @@ public class OrderDetail extends Item {
     this.orderId = orderId;
   }
 
-  public void setOrderTotal(double orderTotal) {
-    this.orderTotal = orderTotal;
+  public void setSubTotal(double subTotal) {
+    this.subTotal = subTotal;
   }
 
-  public double getOrderTotal() {
-    return this.orderTotal;
+  public double getSubTotal() {
+    return this.subTotal;
   }
+
 }

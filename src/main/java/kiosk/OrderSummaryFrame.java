@@ -7,7 +7,6 @@ public class OrderSummaryFrame extends javax.swing.JFrame {
 
   OrderTable tbmOrder;
   models.Order order;
-  
 
   /**
    * Creates new form OrderSummaryFrame
@@ -249,13 +248,20 @@ public class OrderSummaryFrame extends javax.swing.JFrame {
     if (getValidOptions()) {
       services.OrderService orderService = new services.OrderService();
       java.util.ArrayList<models.OrderDetail> orderedItems = StateManager.getOrderedItems();
+
       models.Order order = new models.Order();
       order.setPaymentMethod(StateManager.getPaymentMethod());
       order.setEatingLocation(StateManager.getEatingLocation());
-      int orderId=orderService.createOne(order);
-      orderService.createOneDetails(orderId,orderedItems);
-      new EndFrame().setVisible(true);
-      dispose();
+
+      int orderId = orderService.createOne(order);
+      int rowCount = orderService.createOneDetails(orderId, orderedItems);
+
+      if (rowCount > 0) {
+        new EndFrame().setVisible(true);
+        dispose();
+      } else {
+        javax.swing.JOptionPane.showMessageDialog(null, "Oops, we couldn't get your order.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+      }
     }
   }//GEN-LAST:event_btnCheckOutActionPerformed
 
@@ -283,11 +289,11 @@ public class OrderSummaryFrame extends javax.swing.JFrame {
     }
   }//GEN-LAST:event_tgbPayCounterItemStateChanged
 
-
   private void getAllOrderedItems() {
     java.util.ArrayList<models.OrderDetail> orderedItems = StateManager.getOrderedItems();
     if (orderedItems != null && orderedItems.size() > 0) {
       tbmOrder.addRows(orderedItems);
+      tbmOrder.resizeColumns(tblOrder.getColumnModel());
       app.Global.setTotalPrice(orderedItems, lblTotalValue);
     }
   }

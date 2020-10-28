@@ -74,6 +74,7 @@ public class StartFrame extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
+    StateManager.reset();
     new MenuFrame().setVisible(true);
     dispose();
   }//GEN-LAST:event_btnStartActionPerformed

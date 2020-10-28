@@ -69,7 +69,7 @@ public class MenuFrame extends javax.swing.JFrame implements StateObserver {
     pnlMealCombos.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 20, 0, 20));
     pnlMealCombos.setMaximumSize(new java.awt.Dimension(0, 0));
     pnlMealCombos.setPreferredSize(new java.awt.Dimension(560, 500));
-    pnlMealCombos.setLayout(new java.awt.GridLayout(0, 3, 20, 20));
+    pnlMealCombos.setLayout(new java.awt.GridLayout(2, 3, 20, 20));
     tabbedPane.addTab("Meal Combos", pnlMealCombos);
 
     pnlSides.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 20, 0, 20));
@@ -77,7 +77,7 @@ public class MenuFrame extends javax.swing.JFrame implements StateObserver {
     tabbedPane.addTab("Sides", pnlSides);
 
     pnlDesserts.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 20, 0, 20));
-    pnlDesserts.setLayout(new java.awt.GridLayout(3, 3, 20, 20));
+    pnlDesserts.setLayout(new java.awt.GridLayout(2, 3, 20, 20));
     tabbedPane.addTab("Desserts", pnlDesserts);
 
     pnlBeverages.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 20, 0, 20));
@@ -187,7 +187,6 @@ public class MenuFrame extends javax.swing.JFrame implements StateObserver {
     itemsBeverages = itemService.getAllByCategory(4);
 
     tbmOrder = new OrderTable();
-
   }
 
   private void initState() {
@@ -230,17 +229,10 @@ public class MenuFrame extends javax.swing.JFrame implements StateObserver {
     } else {
       javax.swing.JOptionPane.showMessageDialog(null, "Please order something so\nMr. Krabs can get some cash!", "No Items Ordered", javax.swing.JOptionPane.WARNING_MESSAGE);
     }
-
   }//GEN-LAST:event_btnContinueActionPerformed
 
   private void itemActionPeformed(models.Item item) {
-    models.OrderDetail orderDetail = new models.OrderDetail();
-    orderDetail.setId(item.getId());
-    orderDetail.setName(item.getName());
-    orderDetail.setOrderPrice(item.getPrice());
-    orderDetail.setImage(item.getImage());
-
-    CustomizeDialog customizeDialog = new CustomizeDialog(orderDetail);
+    CustomizeDialog customizeDialog = new CustomizeDialog(item);
     customizeDialog.addObserver(this);
     customizeDialog.setVisible(true);
   }
@@ -249,6 +241,7 @@ public class MenuFrame extends javax.swing.JFrame implements StateObserver {
     java.util.ArrayList<models.OrderDetail> orderedItems = StateManager.getOrderedItems();
     if (orderedItems != null && orderedItems.size() > 0) {
       tbmOrder.addRows(orderedItems);
+      tbmOrder.resizeColumns(tblOrder.getColumnModel());
       app.Global.setTotalPrice(orderedItems, lblTotalValue);
     }
   }
@@ -295,8 +288,8 @@ public class MenuFrame extends javax.swing.JFrame implements StateObserver {
 class BtnItem extends javax.swing.JButton {
 
   BtnItem(models.Item item) {
-    setIcon(app.Global.getImagePreview(item.getImage()));
-    setText(item.getName());
+    setIcon(app.Global.getImagePreview(item.getImage(), 100, 100, this));
+    setText("<html><center>" + item.getName() + "<p style=\"font-weight:bold;margin-top:10px\">" + app.Global.toCurrency(item.getPrice()) + "</p></center></html>");
     setAlignmentY(0.0F);
     setHideActionText(true);
     setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -304,4 +297,5 @@ class BtnItem extends javax.swing.JButton {
     setPreferredSize(new java.awt.Dimension(160, 160));
     setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
   }
+
 }

@@ -6,28 +6,32 @@ package kiosk;
 public class CustomizeDialog extends javax.swing.JDialog implements StateObservable {
 
   models.OrderDetail currentItem;
-  double originalPrice;
   java.util.ArrayList<StateObserver> observers;
 
   /**
    * Creates new form CustomizeDialog
    */
-  public CustomizeDialog(models.OrderDetail currentItem) {
+  public CustomizeDialog(models.Item currentItem) {
     setModal(true);
 
     /**
      * Get the item passed from menu
      */
-    this.currentItem = currentItem;
-    originalPrice = currentItem.getOrderPrice();
+    this.currentItem = new models.OrderDetail();
+    this.currentItem.setId(currentItem.getId());
+    this.currentItem.setName(currentItem.getName());
+    this.currentItem.setImage(currentItem.getImage());
+    this.currentItem.setPrice(currentItem.getPrice());
+    this.currentItem.setOrderPrice(currentItem.getPrice());
+    this.currentItem.setQuantity(1);
+    this.currentItem.setSize(models.OrderDetail.MEDIUM);
 
     /**
      * Initialize
      */
     initComponents();
+    initCustomComponents();
     initState();
-    initCustomComponents(currentItem);
-    setItemQuantity();
   }
 
   /**
@@ -248,77 +252,61 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
     setLocationRelativeTo(null);
   }// </editor-fold>//GEN-END:initComponents
 
+  private void initCustomComponents() {
+    updateScreen();
+
+    // Adds action listeners to the quantity buttons
+    btnQuantityAdd.addActionListener((java.awt.event.ActionEvent evt) -> qtyActionPeformed(1));
+    btnQuantityRemove.addActionListener((java.awt.event.ActionEvent evt) -> qtyActionPeformed(-1));
+  }
+
   private void initState() {
     observers = new java.util.ArrayList<>();
   }
 
-  // calls update function and sets the quantity initial quantity and price.
-  private void initCustomComponents(models.OrderDetail currentItem) {
-    updateScreen(currentItem);
-    currentItem.setQuantity(1);
-    currentItem.setSize(models.OrderDetail.MEDIUM);
- }
-
-  //Updates the screen with the header, image, and order total.
-  private void updateScreen(models.OrderDetail currentItem) {
+  // Updates the screen with the header, image, and order total
+  private void updateScreen() {
     lblHeaderTitle.setText(currentItem.getName());
-    lblImage.setIcon(app.Global.getImagePreview(currentItem.getImage()));
-    lblTotalValue.setText("$ " + currentItem.getOrderPrice());
-  }                                          
+    lblImage.setIcon(app.Global.getImagePreview(currentItem.getImage(), 300, 300, this));
+    lblTotalValue.setText(app.Global.toCurrency(currentItem.getPrice()));
+  }
 
   private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
     dispose();
   }//GEN-LAST:event_btnCancelActionPerformed
 
   private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-    calculateTotal();
+    calculateSubTotal();
     addItemToOrder();
     notifyObservers();
     dispose();
   }//GEN-LAST:event_btnAddActionPerformed
 
-    // Action performed by toggle action listeners
-    private void tgbStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tgbStateChanged
-       if(evt.getStateChange()==1){
-        if(evt.getItem()==tgbSizeSmall){
+  // Action performed by toggle action listeners
+  private void tgbStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tgbStateChanged
+    if (evt.getStateChange() == 1) {
+      if (evt.getItem() == tgbSizeSmall) {
         currentItem.setSize(models.OrderDetail.SMALL);
-        }else
-        if(evt.getItem()==tgbSizeLarge){
+      } else if (evt.getItem() == tgbSizeLarge) {
         currentItem.setSize(models.OrderDetail.LARGE);
-       
-        }else{
-          currentItem.setSize(models.OrderDetail.MEDIUM);
-        }
-      calculateTotal();
+      } else {
+        currentItem.setSize(models.OrderDetail.MEDIUM);
+      }
+      calculateSubTotal();
     }
-        
-    }//GEN-LAST:event_tgbStateChanged
+  }//GEN-LAST:event_tgbStateChanged
 
-  
-
- 
-
-  //Adds action listeners to the quantity buttons
-  private void setItemQuantity() {
-    btnQuantityAdd.addActionListener((java.awt.event.ActionEvent evt) -> qtyActionPeformed(1));
-    btnQuantityRemove.addActionListener((java.awt.event.ActionEvent evt) -> qtyActionPeformed(-1));
-  }
-
-  //Action performed by Quantity button action listeners
+  // Action for increment order quantity
   private void qtyActionPeformed(int i) {
-    
-   // Action for increment order quantity 
-      if (i==-1 && currentItem.getQuantity() == 1){}else
-      {
-        currentItem.setQuantity(currentItem.getQuantity() + i);
-        lblQuantityValue.setText(Integer.toString(currentItem.getQuantity()));
-        calculateTotal();
-     }
-    
+    if (!(i == -1 && currentItem.getQuantity() == 1)) {
+      currentItem.setQuantity(currentItem.getQuantity() + i);
+      lblQuantityValue.setText(Integer.toString(currentItem.getQuantity()));
+      calculateSubTotal();
+    }
   }
- 
-    private Double getSizeFee(String size) {
-      switch (size) {
+
+  private Double getSizeFee(String size) {
+    switch (size) {
       case models.OrderDetail.SMALL:
         return -2.00;
       case models.OrderDetail.LARGE:
@@ -326,16 +314,13 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
       default:
         return 0.00;
     }
-
   }
-    private void calculateTotal(){
-     currentItem.setOrderPrice(originalPrice + getSizeFee(currentItem.getSize()));
-     currentItem.setOrderTotal(currentItem.getOrderPrice() * currentItem.getQuantity());
-     String formattedTotal = String.format("%.02f", currentItem.getOrderTotal());
-     lblTotalValue.setText("$ " + formattedTotal);
-    }
-    
-    
+
+  private void calculateSubTotal() {
+    currentItem.setOrderPrice(currentItem.getPrice() + getSizeFee(currentItem.getSize()));
+    currentItem.setSubTotal(currentItem.getOrderPrice() * currentItem.getQuantity());
+    lblTotalValue.setText(app.Global.toCurrency(currentItem.getSubTotal()));
+  }
 
   private void addItemToOrder() {
     StateManager.setOrderedItem(currentItem);

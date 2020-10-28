@@ -60,7 +60,6 @@ public class OrderService extends DatabaseService {
   }
 
   public int createOne(Order order) {
-
     int orderId = 0;
 
     this.connect();
@@ -86,13 +85,13 @@ public class OrderService extends DatabaseService {
   }
 
   public int createOneDetails(int orderId, ArrayList<OrderDetail> orderDetails) {
-
     int rowCount = 0;
 
     this.connect();
+
     for (int i = 0; i < orderDetails.size(); i++) {
       try {
-        String sql = "INSERT INTO order_details (order_id, item_id, item_quantity , item_size , item_order_price ) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO order_details (order_id, item_id, item_quantity , item_size , item_order_price) VALUES (?, ?, ?, ?, ?)";
         PreparedStatement stmt = this.conn.prepareStatement(sql);
         stmt.setInt(1, orderId);
         stmt.setInt(2, orderDetails.get(i).getId());
@@ -104,6 +103,7 @@ public class OrderService extends DatabaseService {
         System.out.println(e);
       }
     }
+
     this.disconnect();
 
     return rowCount;

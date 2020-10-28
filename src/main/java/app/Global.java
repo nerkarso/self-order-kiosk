@@ -30,14 +30,13 @@ public class Global {
     return titleCase.toString();
   }
 
-  public static javax.swing.ImageIcon getImagePreview(String url) {
-    javax.swing.ImageIcon image = new javax.swing.ImageIcon();
+  public static javax.swing.ImageIcon getImagePreview(String url, int w, int h, Object context) {
+    javax.swing.ImageIcon image = new javax.swing.ImageIcon(context.getClass().getResource("/icons/soup-bowl.png"));
     if (url != null && !url.isEmpty()) {
       try {
-        java.net.URL imageUrl = new java.net.URL(url + "?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A");
-        java.awt.Image resizedImage = javax.imageio.ImageIO.read(imageUrl);
-        resizedImage = resizedImage.getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH);
-        image = new javax.swing.ImageIcon(resizedImage);
+        java.net.URL imageUrl = new java.net.URL(url + "?fit=around%7C" + w + "%3A" + h + "&crop=" + w + "%3A" + h + "%3B%2A%2C%2A");
+        java.awt.Image imageIO = javax.imageio.ImageIO.read(imageUrl);
+        image = new javax.swing.ImageIcon(imageIO);
       } catch (java.io.IOException e) {
         System.out.println(e);
       }
@@ -45,13 +44,17 @@ public class Global {
     return image;
   }
 
+  public static String toCurrency(Double input) {
+    java.text.NumberFormat formatter = new java.text.DecimalFormat("$ ###,###,##0.00");
+    return formatter.format(input);
+  }
+
   public static void setTotalPrice(java.util.ArrayList<models.OrderDetail> items, javax.swing.JLabel lblTotalValue) {
     double total = 0;
     for (int i = 0; i < items.size(); i++) {
-      total += items.get(i).getOrderTotal();
+      total += items.get(i).getSubTotal();
     }
-    String formattedTotal = String.format("%.02f", total);
-    lblTotalValue.setText("$ "+formattedTotal);
+    lblTotalValue.setText(toCurrency(total));
   }
 
 }
