@@ -108,6 +108,25 @@ public class OrderService extends DatabaseService {
     return rowCount;
   }
 
+  public int deleteOne(int id) {
+    int rowCount = 0;
+
+    this.connect();
+
+    try {
+      String sql = "DELETE FROM orders WHERE order_id = ?";
+      PreparedStatement stmt = this.conn.prepareStatement(sql);
+      stmt.setInt(1, id);
+      rowCount = stmt.executeUpdate();
+    } catch (SQLException e) {
+      System.out.println(e);
+    }
+
+    this.disconnect();
+
+    return rowCount;
+  }
+
   private Order mapResultOneOrder(ResultSet result) {
     Order order = null;
 

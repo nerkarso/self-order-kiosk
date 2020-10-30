@@ -7,6 +7,7 @@ public class OrdersPanel extends javax.swing.JPanel {
 
   services.OrderService orderService;
 
+  int currentOrderId;
   javax.swing.table.DefaultTableModel tbmOrders;
   kiosk.OrderTable tbmOrderDetails;
 
@@ -75,6 +76,20 @@ public class OrdersPanel extends javax.swing.JPanel {
     }
   }
 
+  private void handleDelete() {
+    int rowCount = orderService.deleteOne(currentOrderId);
+    if (rowCount > 0) {
+      handleRefresh();
+    }
+  }
+
+  private void handleRefresh() {
+    currentOrderId = 0;
+    getAllOrders();
+    tbmOrderDetails.setRowCount(0);
+    lblTotalValue.setText("$ 0.00");
+  }
+
   /**
    * This method is called from within the constructor to initialize the form.
    * WARNING: Do NOT modify this code. The content of this method is always
@@ -92,6 +107,7 @@ public class OrdersPanel extends javax.swing.JPanel {
     tblOrderDetails = new javax.swing.JTable();
     pnlActions = new javax.swing.JPanel();
     btnRefresh = new javax.swing.JButton();
+    btnDelete = new javax.swing.JButton();
     lblTotal = new javax.swing.JLabel();
     lblTotalValue = new javax.swing.JLabel();
 
@@ -126,9 +142,20 @@ public class OrdersPanel extends javax.swing.JPanel {
     });
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-    gridBagConstraints.weightx = 1.0;
     pnlActions.add(btnRefresh, gridBagConstraints);
     btnRefresh.getAccessibleContext().setAccessibleName("");
+
+    btnDelete.setText("Delete");
+    btnDelete.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnDeleteActionPerformed(evt);
+      }
+    });
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+    gridBagConstraints.weightx = 1.0;
+    gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+    pnlActions.add(btnDelete, gridBagConstraints);
 
     lblTotal.setFont(lblTotal.getFont().deriveFont(lblTotal.getFont().getStyle() | java.awt.Font.BOLD));
     lblTotal.setText("Total:");
@@ -150,17 +177,27 @@ public class OrdersPanel extends javax.swing.JPanel {
   private void tblOrdersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOrdersMouseClicked
     javax.swing.table.TableModel tableModel = (javax.swing.table.TableModel) tblOrders.getModel();
     int rowIndex = tblOrders.getSelectedRow();
-    int orderId = Integer.parseInt(tableModel.getValueAt(rowIndex, 0).toString());
-    getOrderDetails(orderId);
+    currentOrderId = Integer.parseInt(tableModel.getValueAt(rowIndex, 0).toString());
+    getOrderDetails(currentOrderId);
   }//GEN-LAST:event_tblOrdersMouseClicked
 
   private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-    getAllOrders();
-    tbmOrderDetails.setRowCount(0);
-    lblTotalValue.setText("$ 0.00");
+    handleRefresh();
   }//GEN-LAST:event_btnRefreshActionPerformed
 
+  private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+    if (currentOrderId > 0) {
+      int answer = javax.swing.JOptionPane.showConfirmDialog(null, "Are you sure to delete this order?", "Delete order", javax.swing.JOptionPane.YES_NO_OPTION, javax.swing.JOptionPane.QUESTION_MESSAGE);
+      if (answer == 0) {
+        handleDelete();
+      }
+    } else {
+      javax.swing.JOptionPane.showMessageDialog(null, "Please select an order", "Warning", javax.swing.JOptionPane.WARNING_MESSAGE);
+    }
+  }//GEN-LAST:event_btnDeleteActionPerformed
+
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JButton btnDelete;
   private javax.swing.JButton btnRefresh;
   private javax.swing.JLabel lblTotal;
   private javax.swing.JLabel lblTotalValue;
