@@ -65,12 +65,18 @@ password=<PASSWORD>
 
 ## Changelog
 
+### [v1.0.0] - 2020-10-30
+
+- New feature to delete orders in admin module
+- Fix item price is negative after changing size in customize window
+- Fix huge item image preview
+
 ### [v0.5.0] - 2020-10-29
 
 - New feature to update ordered item in kiosk
 - New feature to show order details in orders window
 - New feature to show item ordered price in customize window
-- Fixed issue where item size is not updating in customize window
+- Fix issue where item size is not updating in customize window
 - Improve load time of menu window
 
 ### [v0.4.0] - 2020-10-28
@@ -78,8 +84,8 @@ password=<PASSWORD>
 - New feature to customize item in customize dialog
 - New feature where orders will be saved in database
 - New items in migration
-- Changed items in menu window to be populated
-- Changed order table to be populated
+- Change items in menu window to be populated
+- Change order table to be populated
 
 ### [v0.3.0] - 2020-10-27
 
@@ -107,6 +113,7 @@ password=<PASSWORD>
 
 Icons made by [Freepik](https://www.flaticon.com/authors/basic-gradient/gradient) from [www.flaticon.com](https://www.flaticon.com)
 
+[v1.0.0]: https://github.com/nerkarso/self-order-kiosk/releases/tag/v1.0.0
 [v0.5.0]: https://github.com/nerkarso/self-order-kiosk/releases/tag/v0.5.0
 [v0.4.0]: https://github.com/nerkarso/self-order-kiosk/releases/tag/v0.4.0
 [v0.3.0]: https://github.com/nerkarso/self-order-kiosk/releases/tag/v0.3.0
