@@ -6,6 +6,10 @@
 
 <p align="center">A self-checkout experience where customers can quickly place an order.</p>
 
+<p align="center">
+  <img src="demo.gif" width="720" />
+</p>
+
 ## Features
 
 - 🛒 Place an order
