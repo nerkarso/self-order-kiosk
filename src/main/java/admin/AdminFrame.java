@@ -1,16 +1,21 @@
 /*
- * Copyright (c) 2020 Self-Order Kiosk
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package admin;
 
+/**
+ *
+ * @author ASUS
+ */
 public class AdminFrame extends javax.swing.JFrame {
 
   /**
-   * Creates new form AdminFrame
+   * Creates new form orders_mod
    */
   public AdminFrame() {
     initComponents();
-    app.Global.setAppIcon(this);
   }
 
   /**
@@ -21,544 +26,725 @@ public class AdminFrame extends javax.swing.JFrame {
   @SuppressWarnings("unchecked")
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
-    java.awt.GridBagConstraints gridBagConstraints;
 
-    btgTheme = new javax.swing.ButtonGroup();
-    tabbedPane = new javax.swing.JTabbedPane();
-    pnlOrders = new javax.swing.JPanel();
-    scpOrders = new javax.swing.JScrollPane();
-    tblOrders = new javax.swing.JTable();
-    pnlItems = new javax.swing.JPanel();
-    scpItems = new javax.swing.JScrollPane();
-    tblItems = new javax.swing.JTable();
-    pnlItemFields = new javax.swing.JPanel();
-    lblItemImagePreview = new javax.swing.JLabel();
-    lblItemName = new javax.swing.JLabel();
-    lblItemPrice = new javax.swing.JLabel();
-    lblItemImage = new javax.swing.JLabel();
-    lblItemCategory = new javax.swing.JLabel();
-    txtItemName = new javax.swing.JTextField();
-    txtItemPrice = new javax.swing.JTextField();
-    txtItemImage = new javax.swing.JTextField();
-    cmbItemCategory = new javax.swing.JComboBox<>();
-    pnlItemActions = new javax.swing.JPanel();
-    btnItemRefresh = new javax.swing.JButton();
-    btnItemSave = new javax.swing.JButton();
-    btnItemNew = new javax.swing.JButton();
-    btnItemDelete = new javax.swing.JButton();
-    pnlCategories = new javax.swing.JPanel();
-    scpCategories = new javax.swing.JScrollPane();
-    tblCategories = new javax.swing.JTable();
-    pnlCategoryFields = new javax.swing.JPanel();
-    lblCategoryName = new javax.swing.JLabel();
-    txtCategoryName = new javax.swing.JTextField();
-    pnlCategoryActions = new javax.swing.JPanel();
-    btnCategoryRefresh = new javax.swing.JButton();
-    btnCategorySave = new javax.swing.JButton();
-    btnCategoryNew = new javax.swing.JButton();
-    btnCategoryDelete = new javax.swing.JButton();
-    pnlUsers = new javax.swing.JPanel();
-    scpUsers = new javax.swing.JScrollPane();
-    tblUsers = new javax.swing.JTable();
-    pnlUserFields = new javax.swing.JPanel();
-    lblUserName = new javax.swing.JLabel();
-    lblUserUsername = new javax.swing.JLabel();
-    lblUserPassword = new javax.swing.JLabel();
-    txtUserName = new javax.swing.JTextField();
-    txtUserUsername = new javax.swing.JTextField();
-    txtUserPassword = new javax.swing.JTextField();
-    pnlUserActions = new javax.swing.JPanel();
-    btnUserRefresh = new javax.swing.JButton();
-    btnUserSave = new javax.swing.JButton();
-    btnUserNew = new javax.swing.JButton();
-    btnUserDelete = new javax.swing.JButton();
-    pnlSettings = new javax.swing.JPanel();
-    lblSettingTheme = new javax.swing.JLabel();
-    radThemeLight = new javax.swing.JRadioButton();
-    radThemeDark = new javax.swing.JRadioButton();
+    users_new_btn = new javax.swing.JButton();
+    admin_module = new javax.swing.JPanel();
+    admin_mod_tbpane = new javax.swing.JTabbedPane();
+    users_screen = new javax.swing.JPanel();
+    jScrollPane2 = new javax.swing.JScrollPane();
+    user_tb = new javax.swing.JTable();
+    users_username_label = new javax.swing.JLabel();
+    users_name_label = new javax.swing.JLabel();
+    users_pass_label = new javax.swing.JLabel();
+    username_txtbox = new javax.swing.JTextField();
+    name_txtbox = new javax.swing.JTextField();
+    password_txtbox = new javax.swing.JTextField();
+    users_new_btn1 = new javax.swing.JButton();
+    users_delete_btn = new javax.swing.JButton();
+    users_save_btn = new javax.swing.JButton();
+    orders_screen = new javax.swing.JPanel();
+    jScrollPane1 = new javax.swing.JScrollPane();
+    orders_tb = new javax.swing.JTable();
+    orders_order_label = new javax.swing.JLabel();
+    orders_items_label = new javax.swing.JLabel();
+    orders_price_label = new javax.swing.JLabel();
+    orders_date_label = new javax.swing.JLabel();
+    orders_order_txtbx = new javax.swing.JTextField();
+    orders_items_txtbx = new javax.swing.JTextField();
+    orders_price_txtbx = new javax.swing.JTextField();
+    orders_date_txtbx = new javax.swing.JTextField();
+    items_screen = new javax.swing.JPanel();
+    jScrollPane3 = new javax.swing.JScrollPane();
+    jTable1 = new javax.swing.JTable();
+    items_name_label = new javax.swing.JLabel();
+    items_category_label = new javax.swing.JLabel();
+    items_price_label = new javax.swing.JLabel();
+    items_size_label = new javax.swing.JLabel();
+    item_name_txtbox = new javax.swing.JTextField();
+    item_cat_txtbox = new javax.swing.JTextField();
+    item_pr_txtbox = new javax.swing.JTextField();
+    item_sz_txtbox = new javax.swing.JTextField();
+    item_new_btn = new javax.swing.JButton();
+    item_delete_btn = new javax.swing.JButton();
+    item_save_btn = new javax.swing.JButton();
+    jPanel1 = new javax.swing.JPanel();
+    jScrollPane4 = new javax.swing.JScrollPane();
+    cat_tb = new javax.swing.JTable();
+    categories_label = new javax.swing.JLabel();
+    cat_txtbox = new javax.swing.JTextField();
+    cat_new_btn = new javax.swing.JButton();
+    cat_delete_btn = new javax.swing.JButton();
+    cat_save_btn = new javax.swing.JButton();
+
+    users_new_btn.setBackground(new java.awt.Color(0, 0, 0));
+    users_new_btn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+    users_new_btn.setForeground(new java.awt.Color(255, 255, 255));
+    users_new_btn.setText("New");
+    users_new_btn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+    users_new_btn.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        users_new_btnActionPerformed(evt);
+      }
+    });
 
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     setTitle("Admin");
-    setName(""); // NOI18N
-    setPreferredSize(new java.awt.Dimension(720, 600));
 
-    pnlOrders.setLayout(new java.awt.BorderLayout());
+    admin_module.setBackground(new java.awt.Color(204, 204, 204));
 
-    tblOrders.setModel(new javax.swing.table.DefaultTableModel(
+    user_tb.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
+    user_tb.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
-        {"1", "30", "2020-09-29"}
+        {"NGineer", "Ner"},
+        {"Hass", "Hassan"},
+        {"King", "Chan"}
       },
       new String [] {
-        "ID", "Preperation Time", "Date"
+        "Username", "Name"
       }
     ) {
-      boolean[] canEdit = new boolean [] {
-        false, false, false
+      Class[] types = new Class [] {
+        java.lang.String.class, java.lang.String.class
       };
 
-      public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return canEdit [columnIndex];
+      public Class getColumnClass(int columnIndex) {
+        return types [columnIndex];
       }
     });
-    scpOrders.setViewportView(tblOrders);
+    jScrollPane2.setViewportView(user_tb);
 
-    pnlOrders.add(scpOrders, java.awt.BorderLayout.CENTER);
+    users_username_label.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
+    users_username_label.setText("Username");
 
-    tabbedPane.addTab("Orders", pnlOrders);
+    users_name_label.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
+    users_name_label.setText("Name");
 
-    pnlItems.setLayout(new java.awt.GridBagLayout());
+    users_pass_label.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
+    users_pass_label.setText("Password");
 
-    tblItems.setModel(new javax.swing.table.DefaultTableModel(
-      new Object [][] {
-        {"1", "Krusty Burger", "$ 1.99", "Meal Combos"}
-      },
-      new String [] {
-        "ID", "Name", "Price", "Category"
-      }
-    ) {
-      boolean[] canEdit = new boolean [] {
-        false, false, false, false
-      };
+    username_txtbox.setBackground(new java.awt.Color(204, 204, 204));
+    username_txtbox.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
 
-      public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return canEdit [columnIndex];
-      }
-    });
-    tblItems.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-    scpItems.setViewportView(tblItems);
+    name_txtbox.setBackground(new java.awt.Color(204, 204, 204));
+    name_txtbox.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
 
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-    gridBagConstraints.weightx = 1.0;
-    gridBagConstraints.weighty = 1.0;
-    pnlItems.add(scpItems, gridBagConstraints);
+    password_txtbox.setBackground(new java.awt.Color(204, 204, 204));
+    password_txtbox.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
 
-    java.awt.GridBagLayout pnlItemFieldsLayout = new java.awt.GridBagLayout();
-    pnlItemFieldsLayout.columnWidths = new int[] {150, 100, 300};
-    pnlItemFieldsLayout.rowHeights = new int[] {60, 0, 60};
-    pnlItemFields.setLayout(pnlItemFieldsLayout);
-
-    lblItemImagePreview.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    lblItemImagePreview.setText("Preview");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.gridheight = 5;
-    gridBagConstraints.ipadx = 20;
-    gridBagConstraints.ipady = 20;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-    pnlItemFields.add(lblItemImagePreview, gridBagConstraints);
-
-    lblItemName.setLabelFor(txtItemName);
-    lblItemName.setText("Name");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    pnlItemFields.add(lblItemName, gridBagConstraints);
-
-    lblItemPrice.setLabelFor(txtItemPrice);
-    lblItemPrice.setText("Price");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 1;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    pnlItemFields.add(lblItemPrice, gridBagConstraints);
-
-    lblItemImage.setLabelFor(txtItemImage);
-    lblItemImage.setText("Image");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 2;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    pnlItemFields.add(lblItemImage, gridBagConstraints);
-
-    lblItemCategory.setLabelFor(cmbItemCategory);
-    lblItemCategory.setText("Category");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 4;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    pnlItemFields.add(lblItemCategory, gridBagConstraints);
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-    pnlItemFields.add(txtItemName, gridBagConstraints);
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 1;
-    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-    pnlItemFields.add(txtItemPrice, gridBagConstraints);
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 2;
-    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-    pnlItemFields.add(txtItemImage, gridBagConstraints);
-
-    cmbItemCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Main Meal" }));
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 4;
-    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-    pnlItemFields.add(cmbItemCategory, gridBagConstraints);
-
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 1;
-    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-    pnlItems.add(pnlItemFields, gridBagConstraints);
-
-    pnlItemActions.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 20));
-
-    btnItemRefresh.setText("Refresh");
-    pnlItemActions.add(btnItemRefresh);
-
-    btnItemSave.setText("Save");
-    pnlItemActions.add(btnItemSave);
-
-    btnItemNew.setText("New");
-    pnlItemActions.add(btnItemNew);
-
-    btnItemDelete.setText("Delete");
-    pnlItemActions.add(btnItemDelete);
-
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 2;
-    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
-    gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
-    pnlItems.add(pnlItemActions, gridBagConstraints);
-
-    tabbedPane.addTab("Items", pnlItems);
-
-    pnlCategories.setLayout(new java.awt.GridBagLayout());
-
-    tblCategories.setModel(new javax.swing.table.DefaultTableModel(
-      new Object [][] {
-        {"1", "Meal Combos"}
-      },
-      new String [] {
-        "ID", "Category"
-      }
-    ) {
-      boolean[] canEdit = new boolean [] {
-        false, false
-      };
-
-      public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return canEdit [columnIndex];
-      }
-    });
-    scpCategories.setViewportView(tblCategories);
-
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-    gridBagConstraints.weightx = 1.0;
-    gridBagConstraints.weighty = 1.0;
-    pnlCategories.add(scpCategories, gridBagConstraints);
-
-    java.awt.GridBagLayout pnlCategoryFieldsLayout = new java.awt.GridBagLayout();
-    pnlCategoryFieldsLayout.columnWidths = new int[] {100, 300};
-    pnlCategoryFieldsLayout.rowHeights = new int[] {60};
-    pnlCategoryFields.setLayout(pnlCategoryFieldsLayout);
-
-    lblCategoryName.setLabelFor(txtCategoryName);
-    lblCategoryName.setText("Category");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    pnlCategoryFields.add(lblCategoryName, gridBagConstraints);
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-    pnlCategoryFields.add(txtCategoryName, gridBagConstraints);
-
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 1;
-    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-    pnlCategories.add(pnlCategoryFields, gridBagConstraints);
-
-    pnlCategoryActions.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 20));
-
-    btnCategoryRefresh.setText("Refresh");
-    pnlCategoryActions.add(btnCategoryRefresh);
-
-    btnCategorySave.setText("Save");
-    pnlCategoryActions.add(btnCategorySave);
-
-    btnCategoryNew.setText("New");
-    pnlCategoryActions.add(btnCategoryNew);
-
-    btnCategoryDelete.setText("Delete");
-    btnCategoryDelete.setToolTipText("");
-    pnlCategoryActions.add(btnCategoryDelete);
-
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 2;
-    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
-    pnlCategories.add(pnlCategoryActions, gridBagConstraints);
-
-    tabbedPane.addTab("Categories", pnlCategories);
-
-    pnlUsers.setLayout(new java.awt.GridBagLayout());
-
-    tblUsers.setModel(new javax.swing.table.DefaultTableModel(
-      new Object [][] {
-        {"1", "SpongeBob SquarePants", "bob"}
-      },
-      new String [] {
-        "ID", "Name", "Username"
-      }
-    ) {
-      boolean[] canEdit = new boolean [] {
-        false, false, false
-      };
-
-      public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return canEdit [columnIndex];
-      }
-    });
-    scpUsers.setViewportView(tblUsers);
-
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-    gridBagConstraints.weightx = 1.0;
-    gridBagConstraints.weighty = 1.0;
-    pnlUsers.add(scpUsers, gridBagConstraints);
-
-    java.awt.GridBagLayout pnlUserFieldsLayout = new java.awt.GridBagLayout();
-    pnlUserFieldsLayout.columnWidths = new int[] {100, 300};
-    pnlUserFieldsLayout.rowHeights = new int[] {60, 0, 60};
-    pnlUserFields.setLayout(pnlUserFieldsLayout);
-
-    lblUserName.setLabelFor(txtUserName);
-    lblUserName.setText("Name");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    pnlUserFields.add(lblUserName, gridBagConstraints);
-
-    lblUserUsername.setLabelFor(txtUserUsername);
-    lblUserUsername.setText("Username");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 1;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    pnlUserFields.add(lblUserUsername, gridBagConstraints);
-
-    lblUserPassword.setLabelFor(txtUserPassword);
-    lblUserPassword.setText("Password");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 2;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    pnlUserFields.add(lblUserPassword, gridBagConstraints);
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-    pnlUserFields.add(txtUserName, gridBagConstraints);
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 1;
-    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-    pnlUserFields.add(txtUserUsername, gridBagConstraints);
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 2;
-    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-    pnlUserFields.add(txtUserPassword, gridBagConstraints);
-
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 1;
-    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-    pnlUsers.add(pnlUserFields, gridBagConstraints);
-
-    pnlUserActions.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 20));
-
-    btnUserRefresh.setText("Refresh");
-    pnlUserActions.add(btnUserRefresh);
-
-    btnUserSave.setText("Save");
-    pnlUserActions.add(btnUserSave);
-
-    btnUserNew.setText("New");
-    pnlUserActions.add(btnUserNew);
-
-    btnUserDelete.setText("Delete");
-    pnlUserActions.add(btnUserDelete);
-
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 2;
-    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
-    pnlUsers.add(pnlUserActions, gridBagConstraints);
-
-    tabbedPane.addTab("Users", pnlUsers);
-
-    lblSettingTheme.setFont(new java.awt.Font("SF Pro Text", 1, 17)); // NOI18N
-    lblSettingTheme.setText("Theme");
-    lblSettingTheme.setAlignmentY(0.0F);
-
-    btgTheme.add(radThemeLight);
-    radThemeLight.setSelected(true);
-    radThemeLight.setText("Light");
-    radThemeLight.setAlignmentY(0.0F);
-    radThemeLight.addItemListener(new java.awt.event.ItemListener() {
-      public void itemStateChanged(java.awt.event.ItemEvent evt) {
-        radThemeLightItemStateChanged(evt);
+    users_new_btn1.setBackground(new java.awt.Color(0, 0, 0));
+    users_new_btn1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+    users_new_btn1.setForeground(new java.awt.Color(255, 255, 255));
+    users_new_btn1.setText("New");
+    users_new_btn1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+    users_new_btn1.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        users_new_btn1ActionPerformed(evt);
       }
     });
 
-    btgTheme.add(radThemeDark);
-    radThemeDark.setText("Dark");
-    radThemeDark.addItemListener(new java.awt.event.ItemListener() {
-      public void itemStateChanged(java.awt.event.ItemEvent evt) {
-        radThemeDarkItemStateChanged(evt);
+    users_delete_btn.setBackground(new java.awt.Color(0, 0, 0));
+    users_delete_btn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+    users_delete_btn.setForeground(new java.awt.Color(255, 255, 255));
+    users_delete_btn.setText("Delete");
+    users_delete_btn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+    users_delete_btn.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        users_delete_btnActionPerformed(evt);
       }
     });
 
-    javax.swing.GroupLayout pnlSettingsLayout = new javax.swing.GroupLayout(pnlSettings);
-    pnlSettings.setLayout(pnlSettingsLayout);
-    pnlSettingsLayout.setHorizontalGroup(
-      pnlSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(pnlSettingsLayout.createSequentialGroup()
-        .addGap(17, 17, 17)
-        .addGroup(pnlSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(pnlSettingsLayout.createSequentialGroup()
-            .addComponent(radThemeLight)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(radThemeDark))
-          .addComponent(lblSettingTheme))
-        .addContainerGap(554, Short.MAX_VALUE))
+    users_save_btn.setBackground(new java.awt.Color(0, 0, 0));
+    users_save_btn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+    users_save_btn.setForeground(new java.awt.Color(255, 255, 255));
+    users_save_btn.setText("Save");
+    users_save_btn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+    users_save_btn.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        users_save_btnActionPerformed(evt);
+      }
+    });
+
+    javax.swing.GroupLayout users_screenLayout = new javax.swing.GroupLayout(users_screen);
+    users_screen.setLayout(users_screenLayout);
+    users_screenLayout.setHorizontalGroup(
+      users_screenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, users_screenLayout.createSequentialGroup()
+        .addGroup(users_screenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addGroup(users_screenLayout.createSequentialGroup()
+            .addGap(73, 73, 73)
+            .addGroup(users_screenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addGroup(users_screenLayout.createSequentialGroup()
+                .addComponent(users_username_label)
+                .addGap(0, 0, Short.MAX_VALUE))
+              .addGroup(users_screenLayout.createSequentialGroup()
+                .addComponent(users_name_label)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(name_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addGroup(users_screenLayout.createSequentialGroup()
+                .addComponent(users_pass_label)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(password_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE))))
+          .addGroup(users_screenLayout.createSequentialGroup()
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(username_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addGap(40, 40, 40))
+      .addGroup(users_screenLayout.createSequentialGroup()
+        .addGroup(users_screenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(users_screenLayout.createSequentialGroup()
+            .addGap(91, 91, 91)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addGroup(users_screenLayout.createSequentialGroup()
+            .addGap(139, 139, 139)
+            .addComponent(users_new_btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(46, 46, 46)
+            .addComponent(users_delete_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(44, 44, 44)
+            .addComponent(users_save_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addContainerGap(67, Short.MAX_VALUE))
     );
-    pnlSettingsLayout.setVerticalGroup(
-      pnlSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(pnlSettingsLayout.createSequentialGroup()
-        .addGap(17, 17, 17)
-        .addComponent(lblSettingTheme)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-        .addGroup(pnlSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(radThemeLight)
-          .addComponent(radThemeDark))
-        .addContainerGap(482, Short.MAX_VALUE))
+    users_screenLayout.setVerticalGroup(
+      users_screenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(users_screenLayout.createSequentialGroup()
+        .addGap(45, 45, 45)
+        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(51, 51, 51)
+        .addGroup(users_screenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(users_username_label)
+          .addComponent(username_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(51, 51, 51)
+        .addGroup(users_screenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(name_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(users_name_label))
+        .addGap(49, 49, 49)
+        .addGroup(users_screenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(users_pass_label)
+          .addComponent(password_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+        .addGroup(users_screenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(users_new_btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(users_delete_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(users_save_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(60, 60, 60))
     );
 
-    tabbedPane.addTab("Settings", pnlSettings);
+    admin_mod_tbpane.addTab("Users Screen", users_screen);
 
-    getContentPane().add(tabbedPane, java.awt.BorderLayout.CENTER);
+    orders_tb.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+    orders_tb.setModel(new javax.swing.table.DefaultTableModel(
+      new Object [][] {
+        { new Integer(1), "1x Chicken Burger",  new Integer(150), "20-02-2020"},
+        { new Integer(2), "1x French Fries",  new Integer(90), "20-02-2020"},
+        { new Integer(3), "3x Soda",  new Integer(90), "20-02-2020"}
+      },
+      new String [] {
+        "Order No.", "Items", "Total price", "Date"
+      }
+    ) {
+      Class[] types = new Class [] {
+        java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+      };
 
-    getAccessibleContext().setAccessibleName("");
+      public Class getColumnClass(int columnIndex) {
+        return types [columnIndex];
+      }
+    });
+    orders_tb.setIntercellSpacing(new java.awt.Dimension(3, 3));
+    jScrollPane1.setViewportView(orders_tb);
+
+    orders_order_label.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
+    orders_order_label.setText("Order No.");
+
+    orders_items_label.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
+    orders_items_label.setText("Items");
+
+    orders_price_label.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
+    orders_price_label.setText("Total price");
+
+    orders_date_label.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
+    orders_date_label.setText("Date");
+
+    orders_order_txtbx.setBackground(new java.awt.Color(204, 204, 204));
+    orders_order_txtbx.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+
+    orders_items_txtbx.setBackground(new java.awt.Color(204, 204, 204));
+    orders_items_txtbx.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+
+    orders_price_txtbx.setBackground(new java.awt.Color(204, 204, 204));
+    orders_price_txtbx.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+
+    orders_date_txtbx.setBackground(new java.awt.Color(204, 204, 204));
+    orders_date_txtbx.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+
+    javax.swing.GroupLayout orders_screenLayout = new javax.swing.GroupLayout(orders_screen);
+    orders_screen.setLayout(orders_screenLayout);
+    orders_screenLayout.setHorizontalGroup(
+      orders_screenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(orders_screenLayout.createSequentialGroup()
+        .addGap(67, 67, 67)
+        .addGroup(orders_screenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addGroup(orders_screenLayout.createSequentialGroup()
+            .addGroup(orders_screenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(orders_order_label)
+              .addComponent(orders_items_label)
+              .addComponent(orders_price_label)
+              .addComponent(orders_date_label))
+            .addGap(36, 36, 36)
+            .addGroup(orders_screenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(orders_date_txtbx, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(orders_price_txtbx, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(orders_items_txtbx, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addComponent(orders_order_txtbx, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+    orders_screenLayout.setVerticalGroup(
+      orders_screenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(orders_screenLayout.createSequentialGroup()
+        .addGap(60, 60, 60)
+        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(60, 60, 60)
+        .addGroup(orders_screenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(orders_order_label)
+          .addComponent(orders_order_txtbx, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(41, 41, 41)
+        .addGroup(orders_screenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(orders_items_label)
+          .addComponent(orders_items_txtbx, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(39, 39, 39)
+        .addGroup(orders_screenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(orders_price_label)
+          .addComponent(orders_price_txtbx, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(38, 38, 38)
+        .addGroup(orders_screenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(orders_date_label)
+          .addComponent(orders_date_txtbx, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addContainerGap(70, Short.MAX_VALUE))
+    );
+
+    admin_mod_tbpane.addTab("Orders Screen", orders_screen);
+
+    jTable1.setModel(new javax.swing.table.DefaultTableModel(
+      new Object [][] {
+        {"Chicken Burger", "Burger",  new Integer(60), "MD"},
+        {"French fries", "Snack",  new Integer(90), "SM, MD, LG"},
+        {"Milk Shake", "Drink",  new Integer(150), "MD"}
+      },
+      new String [] {
+        "Name", "Category", "Price", "Size"
+      }
+    ) {
+      Class[] types = new Class [] {
+        java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+      };
+      boolean[] canEdit = new boolean [] {
+        false, false, true, false
+      };
+
+      public Class getColumnClass(int columnIndex) {
+        return types [columnIndex];
+      }
+
+      public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return canEdit [columnIndex];
+      }
+    });
+    jScrollPane3.setViewportView(jTable1);
+
+    items_name_label.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
+    items_name_label.setText(" Name");
+
+    items_category_label.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
+    items_category_label.setText("Category");
+
+    items_price_label.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
+    items_price_label.setText("Price");
+
+    items_size_label.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
+    items_size_label.setText("Size");
+
+    item_name_txtbox.setBackground(new java.awt.Color(204, 204, 204));
+    item_name_txtbox.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+
+    item_cat_txtbox.setBackground(new java.awt.Color(204, 204, 204));
+    item_cat_txtbox.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+
+    item_pr_txtbox.setBackground(new java.awt.Color(204, 204, 204));
+    item_pr_txtbox.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+
+    item_sz_txtbox.setBackground(new java.awt.Color(204, 204, 204));
+    item_sz_txtbox.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+
+    item_new_btn.setBackground(new java.awt.Color(0, 0, 0));
+    item_new_btn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+    item_new_btn.setForeground(new java.awt.Color(255, 255, 255));
+    item_new_btn.setText("New");
+    item_new_btn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+    item_delete_btn.setBackground(new java.awt.Color(0, 0, 0));
+    item_delete_btn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+    item_delete_btn.setForeground(new java.awt.Color(255, 255, 255));
+    item_delete_btn.setText("Delete");
+    item_delete_btn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+    item_delete_btn.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        item_delete_btnActionPerformed(evt);
+      }
+    });
+
+    item_save_btn.setBackground(new java.awt.Color(0, 0, 0));
+    item_save_btn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+    item_save_btn.setForeground(new java.awt.Color(255, 255, 255));
+    item_save_btn.setText("Save");
+    item_save_btn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+    javax.swing.GroupLayout items_screenLayout = new javax.swing.GroupLayout(items_screen);
+    items_screen.setLayout(items_screenLayout);
+    items_screenLayout.setHorizontalGroup(
+      items_screenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(items_screenLayout.createSequentialGroup()
+        .addGap(83, 83, 83)
+        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(0, 0, Short.MAX_VALUE))
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, items_screenLayout.createSequentialGroup()
+        .addGroup(items_screenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addGroup(items_screenLayout.createSequentialGroup()
+            .addGap(139, 139, 139)
+            .addComponent(item_new_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(53, 53, 53)
+            .addComponent(item_delete_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+            .addComponent(item_save_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addGroup(items_screenLayout.createSequentialGroup()
+            .addGap(43, 43, 43)
+            .addGroup(items_screenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+              .addGroup(items_screenLayout.createSequentialGroup()
+                .addComponent(items_category_label)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(item_cat_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addGroup(items_screenLayout.createSequentialGroup()
+                .addComponent(items_price_label)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(item_pr_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addGroup(items_screenLayout.createSequentialGroup()
+                .addComponent(items_name_label)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(item_name_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addGroup(javax.swing.GroupLayout.Alignment.LEADING, items_screenLayout.createSequentialGroup()
+                .addComponent(items_size_label)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(item_sz_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+        .addGap(46, 46, 46))
+    );
+    items_screenLayout.setVerticalGroup(
+      items_screenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(items_screenLayout.createSequentialGroup()
+        .addGap(38, 38, 38)
+        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(33, 33, 33)
+        .addGroup(items_screenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(items_name_label)
+          .addComponent(item_name_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(33, 33, 33)
+        .addGroup(items_screenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(items_category_label)
+          .addComponent(item_cat_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(38, 38, 38)
+        .addGroup(items_screenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(items_price_label)
+          .addComponent(item_pr_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(37, 37, 37)
+        .addGroup(items_screenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(items_size_label)
+          .addComponent(item_sz_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+        .addGroup(items_screenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(item_new_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(item_delete_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(item_save_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(36, 36, 36))
+    );
+
+    admin_mod_tbpane.addTab("Items Screen", items_screen);
+
+    cat_tb.setModel(new javax.swing.table.DefaultTableModel(
+      new Object [][] {
+        {"Snacks"},
+        {"Burgers"},
+        {"Drinks"}
+      },
+      new String [] {
+        "Categories"
+      }
+    ) {
+      Class[] types = new Class [] {
+        java.lang.String.class
+      };
+      boolean[] canEdit = new boolean [] {
+        false
+      };
+
+      public Class getColumnClass(int columnIndex) {
+        return types [columnIndex];
+      }
+
+      public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return canEdit [columnIndex];
+      }
+    });
+    cat_tb.addAncestorListener(new javax.swing.event.AncestorListener() {
+      public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+        cat_tbAncestorAdded(evt);
+      }
+      public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+      }
+      public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+      }
+    });
+    cat_tb.addComponentListener(new java.awt.event.ComponentAdapter() {
+      public void componentResized(java.awt.event.ComponentEvent evt) {
+        cat_tbComponentResized(evt);
+      }
+    });
+    jScrollPane4.setViewportView(cat_tb);
+
+    categories_label.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+    categories_label.setText("Category");
+
+    cat_txtbox.setBackground(new java.awt.Color(204, 204, 204));
+    cat_txtbox.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+
+    cat_new_btn.setBackground(new java.awt.Color(0, 0, 0));
+    cat_new_btn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+    cat_new_btn.setForeground(new java.awt.Color(255, 255, 255));
+    cat_new_btn.setText("New");
+    cat_new_btn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+    cat_delete_btn.setBackground(new java.awt.Color(0, 0, 0));
+    cat_delete_btn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+    cat_delete_btn.setForeground(new java.awt.Color(255, 255, 255));
+    cat_delete_btn.setText("Delete");
+    cat_delete_btn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+    cat_delete_btn.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cat_delete_btnActionPerformed(evt);
+      }
+    });
+
+    cat_save_btn.setBackground(new java.awt.Color(0, 0, 0));
+    cat_save_btn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+    cat_save_btn.setForeground(new java.awt.Color(255, 255, 255));
+    cat_save_btn.setText("Save");
+    cat_save_btn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+    jPanel1.setLayout(jPanel1Layout);
+    jPanel1Layout.setHorizontalGroup(
+      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel1Layout.createSequentialGroup()
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+              .addGap(92, 92, 92)
+              .addComponent(cat_new_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addGap(78, 78, 78)
+              .addComponent(cat_delete_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(cat_save_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+              .addGap(47, 47, 47)
+              .addComponent(categories_label, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addGap(51, 51, 51)
+              .addComponent(cat_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)))
+          .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGap(81, 81, 81)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addContainerGap(39, Short.MAX_VALUE))
+    );
+    jPanel1Layout.setVerticalGroup(
+      jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(jPanel1Layout.createSequentialGroup()
+        .addGap(99, 99, 99)
+        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(145, 145, 145)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(categories_label, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(cat_txtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(cat_new_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(cat_delete_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(cat_save_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(93, 93, 93))
+    );
+
+    admin_mod_tbpane.addTab("Categories Screen", jPanel1);
+
+    javax.swing.GroupLayout admin_moduleLayout = new javax.swing.GroupLayout(admin_module);
+    admin_module.setLayout(admin_moduleLayout);
+    admin_moduleLayout.setHorizontalGroup(
+      admin_moduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(admin_mod_tbpane)
+    );
+    admin_moduleLayout.setVerticalGroup(
+      admin_moduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, admin_moduleLayout.createSequentialGroup()
+        .addGap(0, 0, Short.MAX_VALUE)
+        .addComponent(admin_mod_tbpane, javax.swing.GroupLayout.PREFERRED_SIZE, 668, javax.swing.GroupLayout.PREFERRED_SIZE))
+    );
+
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+    getContentPane().setLayout(layout);
+    layout.setHorizontalGroup(
+      layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(admin_module, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    layout.setVerticalGroup(
+      layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(layout.createSequentialGroup()
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(admin_module, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+    );
 
     pack();
     setLocationRelativeTo(null);
   }// </editor-fold>//GEN-END:initComponents
 
-  private void radThemeLightItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radThemeLightItemStateChanged
-    setTheme(evt, "light");
-  }//GEN-LAST:event_radThemeLightItemStateChanged
+    private void users_new_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_users_new_btnActionPerformed
 
-  private void radThemeDarkItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radThemeDarkItemStateChanged
-    setTheme(evt, "dark");
-  }//GEN-LAST:event_radThemeDarkItemStateChanged
+    }//GEN-LAST:event_users_new_btnActionPerformed
+
+    private void cat_delete_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cat_delete_btnActionPerformed
+      cat_txtbox.setText(null);
+    }//GEN-LAST:event_cat_delete_btnActionPerformed
+
+    private void cat_tbComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_cat_tbComponentResized
+      cat_tb.setRowHeight(30);
+    }//GEN-LAST:event_cat_tbComponentResized
+
+    private void cat_tbAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cat_tbAncestorAdded
+      // TODO add your handling code here:
+    }//GEN-LAST:event_cat_tbAncestorAdded
+
+    private void item_delete_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_delete_btnActionPerformed
+      item_name_txtbox.setText(null);
+      item_cat_txtbox.setText(null);
+      item_pr_txtbox.setText(null);
+      item_sz_txtbox.setText(null);
+    }//GEN-LAST:event_item_delete_btnActionPerformed
+
+    private void users_save_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_users_save_btnActionPerformed
+
+    }//GEN-LAST:event_users_save_btnActionPerformed
+
+    private void users_delete_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_users_delete_btnActionPerformed
+      username_txtbox.setText(null);
+      name_txtbox.setText(null);
+      password_txtbox.setText(null);
+    }//GEN-LAST:event_users_delete_btnActionPerformed
+
+    private void users_new_btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_users_new_btn1ActionPerformed
+
+    }//GEN-LAST:event_users_new_btn1ActionPerformed
+
+    private void cat_new_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cat_new_btnActionPerformed
+
+    }//GEN-LAST:event_cat_new_btnActionPerformed
 
   /**
    * @param args the command line arguments
    */
   public static void main(String args[]) {
-    /* Set default theme */
-    app.Global.setDefaultTheme();
+    /*
+     * Set the Nimbus look and feel
+     */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /*
+     * If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+     * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+     */
+    try {
+      for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+        if ("Nimbus".equals(info.getName())) {
+          javax.swing.UIManager.setLookAndFeel(info.getClassName());
+          break;
+        }
+      }
+    } catch (ClassNotFoundException ex) {
+      java.util.logging.Logger.getLogger(AdminFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (InstantiationException ex) {
+      java.util.logging.Logger.getLogger(AdminFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (IllegalAccessException ex) {
+      java.util.logging.Logger.getLogger(AdminFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+      java.util.logging.Logger.getLogger(AdminFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
 
-    /* Create and display the form */
-    java.awt.EventQueue.invokeLater(() -> {
-      new AdminFrame().setVisible(true);
+    /*
+     * Create and display the form
+     */
+    java.awt.EventQueue.invokeLater(new Runnable() {
+      public void run() {
+        new AdminFrame().setVisible(true);
+      }
     });
   }
 
-  private void setTheme(java.awt.event.ItemEvent evt, String name) {
-    if (evt.getStateChange() == 1) {
-      // IntelliJTheme.install(AdminFrame.class.getResourceAsStream("/app/" + name + ".theme.json"));
-
-      if ("light".equals(name)) {
-        app.Global.setDefaultTheme();
-      } else {
-        com.formdev.flatlaf.FlatDarculaLaf.install();
-      }
-
-      for (java.awt.Window window : javax.swing.JFrame.getWindows()) {
-        javax.swing.SwingUtilities.updateComponentTreeUI(window);
-      }
-    }
-  }
-
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.ButtonGroup btgTheme;
-  private javax.swing.JButton btnCategoryDelete;
-  private javax.swing.JButton btnCategoryNew;
-  private javax.swing.JButton btnCategoryRefresh;
-  private javax.swing.JButton btnCategorySave;
-  private javax.swing.JButton btnItemDelete;
-  private javax.swing.JButton btnItemNew;
-  private javax.swing.JButton btnItemRefresh;
-  private javax.swing.JButton btnItemSave;
-  private javax.swing.JButton btnUserDelete;
-  private javax.swing.JButton btnUserNew;
-  private javax.swing.JButton btnUserRefresh;
-  private javax.swing.JButton btnUserSave;
-  private javax.swing.JComboBox<String> cmbItemCategory;
-  private javax.swing.JLabel lblCategoryName;
-  private javax.swing.JLabel lblItemCategory;
-  private javax.swing.JLabel lblItemImage;
-  private javax.swing.JLabel lblItemImagePreview;
-  private javax.swing.JLabel lblItemName;
-  private javax.swing.JLabel lblItemPrice;
-  private javax.swing.JLabel lblSettingTheme;
-  private javax.swing.JLabel lblUserName;
-  private javax.swing.JLabel lblUserPassword;
-  private javax.swing.JLabel lblUserUsername;
-  private javax.swing.JPanel pnlCategories;
-  private javax.swing.JPanel pnlCategoryActions;
-  private javax.swing.JPanel pnlCategoryFields;
-  private javax.swing.JPanel pnlItemActions;
-  private javax.swing.JPanel pnlItemFields;
-  private javax.swing.JPanel pnlItems;
-  private javax.swing.JPanel pnlOrders;
-  private javax.swing.JPanel pnlSettings;
-  private javax.swing.JPanel pnlUserActions;
-  private javax.swing.JPanel pnlUserFields;
-  private javax.swing.JPanel pnlUsers;
-  private javax.swing.JRadioButton radThemeDark;
-  private javax.swing.JRadioButton radThemeLight;
-  private javax.swing.JScrollPane scpCategories;
-  private javax.swing.JScrollPane scpItems;
-  private javax.swing.JScrollPane scpOrders;
-  private javax.swing.JScrollPane scpUsers;
-  private javax.swing.JTabbedPane tabbedPane;
-  private javax.swing.JTable tblCategories;
-  private javax.swing.JTable tblItems;
-  private javax.swing.JTable tblOrders;
-  private javax.swing.JTable tblUsers;
-  private javax.swing.JTextField txtCategoryName;
-  private javax.swing.JTextField txtItemImage;
-  private javax.swing.JTextField txtItemName;
-  private javax.swing.JTextField txtItemPrice;
-  private javax.swing.JTextField txtUserName;
-  private javax.swing.JTextField txtUserPassword;
-  private javax.swing.JTextField txtUserUsername;
+  private javax.swing.JTabbedPane admin_mod_tbpane;
+  private javax.swing.JPanel admin_module;
+  private javax.swing.JButton cat_delete_btn;
+  private javax.swing.JButton cat_new_btn;
+  private javax.swing.JButton cat_save_btn;
+  private javax.swing.JTable cat_tb;
+  private javax.swing.JTextField cat_txtbox;
+  private javax.swing.JLabel categories_label;
+  private javax.swing.JTextField item_cat_txtbox;
+  private javax.swing.JButton item_delete_btn;
+  private javax.swing.JTextField item_name_txtbox;
+  private javax.swing.JButton item_new_btn;
+  private javax.swing.JTextField item_pr_txtbox;
+  private javax.swing.JButton item_save_btn;
+  private javax.swing.JTextField item_sz_txtbox;
+  private javax.swing.JLabel items_category_label;
+  private javax.swing.JLabel items_name_label;
+  private javax.swing.JLabel items_price_label;
+  private javax.swing.JPanel items_screen;
+  private javax.swing.JLabel items_size_label;
+  private javax.swing.JPanel jPanel1;
+  private javax.swing.JScrollPane jScrollPane1;
+  private javax.swing.JScrollPane jScrollPane2;
+  private javax.swing.JScrollPane jScrollPane3;
+  private javax.swing.JScrollPane jScrollPane4;
+  private javax.swing.JTable jTable1;
+  private javax.swing.JTextField name_txtbox;
+  private javax.swing.JLabel orders_date_label;
+  private javax.swing.JTextField orders_date_txtbx;
+  private javax.swing.JLabel orders_items_label;
+  private javax.swing.JTextField orders_items_txtbx;
+  private javax.swing.JLabel orders_order_label;
+  private javax.swing.JTextField orders_order_txtbx;
+  private javax.swing.JLabel orders_price_label;
+  private javax.swing.JTextField orders_price_txtbx;
+  private javax.swing.JPanel orders_screen;
+  private javax.swing.JTable orders_tb;
+  private javax.swing.JTextField password_txtbox;
+  private javax.swing.JTable user_tb;
+  private javax.swing.JTextField username_txtbox;
+  private javax.swing.JButton users_delete_btn;
+  private javax.swing.JLabel users_name_label;
+  private javax.swing.JButton users_new_btn;
+  private javax.swing.JButton users_new_btn1;
+  private javax.swing.JLabel users_pass_label;
+  private javax.swing.JButton users_save_btn;
+  private javax.swing.JPanel users_screen;
+  private javax.swing.JLabel users_username_label;
   // End of variables declaration//GEN-END:variables
 }

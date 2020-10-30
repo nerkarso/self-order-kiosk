@@ -1,16 +1,45 @@
 /*
- * Copyright (c) 2020 Self-Order Kiosk
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package kiosk;
 
-public class MenuFrame extends javax.swing.JFrame {
+import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
+/**
+ *
+ * @author Hassen
+ */
+public class MenuFrame extends javax.swing.JFrame implements Observer {
 
   /**
-   * Creates new form MenuFrame
+   * Creates new form Menu
    */
   public MenuFrame() {
     initComponents();
-    app.Global.setAppIcon(this);
+//        ArrayList<JPanel> p = new ArrayList();
+//          p.add(BurgerItem1);
+//          p.add(BurgerItem2);
+//          p.add(BurgerItem3);
+//          p.add(BurgerItem4);
+//          p.add(BurgerItem5);
+//          p.add(BurgerItem6);
+//          p.forEach((panel)->{         
+//          });
+
+  }
+
+  public MenuFrame(String OrderSize, int Quantity, float CustomTotal) {
+    initComponents();
+    MenuOrderSize = OrderSize;
+    MenuQuantity = Quantity;
+    MenuTotal = CustomTotal;
+    System.out.println(MenuOrderSize);
+
   }
 
   /**
@@ -21,556 +50,1608 @@ public class MenuFrame extends javax.swing.JFrame {
   @SuppressWarnings("unchecked")
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
-    java.awt.GridBagConstraints gridBagConstraints;
 
-    pnlHeader = new javax.swing.JPanel();
-    lblHeaderTitle = new javax.swing.JLabel();
-    pnlContent = new javax.swing.JPanel();
-    tabbedPane = new javax.swing.JTabbedPane();
-    pnlMealCombos = new javax.swing.JPanel();
-    btnItem1 = new javax.swing.JButton();
-    btnItem2 = new javax.swing.JButton();
-    btnItem3 = new javax.swing.JButton();
-    btnItem4 = new javax.swing.JButton();
-    btnItem5 = new javax.swing.JButton();
-    btnItem6 = new javax.swing.JButton();
-    btnItem7 = new javax.swing.JButton();
-    btnItem8 = new javax.swing.JButton();
-    btnItem9 = new javax.swing.JButton();
-    pnlSides = new javax.swing.JPanel();
-    btnItem10 = new javax.swing.JButton();
-    btnItem11 = new javax.swing.JButton();
-    btnItem12 = new javax.swing.JButton();
-    pnlDesserts = new javax.swing.JPanel();
-    btnItem13 = new javax.swing.JButton();
-    btnItem14 = new javax.swing.JButton();
-    btnItem15 = new javax.swing.JButton();
-    btnItem16 = new javax.swing.JButton();
-    pnlBeverages = new javax.swing.JPanel();
-    btnItem17 = new javax.swing.JButton();
-    btnItem18 = new javax.swing.JButton();
-    btnItem19 = new javax.swing.JButton();
-    pnlOrder = new javax.swing.JPanel();
-    lblOrder = new javax.swing.JLabel();
-    scpOrder = new javax.swing.JScrollPane();
-    tblOrder = new javax.swing.JTable();
-    pnlTotal = new javax.swing.JPanel();
-    lblTotal = new javax.swing.JLabel();
-    lblTotalValue = new javax.swing.JLabel();
-    pnlFooter = new javax.swing.JPanel();
-    btnBack = new javax.swing.JButton();
-    btnContinue = new javax.swing.JButton();
+    Main = new javax.swing.JPanel();
+    Sidebar = new javax.swing.JPanel();
+    CombosBtn = new javax.swing.JButton();
+    ChickenBtn = new javax.swing.JButton();
+    FriesBtn = new javax.swing.JButton();
+    BurgersBtn = new javax.swing.JButton();
+    Title = new javax.swing.JLabel();
+    Panels = new javax.swing.JLayeredPane();
+    Combos = new javax.swing.JPanel();
+    ComboItem1 = new javax.swing.JPanel();
+    ComboImgHldr1 = new javax.swing.JLabel();
+    ComboTitle1 = new javax.swing.JLabel();
+    ComboItem4 = new javax.swing.JPanel();
+    ComboImgHldr4 = new javax.swing.JLabel();
+    ComboTitle4 = new javax.swing.JLabel();
+    ComboItem5 = new javax.swing.JPanel();
+    ComboImgHldr5 = new javax.swing.JLabel();
+    ComboTitle5 = new javax.swing.JLabel();
+    ComboItem2 = new javax.swing.JPanel();
+    ComboImgHldr2 = new javax.swing.JLabel();
+    ComboTitle2 = new javax.swing.JLabel();
+    Burgers = new javax.swing.JPanel();
+    BurgerItem1 = new javax.swing.JPanel();
+    BurgerImgHldr1 = new javax.swing.JLabel();
+    BurgerTitle1 = new javax.swing.JLabel();
+    BurgerItem2 = new javax.swing.JPanel();
+    BurgerImgHldr2 = new javax.swing.JLabel();
+    BurgerTitle2 = new javax.swing.JLabel();
+    BurgerItem3 = new javax.swing.JPanel();
+    BurgerImgHldr3 = new javax.swing.JLabel();
+    BurgerTitle3 = new javax.swing.JLabel();
+    BurgerItem4 = new javax.swing.JPanel();
+    BurgerImgHldr4 = new javax.swing.JLabel();
+    BurgerTitle4 = new javax.swing.JLabel();
+    BurgerItem5 = new javax.swing.JPanel();
+    BurgerImgHldr5 = new javax.swing.JLabel();
+    BurgerTitle5 = new javax.swing.JLabel();
+    BurgerItem6 = new javax.swing.JPanel();
+    BurgerImgHldr6 = new javax.swing.JLabel();
+    BurgerTitle6 = new javax.swing.JLabel();
+    Fries = new javax.swing.JPanel();
+    FriesItem1 = new javax.swing.JPanel();
+    FriesImgHldr1 = new javax.swing.JLabel();
+    FriesTitle1 = new javax.swing.JLabel();
+    FriesItem2 = new javax.swing.JPanel();
+    FriesImgHldr2 = new javax.swing.JLabel();
+    FriesTitle8 = new javax.swing.JLabel();
+    FriesItem3 = new javax.swing.JPanel();
+    FriesImgHldr3 = new javax.swing.JLabel();
+    FriesTitle9 = new javax.swing.JLabel();
+    FriesItem4 = new javax.swing.JPanel();
+    FriesImgHldr4 = new javax.swing.JLabel();
+    FriesTitle10 = new javax.swing.JLabel();
+    FriesItem5 = new javax.swing.JPanel();
+    FriesImgHldr5 = new javax.swing.JLabel();
+    FriesTitle11 = new javax.swing.JLabel();
+    FriesItem6 = new javax.swing.JPanel();
+    FriesImgHldr6 = new javax.swing.JLabel();
+    FriesTitle12 = new javax.swing.JLabel();
+    Chicken = new javax.swing.JPanel();
+    ChickenItem1 = new javax.swing.JPanel();
+    ChickenImgHldr1 = new javax.swing.JLabel();
+    ChickenTitle1 = new javax.swing.JLabel();
+    ChickenItem2 = new javax.swing.JPanel();
+    ChickenImgHldr2 = new javax.swing.JLabel();
+    ChickenTitle2 = new javax.swing.JLabel();
+    ChickenItem3 = new javax.swing.JPanel();
+    ChickenImgHldr3 = new javax.swing.JLabel();
+    ChickenTitle3 = new javax.swing.JLabel();
+    ChickenItem4 = new javax.swing.JPanel();
+    ChickenImgHldr4 = new javax.swing.JLabel();
+    ChickenTitle4 = new javax.swing.JLabel();
+    ChickenItem5 = new javax.swing.JPanel();
+    ChickenImgHldr5 = new javax.swing.JLabel();
+    ChickenTitle5 = new javax.swing.JLabel();
+    ChickenItem6 = new javax.swing.JPanel();
+    ChickenImgHldr6 = new javax.swing.JLabel();
+    ChickenTitle6 = new javax.swing.JLabel();
+    Orders = new javax.swing.JPanel();
+    Buttons = new javax.swing.JPanel();
+    btnCancel = new javax.swing.JButton();
+    btnDone = new javax.swing.JButton();
+    MyOrders = new javax.swing.JLabel();
+    jLabel2 = new javax.swing.JLabel();
+    jLabel3 = new javax.swing.JLabel();
+    jLabel4 = new javax.swing.JLabel();
+    TableScrollPane = new javax.swing.JScrollPane();
+    tblOrderDetails = new javax.swing.JTable();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-    setTitle("Menu");
-    setMinimumSize(new java.awt.Dimension(720, 860));
-    setName(""); // NOI18N
-    setPreferredSize(new java.awt.Dimension(720, 860));
+    setBackground(new java.awt.Color(255, 255, 255));
+    getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
-    pnlHeader.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
-    pnlHeader.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
+    Main.setBackground(new java.awt.Color(255, 255, 255));
 
-    lblHeaderTitle.setFont(lblHeaderTitle.getFont().deriveFont(lblHeaderTitle.getFont().getSize()+10f));
-    lblHeaderTitle.setText("Meal Combos");
-    pnlHeader.add(lblHeaderTitle);
+    Sidebar.setBackground(new java.awt.Color(255, 255, 255));
+    Sidebar.setPreferredSize(new java.awt.Dimension(150, 835));
 
-    getContentPane().add(pnlHeader, java.awt.BorderLayout.NORTH);
-
-    pnlContent.setLayout(new java.awt.GridBagLayout());
-
-    tabbedPane.setTabPlacement(javax.swing.JTabbedPane.LEFT);
-    tabbedPane.addChangeListener(new javax.swing.event.ChangeListener() {
-      public void stateChanged(javax.swing.event.ChangeEvent evt) {
-        tabbedPaneStateChanged(evt);
-      }
-    });
-
-    pnlMealCombos.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 20, 0, 20));
-    pnlMealCombos.setMaximumSize(new java.awt.Dimension(0, 0));
-    pnlMealCombos.setLayout(new java.awt.GridLayout(0, 3, 20, 20));
-
-    btnItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem1.setText("Meal");
-    btnItem1.setAlignmentY(0.0F);
-    btnItem1.setHideActionText(true);
-    btnItem1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem1.setIconTextGap(20);
-    btnItem1.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem1.addActionListener(new java.awt.event.ActionListener() {
+    CombosBtn.setBackground(new java.awt.Color(255, 255, 255));
+    CombosBtn.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+    CombosBtn.setText("Combos");
+    CombosBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    CombosBtn.setPreferredSize(new java.awt.Dimension(160, 80));
+    CombosBtn.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
+        CombosBtnActionPerformed(evt);
       }
     });
-    pnlMealCombos.add(btnItem1);
+    Sidebar.add(CombosBtn);
 
-    btnItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem2.setText("Meal");
-    btnItem2.setAlignmentY(0.0F);
-    btnItem2.setHideActionText(true);
-    btnItem2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem2.setIconTextGap(20);
-    btnItem2.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem2.addActionListener(new java.awt.event.ActionListener() {
+    ChickenBtn.setBackground(new java.awt.Color(255, 255, 255));
+    ChickenBtn.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+    ChickenBtn.setText("Chicken");
+    ChickenBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    ChickenBtn.setPreferredSize(new java.awt.Dimension(160, 80));
+    ChickenBtn.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
+        ChickenBtnActionPerformed(evt);
       }
     });
-    pnlMealCombos.add(btnItem2);
+    Sidebar.add(ChickenBtn);
 
-    btnItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem3.setText("Meal");
-    btnItem3.setAlignmentY(0.0F);
-    btnItem3.setHideActionText(true);
-    btnItem3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem3.setIconTextGap(20);
-    btnItem3.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem3.addActionListener(new java.awt.event.ActionListener() {
+    FriesBtn.setBackground(new java.awt.Color(255, 255, 255));
+    FriesBtn.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+    FriesBtn.setText("Fries");
+    FriesBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    FriesBtn.setPreferredSize(new java.awt.Dimension(160, 80));
+    FriesBtn.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
+        FriesBtnActionPerformed(evt);
       }
     });
-    pnlMealCombos.add(btnItem3);
+    Sidebar.add(FriesBtn);
 
-    btnItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem4.setText("Meal");
-    btnItem4.setAlignmentY(0.0F);
-    btnItem4.setHideActionText(true);
-    btnItem4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem4.setIconTextGap(20);
-    btnItem4.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem4.addActionListener(new java.awt.event.ActionListener() {
+    BurgersBtn.setBackground(new java.awt.Color(255, 255, 255));
+    BurgersBtn.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+    BurgersBtn.setText("Burgers");
+    BurgersBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    BurgersBtn.setPreferredSize(new java.awt.Dimension(160, 80));
+    BurgersBtn.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
+        BurgersBtnActionPerformed(evt);
       }
     });
-    pnlMealCombos.add(btnItem4);
+    Sidebar.add(BurgersBtn);
 
-    btnItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem5.setText("Meal");
-    btnItem5.setAlignmentY(0.0F);
-    btnItem5.setHideActionText(true);
-    btnItem5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem5.setIconTextGap(20);
-    btnItem5.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem5.addActionListener(new java.awt.event.ActionListener() {
+    Title.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+    Title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    Title.setText("Combos");
+
+    Panels.setLayout(new java.awt.CardLayout());
+
+    Combos.setBackground(new java.awt.Color(255, 255, 255));
+
+    ComboItem1.setBackground(new java.awt.Color(255, 255, 255));
+    ComboItem1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    ComboItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        ComboItem1MouseClicked(evt);
+      }
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        ComboItem1MouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        ComboItem1MouseExited(evt);
+      }
+    });
+
+    ComboImgHldr1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    ComboImgHldr1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon-1x.png"))); // NOI18N
+
+    ComboTitle1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+    ComboTitle1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    ComboTitle1.setText("Combo 1");
+
+    javax.swing.GroupLayout ComboItem1Layout = new javax.swing.GroupLayout(ComboItem1);
+    ComboItem1.setLayout(ComboItem1Layout);
+    ComboItem1Layout.setHorizontalGroup(
+      ComboItem1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(ComboImgHldr1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(ComboTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    ComboItem1Layout.setVerticalGroup(
+      ComboItem1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(ComboItem1Layout.createSequentialGroup()
+        .addComponent(ComboImgHldr1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(ComboTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+    );
+
+    ComboItem4.setBackground(new java.awt.Color(255, 255, 255));
+    ComboItem4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    ComboItem4.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        ComboItem4MouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        ComboItem4MouseExited(evt);
+      }
+    });
+
+    ComboImgHldr4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    ComboImgHldr4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon-1x.png"))); // NOI18N
+
+    ComboTitle4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+    ComboTitle4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    ComboTitle4.setText("Combo 1");
+
+    javax.swing.GroupLayout ComboItem4Layout = new javax.swing.GroupLayout(ComboItem4);
+    ComboItem4.setLayout(ComboItem4Layout);
+    ComboItem4Layout.setHorizontalGroup(
+      ComboItem4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(ComboImgHldr4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(ComboTitle4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    ComboItem4Layout.setVerticalGroup(
+      ComboItem4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(ComboItem4Layout.createSequentialGroup()
+        .addComponent(ComboImgHldr4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(ComboTitle4, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+    );
+
+    ComboItem5.setBackground(new java.awt.Color(255, 255, 255));
+    ComboItem5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    ComboItem5.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        ComboItem5MouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        ComboItem5MouseExited(evt);
+      }
+    });
+
+    ComboImgHldr5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    ComboImgHldr5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon-1x.png"))); // NOI18N
+
+    ComboTitle5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+    ComboTitle5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    ComboTitle5.setText("Combo 1");
+
+    javax.swing.GroupLayout ComboItem5Layout = new javax.swing.GroupLayout(ComboItem5);
+    ComboItem5.setLayout(ComboItem5Layout);
+    ComboItem5Layout.setHorizontalGroup(
+      ComboItem5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(ComboImgHldr5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(ComboTitle5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    ComboItem5Layout.setVerticalGroup(
+      ComboItem5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(ComboItem5Layout.createSequentialGroup()
+        .addComponent(ComboImgHldr5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(ComboTitle5, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+    );
+
+    ComboItem2.setBackground(new java.awt.Color(255, 255, 255));
+    ComboItem2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    ComboItem2.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        ComboItem2MouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        ComboItem2MouseExited(evt);
+      }
+    });
+
+    ComboImgHldr2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    ComboImgHldr2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon-1x.png"))); // NOI18N
+
+    ComboTitle2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+    ComboTitle2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    ComboTitle2.setText("Combo 1");
+
+    javax.swing.GroupLayout ComboItem2Layout = new javax.swing.GroupLayout(ComboItem2);
+    ComboItem2.setLayout(ComboItem2Layout);
+    ComboItem2Layout.setHorizontalGroup(
+      ComboItem2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(ComboImgHldr2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(ComboTitle2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    ComboItem2Layout.setVerticalGroup(
+      ComboItem2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(ComboItem2Layout.createSequentialGroup()
+        .addComponent(ComboImgHldr2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(ComboTitle2, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+    );
+
+    javax.swing.GroupLayout CombosLayout = new javax.swing.GroupLayout(Combos);
+    Combos.setLayout(CombosLayout);
+    CombosLayout.setHorizontalGroup(
+      CombosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(CombosLayout.createSequentialGroup()
+        .addGap(71, 71, 71)
+        .addGroup(CombosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addComponent(ComboItem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(ComboItem2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
+        .addGroup(CombosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addComponent(ComboItem4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(ComboItem5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(96, 96, 96))
+    );
+    CombosLayout.setVerticalGroup(
+      CombosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(CombosLayout.createSequentialGroup()
+        .addGroup(CombosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+          .addGroup(CombosLayout.createSequentialGroup()
+            .addComponent(ComboItem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(ComboItem2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addGroup(CombosLayout.createSequentialGroup()
+            .addComponent(ComboItem4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(18, 18, 18)
+            .addComponent(ComboItem5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addGap(0, 68, Short.MAX_VALUE))
+    );
+
+    Panels.add(Combos, "card2");
+
+    Burgers.setBackground(new java.awt.Color(255, 255, 255));
+
+    BurgerItem1.setBackground(new java.awt.Color(255, 255, 255));
+    BurgerItem1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    BurgerItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        BurgerItem1MouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        BurgerItem1MouseExited(evt);
+      }
+    });
+
+    BurgerImgHldr1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    BurgerImgHldr1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon-1x.png"))); // NOI18N
+
+    BurgerTitle1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+    BurgerTitle1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    BurgerTitle1.setText("Burger 1");
+
+    javax.swing.GroupLayout BurgerItem1Layout = new javax.swing.GroupLayout(BurgerItem1);
+    BurgerItem1.setLayout(BurgerItem1Layout);
+    BurgerItem1Layout.setHorizontalGroup(
+      BurgerItem1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(BurgerImgHldr1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(BurgerTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    BurgerItem1Layout.setVerticalGroup(
+      BurgerItem1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(BurgerItem1Layout.createSequentialGroup()
+        .addComponent(BurgerImgHldr1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(BurgerTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+    );
+
+    BurgerItem2.setBackground(new java.awt.Color(255, 255, 255));
+    BurgerItem2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    BurgerItem2.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        BurgerItem2MouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        BurgerItem2MouseExited(evt);
+      }
+    });
+
+    BurgerImgHldr2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    BurgerImgHldr2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon-1x.png"))); // NOI18N
+
+    BurgerTitle2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+    BurgerTitle2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    BurgerTitle2.setText("Burger 1");
+
+    javax.swing.GroupLayout BurgerItem2Layout = new javax.swing.GroupLayout(BurgerItem2);
+    BurgerItem2.setLayout(BurgerItem2Layout);
+    BurgerItem2Layout.setHorizontalGroup(
+      BurgerItem2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(BurgerImgHldr2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(BurgerTitle2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    BurgerItem2Layout.setVerticalGroup(
+      BurgerItem2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(BurgerItem2Layout.createSequentialGroup()
+        .addComponent(BurgerImgHldr2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(BurgerTitle2, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+    );
+
+    BurgerItem3.setBackground(new java.awt.Color(255, 255, 255));
+    BurgerItem3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    BurgerItem3.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        BurgerItem3MouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        BurgerItem3MouseExited(evt);
+      }
+    });
+
+    BurgerImgHldr3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    BurgerImgHldr3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon-1x.png"))); // NOI18N
+
+    BurgerTitle3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+    BurgerTitle3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    BurgerTitle3.setText("Burger 1");
+
+    javax.swing.GroupLayout BurgerItem3Layout = new javax.swing.GroupLayout(BurgerItem3);
+    BurgerItem3.setLayout(BurgerItem3Layout);
+    BurgerItem3Layout.setHorizontalGroup(
+      BurgerItem3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(BurgerImgHldr3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(BurgerTitle3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    BurgerItem3Layout.setVerticalGroup(
+      BurgerItem3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(BurgerItem3Layout.createSequentialGroup()
+        .addComponent(BurgerImgHldr3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(BurgerTitle3, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+    );
+
+    BurgerItem4.setBackground(new java.awt.Color(255, 255, 255));
+    BurgerItem4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    BurgerItem4.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        BurgerItem4MouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        BurgerItem4MouseExited(evt);
+      }
+    });
+
+    BurgerImgHldr4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    BurgerImgHldr4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon-1x.png"))); // NOI18N
+
+    BurgerTitle4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+    BurgerTitle4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    BurgerTitle4.setText("Burger 1");
+
+    javax.swing.GroupLayout BurgerItem4Layout = new javax.swing.GroupLayout(BurgerItem4);
+    BurgerItem4.setLayout(BurgerItem4Layout);
+    BurgerItem4Layout.setHorizontalGroup(
+      BurgerItem4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(BurgerImgHldr4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(BurgerTitle4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    BurgerItem4Layout.setVerticalGroup(
+      BurgerItem4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(BurgerItem4Layout.createSequentialGroup()
+        .addComponent(BurgerImgHldr4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(BurgerTitle4, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+    );
+
+    BurgerItem5.setBackground(new java.awt.Color(255, 255, 255));
+    BurgerItem5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    BurgerItem5.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        BurgerItem5MouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        BurgerItem5MouseExited(evt);
+      }
+    });
+
+    BurgerImgHldr5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    BurgerImgHldr5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon-1x.png"))); // NOI18N
+
+    BurgerTitle5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+    BurgerTitle5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    BurgerTitle5.setText("Burger 1");
+
+    javax.swing.GroupLayout BurgerItem5Layout = new javax.swing.GroupLayout(BurgerItem5);
+    BurgerItem5.setLayout(BurgerItem5Layout);
+    BurgerItem5Layout.setHorizontalGroup(
+      BurgerItem5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(BurgerImgHldr5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(BurgerTitle5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    BurgerItem5Layout.setVerticalGroup(
+      BurgerItem5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(BurgerItem5Layout.createSequentialGroup()
+        .addComponent(BurgerImgHldr5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(BurgerTitle5, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+    );
+
+    BurgerItem6.setBackground(new java.awt.Color(255, 255, 255));
+    BurgerItem6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    BurgerItem6.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        BurgerItem6MouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        BurgerItem6MouseExited(evt);
+      }
+    });
+
+    BurgerImgHldr6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    BurgerImgHldr6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon-1x.png"))); // NOI18N
+
+    BurgerTitle6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+    BurgerTitle6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    BurgerTitle6.setText("Burger 1");
+
+    javax.swing.GroupLayout BurgerItem6Layout = new javax.swing.GroupLayout(BurgerItem6);
+    BurgerItem6.setLayout(BurgerItem6Layout);
+    BurgerItem6Layout.setHorizontalGroup(
+      BurgerItem6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(BurgerImgHldr6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(BurgerTitle6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    BurgerItem6Layout.setVerticalGroup(
+      BurgerItem6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(BurgerItem6Layout.createSequentialGroup()
+        .addComponent(BurgerImgHldr6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(BurgerTitle6, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+    );
+
+    javax.swing.GroupLayout BurgersLayout = new javax.swing.GroupLayout(Burgers);
+    Burgers.setLayout(BurgersLayout);
+    BurgersLayout.setHorizontalGroup(
+      BurgersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(BurgersLayout.createSequentialGroup()
+        .addGap(70, 70, 70)
+        .addGroup(BurgersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(BurgerItem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(BurgerItem2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(BurgerItem6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
+        .addGroup(BurgersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(BurgerItem5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(BurgerItem3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(BurgerItem4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(95, 95, 95))
+    );
+    BurgersLayout.setVerticalGroup(
+      BurgersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(BurgersLayout.createSequentialGroup()
+        .addGroup(BurgersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(BurgerItem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(BurgerItem3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(18, 18, 18)
+        .addGroup(BurgersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addComponent(BurgerItem2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(BurgerItem4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(18, 18, 18)
+        .addGroup(BurgersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(BurgerItem5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(BurgerItem6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+
+    Panels.add(Burgers, "card2");
+
+    Fries.setBackground(new java.awt.Color(255, 255, 255));
+
+    FriesItem1.setBackground(new java.awt.Color(255, 255, 255));
+    FriesItem1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    FriesItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        FriesItem1MouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        FriesItem1MouseExited(evt);
+      }
+    });
+
+    FriesImgHldr1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    FriesImgHldr1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon-1x.png"))); // NOI18N
+
+    FriesTitle1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+    FriesTitle1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    FriesTitle1.setText("Fries 1");
+
+    javax.swing.GroupLayout FriesItem1Layout = new javax.swing.GroupLayout(FriesItem1);
+    FriesItem1.setLayout(FriesItem1Layout);
+    FriesItem1Layout.setHorizontalGroup(
+      FriesItem1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(FriesImgHldr1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(FriesTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    FriesItem1Layout.setVerticalGroup(
+      FriesItem1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(FriesItem1Layout.createSequentialGroup()
+        .addComponent(FriesImgHldr1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(FriesTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+    );
+
+    FriesItem2.setBackground(new java.awt.Color(255, 255, 255));
+    FriesItem2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    FriesItem2.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        FriesItem2MouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        FriesItem2MouseExited(evt);
+      }
+    });
+
+    FriesImgHldr2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    FriesImgHldr2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon-1x.png"))); // NOI18N
+
+    FriesTitle8.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+    FriesTitle8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    FriesTitle8.setText("Fries 3");
+
+    javax.swing.GroupLayout FriesItem2Layout = new javax.swing.GroupLayout(FriesItem2);
+    FriesItem2.setLayout(FriesItem2Layout);
+    FriesItem2Layout.setHorizontalGroup(
+      FriesItem2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(FriesImgHldr2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(FriesTitle8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    FriesItem2Layout.setVerticalGroup(
+      FriesItem2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(FriesItem2Layout.createSequentialGroup()
+        .addComponent(FriesImgHldr2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(FriesTitle8, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+    );
+
+    FriesItem3.setBackground(new java.awt.Color(255, 255, 255));
+    FriesItem3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    FriesItem3.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        FriesItem3MouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        FriesItem3MouseExited(evt);
+      }
+    });
+
+    FriesImgHldr3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    FriesImgHldr3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon-1x.png"))); // NOI18N
+
+    FriesTitle9.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+    FriesTitle9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    FriesTitle9.setText("Fries 5");
+
+    javax.swing.GroupLayout FriesItem3Layout = new javax.swing.GroupLayout(FriesItem3);
+    FriesItem3.setLayout(FriesItem3Layout);
+    FriesItem3Layout.setHorizontalGroup(
+      FriesItem3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(FriesImgHldr3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(FriesTitle9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    FriesItem3Layout.setVerticalGroup(
+      FriesItem3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(FriesItem3Layout.createSequentialGroup()
+        .addComponent(FriesImgHldr3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(FriesTitle9, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+    );
+
+    FriesItem4.setBackground(new java.awt.Color(255, 255, 255));
+    FriesItem4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    FriesItem4.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        FriesItem4MouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        FriesItem4MouseExited(evt);
+      }
+    });
+
+    FriesImgHldr4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    FriesImgHldr4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon-1x.png"))); // NOI18N
+
+    FriesTitle10.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+    FriesTitle10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    FriesTitle10.setText("Fries 2");
+
+    javax.swing.GroupLayout FriesItem4Layout = new javax.swing.GroupLayout(FriesItem4);
+    FriesItem4.setLayout(FriesItem4Layout);
+    FriesItem4Layout.setHorizontalGroup(
+      FriesItem4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(FriesImgHldr4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(FriesTitle10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    FriesItem4Layout.setVerticalGroup(
+      FriesItem4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(FriesItem4Layout.createSequentialGroup()
+        .addComponent(FriesImgHldr4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(FriesTitle10, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+    );
+
+    FriesItem5.setBackground(new java.awt.Color(255, 255, 255));
+    FriesItem5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    FriesItem5.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        FriesItem5MouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        FriesItem5MouseExited(evt);
+      }
+    });
+
+    FriesImgHldr5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    FriesImgHldr5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon-1x.png"))); // NOI18N
+
+    FriesTitle11.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+    FriesTitle11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    FriesTitle11.setText("Fries 4");
+
+    javax.swing.GroupLayout FriesItem5Layout = new javax.swing.GroupLayout(FriesItem5);
+    FriesItem5.setLayout(FriesItem5Layout);
+    FriesItem5Layout.setHorizontalGroup(
+      FriesItem5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(FriesImgHldr5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(FriesTitle11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    FriesItem5Layout.setVerticalGroup(
+      FriesItem5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(FriesItem5Layout.createSequentialGroup()
+        .addComponent(FriesImgHldr5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(FriesTitle11, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+    );
+
+    FriesItem6.setBackground(new java.awt.Color(255, 255, 255));
+    FriesItem6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    FriesItem6.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        FriesItem6MouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        FriesItem6MouseExited(evt);
+      }
+    });
+
+    FriesImgHldr6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    FriesImgHldr6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon-1x.png"))); // NOI18N
+
+    FriesTitle12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+    FriesTitle12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    FriesTitle12.setText("Burger 1");
+
+    javax.swing.GroupLayout FriesItem6Layout = new javax.swing.GroupLayout(FriesItem6);
+    FriesItem6.setLayout(FriesItem6Layout);
+    FriesItem6Layout.setHorizontalGroup(
+      FriesItem6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(FriesImgHldr6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(FriesTitle12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    FriesItem6Layout.setVerticalGroup(
+      FriesItem6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(FriesItem6Layout.createSequentialGroup()
+        .addComponent(FriesImgHldr6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(FriesTitle12, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+    );
+
+    javax.swing.GroupLayout FriesLayout = new javax.swing.GroupLayout(Fries);
+    Fries.setLayout(FriesLayout);
+    FriesLayout.setHorizontalGroup(
+      FriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(FriesLayout.createSequentialGroup()
+        .addGap(70, 70, 70)
+        .addGroup(FriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(FriesItem2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(FriesItem3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(FriesItem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
+        .addGroup(FriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(FriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(FriesItem5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(FriesItem6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addComponent(FriesItem4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(94, 94, 94))
+    );
+    FriesLayout.setVerticalGroup(
+      FriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(FriesLayout.createSequentialGroup()
+        .addGroup(FriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(FriesItem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(FriesItem4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(18, 18, 18)
+        .addGroup(FriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(FriesLayout.createSequentialGroup()
+            .addComponent(FriesItem2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(18, 18, 18)
+            .addComponent(FriesItem3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addGroup(FriesLayout.createSequentialGroup()
+            .addComponent(FriesItem5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(18, 18, 18)
+            .addComponent(FriesItem6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+
+    Panels.add(Fries, "card2");
+
+    Chicken.setBackground(new java.awt.Color(255, 255, 255));
+
+    ChickenItem1.setBackground(new java.awt.Color(255, 255, 255));
+    ChickenItem1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    ChickenItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        ChickenItem1MouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        ChickenItem1MouseExited(evt);
+      }
+    });
+
+    ChickenImgHldr1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    ChickenImgHldr1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon-1x.png"))); // NOI18N
+
+    ChickenTitle1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+    ChickenTitle1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    ChickenTitle1.setText("Chicken 1");
+
+    javax.swing.GroupLayout ChickenItem1Layout = new javax.swing.GroupLayout(ChickenItem1);
+    ChickenItem1.setLayout(ChickenItem1Layout);
+    ChickenItem1Layout.setHorizontalGroup(
+      ChickenItem1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(ChickenImgHldr1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(ChickenTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    ChickenItem1Layout.setVerticalGroup(
+      ChickenItem1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(ChickenItem1Layout.createSequentialGroup()
+        .addComponent(ChickenImgHldr1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(ChickenTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+    );
+
+    ChickenItem2.setBackground(new java.awt.Color(255, 255, 255));
+    ChickenItem2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    ChickenItem2.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        ChickenItem2MouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        ChickenItem2MouseExited(evt);
+      }
+    });
+
+    ChickenImgHldr2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    ChickenImgHldr2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon-1x.png"))); // NOI18N
+
+    ChickenTitle2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+    ChickenTitle2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    ChickenTitle2.setText("Chicken 1");
+
+    javax.swing.GroupLayout ChickenItem2Layout = new javax.swing.GroupLayout(ChickenItem2);
+    ChickenItem2.setLayout(ChickenItem2Layout);
+    ChickenItem2Layout.setHorizontalGroup(
+      ChickenItem2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(ChickenImgHldr2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(ChickenTitle2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    ChickenItem2Layout.setVerticalGroup(
+      ChickenItem2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(ChickenItem2Layout.createSequentialGroup()
+        .addComponent(ChickenImgHldr2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(ChickenTitle2, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+    );
+
+    ChickenItem3.setBackground(new java.awt.Color(255, 255, 255));
+    ChickenItem3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    ChickenItem3.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        ChickenItem3MouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        ChickenItem3MouseExited(evt);
+      }
+    });
+
+    ChickenImgHldr3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    ChickenImgHldr3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon-1x.png"))); // NOI18N
+
+    ChickenTitle3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+    ChickenTitle3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    ChickenTitle3.setText("Chicken 1");
+
+    javax.swing.GroupLayout ChickenItem3Layout = new javax.swing.GroupLayout(ChickenItem3);
+    ChickenItem3.setLayout(ChickenItem3Layout);
+    ChickenItem3Layout.setHorizontalGroup(
+      ChickenItem3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(ChickenImgHldr3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(ChickenTitle3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    ChickenItem3Layout.setVerticalGroup(
+      ChickenItem3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(ChickenItem3Layout.createSequentialGroup()
+        .addComponent(ChickenImgHldr3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(ChickenTitle3, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+    );
+
+    ChickenItem4.setBackground(new java.awt.Color(255, 255, 255));
+    ChickenItem4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    ChickenItem4.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        ChickenItem4MouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        ChickenItem4MouseExited(evt);
+      }
+    });
+
+    ChickenImgHldr4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    ChickenImgHldr4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon-1x.png"))); // NOI18N
+
+    ChickenTitle4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+    ChickenTitle4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    ChickenTitle4.setText("Chicken 1");
+
+    javax.swing.GroupLayout ChickenItem4Layout = new javax.swing.GroupLayout(ChickenItem4);
+    ChickenItem4.setLayout(ChickenItem4Layout);
+    ChickenItem4Layout.setHorizontalGroup(
+      ChickenItem4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(ChickenImgHldr4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(ChickenTitle4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    ChickenItem4Layout.setVerticalGroup(
+      ChickenItem4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(ChickenItem4Layout.createSequentialGroup()
+        .addComponent(ChickenImgHldr4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(ChickenTitle4, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+    );
+
+    ChickenItem5.setBackground(new java.awt.Color(255, 255, 255));
+    ChickenItem5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    ChickenItem5.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        ChickenItem5MouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        ChickenItem5MouseExited(evt);
+      }
+    });
+
+    ChickenImgHldr5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    ChickenImgHldr5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon-1x.png"))); // NOI18N
+
+    ChickenTitle5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+    ChickenTitle5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    ChickenTitle5.setText("Chicken 1");
+
+    javax.swing.GroupLayout ChickenItem5Layout = new javax.swing.GroupLayout(ChickenItem5);
+    ChickenItem5.setLayout(ChickenItem5Layout);
+    ChickenItem5Layout.setHorizontalGroup(
+      ChickenItem5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(ChickenImgHldr5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(ChickenTitle5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    ChickenItem5Layout.setVerticalGroup(
+      ChickenItem5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(ChickenItem5Layout.createSequentialGroup()
+        .addComponent(ChickenImgHldr5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(ChickenTitle5, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+    );
+
+    ChickenItem6.setBackground(new java.awt.Color(255, 255, 255));
+    ChickenItem6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    ChickenItem6.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        ChickenItem6MouseEntered(evt);
+      }
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        ChickenItem6MouseExited(evt);
+      }
+    });
+
+    ChickenImgHldr6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    ChickenImgHldr6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon-1x.png"))); // NOI18N
+
+    ChickenTitle6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+    ChickenTitle6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    ChickenTitle6.setText("Chicken 1");
+
+    javax.swing.GroupLayout ChickenItem6Layout = new javax.swing.GroupLayout(ChickenItem6);
+    ChickenItem6.setLayout(ChickenItem6Layout);
+    ChickenItem6Layout.setHorizontalGroup(
+      ChickenItem6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(ChickenImgHldr6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(ChickenTitle6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    ChickenItem6Layout.setVerticalGroup(
+      ChickenItem6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(ChickenItem6Layout.createSequentialGroup()
+        .addComponent(ChickenImgHldr6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(ChickenTitle6, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+    );
+
+    javax.swing.GroupLayout ChickenLayout = new javax.swing.GroupLayout(Chicken);
+    Chicken.setLayout(ChickenLayout);
+    ChickenLayout.setHorizontalGroup(
+      ChickenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(ChickenLayout.createSequentialGroup()
+        .addGap(70, 70, 70)
+        .addGroup(ChickenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(ChickenItem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(ChickenItem2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(ChickenItem3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
+        .addGroup(ChickenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(ChickenItem4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(ChickenItem5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(ChickenItem6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(90, 90, 90))
+    );
+    ChickenLayout.setVerticalGroup(
+      ChickenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(ChickenLayout.createSequentialGroup()
+        .addGroup(ChickenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(ChickenItem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(ChickenItem4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(18, 18, 18)
+        .addGroup(ChickenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(ChickenLayout.createSequentialGroup()
+            .addComponent(ChickenItem2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(18, 18, 18)
+            .addComponent(ChickenItem3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addGroup(ChickenLayout.createSequentialGroup()
+            .addComponent(ChickenItem5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(18, 18, 18)
+            .addComponent(ChickenItem6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+
+    Panels.add(Chicken, "card2");
+
+    Orders.setBackground(new java.awt.Color(255, 255, 255));
+
+    Buttons.setBackground(new java.awt.Color(255, 255, 255));
+
+    btnCancel.setBackground(new java.awt.Color(0, 0, 0));
+    btnCancel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+    btnCancel.setForeground(new java.awt.Color(255, 255, 255));
+    btnCancel.setText("CANCEL");
+    btnCancel.setPreferredSize(new java.awt.Dimension(140, 80));
+    btnCancel.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
+        btnCancelActionPerformed(evt);
       }
     });
-    pnlMealCombos.add(btnItem5);
 
-    btnItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem6.setText("Meal");
-    btnItem6.setAlignmentY(0.0F);
-    btnItem6.setHideActionText(true);
-    btnItem6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem6.setIconTextGap(20);
-    btnItem6.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem6.addActionListener(new java.awt.event.ActionListener() {
+    btnDone.setBackground(new java.awt.Color(0, 0, 0));
+    btnDone.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+    btnDone.setForeground(new java.awt.Color(255, 255, 255));
+    btnDone.setText("DONE");
+    btnDone.setPreferredSize(new java.awt.Dimension(140, 80));
+    btnDone.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
+        btnDoneActionPerformed(evt);
       }
     });
-    pnlMealCombos.add(btnItem6);
 
-    btnItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem7.setText("Meal");
-    btnItem7.setAlignmentY(0.0F);
-    btnItem7.setHideActionText(true);
-    btnItem7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem7.setIconTextGap(20);
-    btnItem7.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem7.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlMealCombos.add(btnItem7);
+    javax.swing.GroupLayout ButtonsLayout = new javax.swing.GroupLayout(Buttons);
+    Buttons.setLayout(ButtonsLayout);
+    ButtonsLayout.setHorizontalGroup(
+      ButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(ButtonsLayout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(btnDone, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(25, 25, 25))
+    );
+    ButtonsLayout.setVerticalGroup(
+      ButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(ButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addComponent(btnDone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+    );
 
-    btnItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem8.setText("Meal");
-    btnItem8.setAlignmentY(0.0F);
-    btnItem8.setHideActionText(true);
-    btnItem8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem8.setIconTextGap(20);
-    btnItem8.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem8.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlMealCombos.add(btnItem8);
+    MyOrders.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+    MyOrders.setText("My Order:");
 
-    btnItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem9.setText("Meal");
-    btnItem9.setAlignmentY(0.0F);
-    btnItem9.setHideActionText(true);
-    btnItem9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem9.setIconTextGap(20);
-    btnItem9.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem9.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem9.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlMealCombos.add(btnItem9);
+    jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 25)); // NOI18N
+    jLabel2.setText("Total:");
 
-    tabbedPane.addTab("Meal Combos", pnlMealCombos);
+    jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 25)); // NOI18N
+    jLabel3.setText("$");
 
-    pnlSides.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 20, 0, 20));
-    pnlSides.setLayout(new java.awt.GridLayout(2, 3, 20, 20));
+    jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 25)); // NOI18N
+    jLabel4.setText("50");
 
-    btnItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem10.setText("Meal");
-    btnItem10.setAlignmentY(0.0F);
-    btnItem10.setHideActionText(true);
-    btnItem10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem10.setIconTextGap(20);
-    btnItem10.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem10.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlSides.add(btnItem10);
+    TableScrollPane.getViewport().setBackground(new Color(255,255,255));
+    TableScrollPane.setBackground(new java.awt.Color(255, 255, 255));
 
-    btnItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem11.setText("Meal");
-    btnItem11.setAlignmentY(0.0F);
-    btnItem11.setHideActionText(true);
-    btnItem11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem11.setIconTextGap(20);
-    btnItem11.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem11.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem11.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlSides.add(btnItem11);
-
-    btnItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem12.setText("Meal");
-    btnItem12.setAlignmentY(0.0F);
-    btnItem12.setHideActionText(true);
-    btnItem12.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem12.setIconTextGap(20);
-    btnItem12.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem12.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem12.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlSides.add(btnItem12);
-
-    tabbedPane.addTab("Sides", pnlSides);
-
-    pnlDesserts.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 20, 0, 20));
-    pnlDesserts.setLayout(new java.awt.GridLayout(3, 3, 20, 20));
-
-    btnItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem13.setText("Meal");
-    btnItem13.setAlignmentY(0.0F);
-    btnItem13.setHideActionText(true);
-    btnItem13.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem13.setIconTextGap(20);
-    btnItem13.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem13.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem13.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlDesserts.add(btnItem13);
-
-    btnItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem14.setText("Meal");
-    btnItem14.setAlignmentY(0.0F);
-    btnItem14.setHideActionText(true);
-    btnItem14.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem14.setIconTextGap(20);
-    btnItem14.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem14.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem14.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlDesserts.add(btnItem14);
-
-    btnItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem15.setText("Meal");
-    btnItem15.setAlignmentY(0.0F);
-    btnItem15.setHideActionText(true);
-    btnItem15.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem15.setIconTextGap(20);
-    btnItem15.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem15.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem15.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlDesserts.add(btnItem15);
-
-    btnItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem16.setText("Meal");
-    btnItem16.setAlignmentY(0.0F);
-    btnItem16.setHideActionText(true);
-    btnItem16.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem16.setIconTextGap(20);
-    btnItem16.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem16.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem16.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlDesserts.add(btnItem16);
-
-    tabbedPane.addTab("Desserts", pnlDesserts);
-
-    pnlBeverages.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 20, 0, 20));
-    pnlBeverages.setLayout(new java.awt.GridLayout(2, 3, 20, 20));
-
-    btnItem17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem17.setText("Meal");
-    btnItem17.setAlignmentY(0.0F);
-    btnItem17.setHideActionText(true);
-    btnItem17.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem17.setIconTextGap(20);
-    btnItem17.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem17.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem17.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlBeverages.add(btnItem17);
-
-    btnItem18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem18.setText("Meal");
-    btnItem18.setAlignmentY(0.0F);
-    btnItem18.setHideActionText(true);
-    btnItem18.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem18.setIconTextGap(20);
-    btnItem18.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem18.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem18.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlBeverages.add(btnItem18);
-
-    btnItem19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"))); // NOI18N
-    btnItem19.setText("Meal");
-    btnItem19.setAlignmentY(0.0F);
-    btnItem19.setHideActionText(true);
-    btnItem19.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    btnItem19.setIconTextGap(20);
-    btnItem19.setPreferredSize(new java.awt.Dimension(160, 160));
-    btnItem19.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    btnItem19.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        itemActionPeformed(evt);
-      }
-    });
-    pnlBeverages.add(btnItem19);
-
-    tabbedPane.addTab("Beverages", pnlBeverages);
-
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 0;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.gridwidth = 2;
-    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-    gridBagConstraints.weightx = 1.0;
-    gridBagConstraints.weighty = 1.0;
-    pnlContent.add(tabbedPane, gridBagConstraints);
-
-    java.awt.GridBagLayout jPanel1Layout = new java.awt.GridBagLayout();
-    jPanel1Layout.columnWidths = new int[] {140, 0};
-    pnlOrder.setLayout(jPanel1Layout);
-
-    lblOrder.setFont(lblOrder.getFont().deriveFont(lblOrder.getFont().getStyle() | java.awt.Font.BOLD));
-    lblOrder.setText("My Order");
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 0;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(20, 0, 10, 0);
-    pnlOrder.add(lblOrder, gridBagConstraints);
-
-    tblOrder.setModel(new javax.swing.table.DefaultTableModel(
+    tblOrderDetails.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+    tblOrderDetails.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
-        {"1x Krusty Burger (Medium)", "$ 1.99"}
+
       },
       new String [] {
-        "Item", "Price"
+        "Order", "Price"
       }
     ) {
+      Class[] types = new Class [] {
+        java.lang.String.class, java.lang.Integer.class
+      };
       boolean[] canEdit = new boolean [] {
         false, false
       };
+
+      public Class getColumnClass(int columnIndex) {
+        return types [columnIndex];
+      }
 
       public boolean isCellEditable(int rowIndex, int columnIndex) {
         return canEdit [columnIndex];
       }
     });
-    scpOrder.setViewportView(tblOrder);
+    tblOrderDetails.setFillsViewportHeight(true);
+    tblOrderDetails.setGridColor(new java.awt.Color(255, 255, 255));
+    tblOrderDetails.setOpaque(false);
+    tblOrderDetails.setRowHeight(50);
+    tblOrderDetails.setTableHeader(null);
+    TableScrollPane.setViewportView(tblOrderDetails);
 
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 1;
-    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-    gridBagConstraints.weightx = 1.0;
-    gridBagConstraints.weighty = 1.0;
-    gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
-    pnlOrder.add(scpOrder, gridBagConstraints);
+    javax.swing.GroupLayout OrdersLayout = new javax.swing.GroupLayout(Orders);
+    Orders.setLayout(OrdersLayout);
+    OrdersLayout.setHorizontalGroup(
+      OrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addComponent(Buttons, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addGroup(OrdersLayout.createSequentialGroup()
+        .addGroup(OrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(MyOrders)
+          .addComponent(TableScrollPane))
+        .addGap(29, 29, 29))
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrdersLayout.createSequentialGroup()
+        .addGap(0, 0, Short.MAX_VALUE)
+        .addComponent(jLabel2)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(jLabel3)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(jLabel4)
+        .addGap(38, 38, 38))
+    );
+    OrdersLayout.setVerticalGroup(
+      OrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, OrdersLayout.createSequentialGroup()
+        .addComponent(MyOrders)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(TableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(18, 18, 18)
+        .addGroup(OrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(jLabel2)
+          .addComponent(jLabel3)
+          .addComponent(jLabel4))
+        .addGap(23, 23, 23)
+        .addComponent(Buttons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addContainerGap(44, Short.MAX_VALUE))
+    );
 
-    pnlTotal.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.TRAILING, 20, 0));
+    javax.swing.GroupLayout MainLayout = new javax.swing.GroupLayout(Main);
+    Main.setLayout(MainLayout);
+    MainLayout.setHorizontalGroup(
+      MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(MainLayout.createSequentialGroup()
+        .addComponent(Sidebar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(Title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(Orders, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addComponent(Panels)))
+    );
+    MainLayout.setVerticalGroup(
+      MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(MainLayout.createSequentialGroup()
+        .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(MainLayout.createSequentialGroup()
+            .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(Panels, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(69, 69, 69)
+            .addComponent(Orders, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addComponent(Sidebar, javax.swing.GroupLayout.PREFERRED_SIZE, 863, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addGap(0, 14, Short.MAX_VALUE))
+    );
 
-    lblTotal.setFont(lblTotal.getFont().deriveFont(lblTotal.getFont().getStyle() | java.awt.Font.BOLD));
-    lblTotal.setText("Total:");
-    pnlTotal.add(lblTotal);
-
-    lblTotalValue.setFont(lblTotalValue.getFont().deriveFont(lblTotalValue.getFont().getStyle() | java.awt.Font.BOLD));
-    lblTotalValue.setText("$ 1.99");
-    pnlTotal.add(lblTotalValue);
-
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 2;
-    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
-    gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
-    pnlOrder.add(pnlTotal, gridBagConstraints);
-
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 1;
-    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-    gridBagConstraints.weighty = 1.0;
-    pnlContent.add(pnlOrder, gridBagConstraints);
-
-    getContentPane().add(pnlContent, java.awt.BorderLayout.CENTER);
-
-    pnlFooter.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
-    pnlFooter.setLayout(new java.awt.GridBagLayout());
-
-    btnBack.setText("Back");
-    btnBack.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        btnBackActionPerformed(evt);
-      }
-    });
-    pnlFooter.add(btnBack, new java.awt.GridBagConstraints());
-
-    btnContinue.setText("Continue");
-    btnContinue.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        btnContinueActionPerformed(evt);
-      }
-    });
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-    gridBagConstraints.weightx = 1.0;
-    pnlFooter.add(btnContinue, gridBagConstraints);
-
-    getContentPane().add(pnlFooter, java.awt.BorderLayout.SOUTH);
-
-    getAccessibleContext().setAccessibleName("");
+    getContentPane().add(Main);
 
     pack();
     setLocationRelativeTo(null);
   }// </editor-fold>//GEN-END:initComponents
 
-  private void tabbedPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabbedPaneStateChanged
-    setTabTitle();
-  }//GEN-LAST:event_tabbedPaneStateChanged
+    private void ChickenBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChickenBtnActionPerformed
+      Title.setText("Chicken");
+      Panels.removeAll();
+      Panels.add(Chicken);
+      Panels.repaint();
+      Panels.revalidate();
+      ClickColorSwitch(ChickenBtn, FriesBtn, BurgersBtn, CombosBtn);
+    }//GEN-LAST:event_ChickenBtnActionPerformed
 
-  private void itemActionPeformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemActionPeformed
-    new CustomizeFrame().setVisible(true);
-  }//GEN-LAST:event_itemActionPeformed
+    private void FriesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FriesBtnActionPerformed
+      Title.setText("Fries");
+      Panels.removeAll();
+      Panels.add(Fries);
+      Panels.repaint();
+      Panels.revalidate();
+      ClickColorSwitch(FriesBtn, ChickenBtn, BurgersBtn, CombosBtn);
+    }//GEN-LAST:event_FriesBtnActionPerformed
 
-  private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-    new StartFrame().setVisible(true);
-    dispose();
-  }//GEN-LAST:event_btnBackActionPerformed
+    private void BurgersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BurgersBtnActionPerformed
+      Title.setText("Burgers");
+      Panels.removeAll();
+      Panels.add(Burgers);
+      Panels.repaint();
+      Panels.revalidate();
+      ClickColorSwitch(BurgersBtn, FriesBtn, ChickenBtn, CombosBtn);
 
-  private void btnContinueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinueActionPerformed
-    new OrderSummaryFrame().setVisible(true);
-    dispose();
-  }//GEN-LAST:event_btnContinueActionPerformed
+    }//GEN-LAST:event_BurgersBtnActionPerformed
+
+    private void CombosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CombosBtnActionPerformed
+      Title.setText("Combos");
+      Panels.removeAll();
+      Panels.add(Combos);
+      Panels.repaint();
+      Panels.revalidate();
+      ClickColorSwitch(CombosBtn, BurgersBtn, FriesBtn, ChickenBtn);
+    }//GEN-LAST:event_CombosBtnActionPerformed
+
+  private void ComboItem1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboItem1MouseEntered
+    setcolor(ComboItem1);
+  }//GEN-LAST:event_ComboItem1MouseEntered
+
+  private void ComboItem1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboItem1MouseExited
+    resetcolor(ComboItem1);
+  }//GEN-LAST:event_ComboItem1MouseExited
+
+  private void ComboItem4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboItem4MouseEntered
+    setcolor(ComboItem4);
+  }//GEN-LAST:event_ComboItem4MouseEntered
+
+  private void ComboItem4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboItem4MouseExited
+    resetcolor(ComboItem4);
+  }//GEN-LAST:event_ComboItem4MouseExited
+
+  private void ComboItem5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboItem5MouseEntered
+    setcolor(ComboItem5);
+  }//GEN-LAST:event_ComboItem5MouseEntered
+
+  private void ComboItem5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboItem5MouseExited
+    resetcolor(ComboItem5);
+  }//GEN-LAST:event_ComboItem5MouseExited
+
+  private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+    StartFrame obj = new StartFrame();
+    obj.setVisible(true);
+    this.dispose();
+  }//GEN-LAST:event_btnCancelActionPerformed
+
+  private void btnDoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoneActionPerformed
+    OrderSummaryFrame obj = new OrderSummaryFrame();
+    obj.setVisible(true);
+    this.dispose();
+  }//GEN-LAST:event_btnDoneActionPerformed
+
+  private void BurgerItem1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BurgerItem1MouseEntered
+    // TODO add your handling code here:
+  }//GEN-LAST:event_BurgerItem1MouseEntered
+
+  private void BurgerItem1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BurgerItem1MouseExited
+    // TODO add your handling code here:
+  }//GEN-LAST:event_BurgerItem1MouseExited
+
+  private void BurgerItem2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BurgerItem2MouseEntered
+    // TODO add your handling code here:
+  }//GEN-LAST:event_BurgerItem2MouseEntered
+
+  private void BurgerItem2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BurgerItem2MouseExited
+    // TODO add your handling code here:
+  }//GEN-LAST:event_BurgerItem2MouseExited
+
+  private void BurgerItem3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BurgerItem3MouseEntered
+    // TODO add your handling code here:
+  }//GEN-LAST:event_BurgerItem3MouseEntered
+
+  private void BurgerItem3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BurgerItem3MouseExited
+    // TODO add your handling code here:
+  }//GEN-LAST:event_BurgerItem3MouseExited
+
+  private void BurgerItem4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BurgerItem4MouseEntered
+    // TODO add your handling code here:
+  }//GEN-LAST:event_BurgerItem4MouseEntered
+
+  private void BurgerItem4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BurgerItem4MouseExited
+    // TODO add your handling code here:
+  }//GEN-LAST:event_BurgerItem4MouseExited
+
+  private void BurgerItem5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BurgerItem5MouseEntered
+    // TODO add your handling code here:
+  }//GEN-LAST:event_BurgerItem5MouseEntered
+
+  private void BurgerItem5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BurgerItem5MouseExited
+    // TODO add your handling code here:
+  }//GEN-LAST:event_BurgerItem5MouseExited
+
+  private void BurgerItem6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BurgerItem6MouseEntered
+    // TODO add your handling code here:
+  }//GEN-LAST:event_BurgerItem6MouseEntered
+
+  private void BurgerItem6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BurgerItem6MouseExited
+    // TODO add your handling code here:
+  }//GEN-LAST:event_BurgerItem6MouseExited
+
+  private void ComboItem2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboItem2MouseEntered
+    setcolor(ComboItem2);
+  }//GEN-LAST:event_ComboItem2MouseEntered
+
+  private void ComboItem2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboItem2MouseExited
+    resetcolor(ComboItem2);
+  }//GEN-LAST:event_ComboItem2MouseExited
+
+  private void FriesItem1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FriesItem1MouseEntered
+    // TODO add your handling code here:
+  }//GEN-LAST:event_FriesItem1MouseEntered
+
+  private void FriesItem1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FriesItem1MouseExited
+    // TODO add your handling code here:
+  }//GEN-LAST:event_FriesItem1MouseExited
+
+  private void FriesItem2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FriesItem2MouseEntered
+    // TODO add your handling code here:
+  }//GEN-LAST:event_FriesItem2MouseEntered
+
+  private void FriesItem2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FriesItem2MouseExited
+    // TODO add your handling code here:
+  }//GEN-LAST:event_FriesItem2MouseExited
+
+  private void FriesItem3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FriesItem3MouseEntered
+    // TODO add your handling code here:
+  }//GEN-LAST:event_FriesItem3MouseEntered
+
+  private void FriesItem3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FriesItem3MouseExited
+    // TODO add your handling code here:
+  }//GEN-LAST:event_FriesItem3MouseExited
+
+  private void FriesItem4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FriesItem4MouseEntered
+    // TODO add your handling code here:
+  }//GEN-LAST:event_FriesItem4MouseEntered
+
+  private void FriesItem4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FriesItem4MouseExited
+    // TODO add your handling code here:
+  }//GEN-LAST:event_FriesItem4MouseExited
+
+  private void FriesItem5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FriesItem5MouseEntered
+    // TODO add your handling code here:
+  }//GEN-LAST:event_FriesItem5MouseEntered
+
+  private void FriesItem5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FriesItem5MouseExited
+    // TODO add your handling code here:
+  }//GEN-LAST:event_FriesItem5MouseExited
+
+  private void FriesItem6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FriesItem6MouseEntered
+    // TODO add your handling code here:
+  }//GEN-LAST:event_FriesItem6MouseEntered
+
+  private void FriesItem6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FriesItem6MouseExited
+    // TODO add your handling code here:
+  }//GEN-LAST:event_FriesItem6MouseExited
+
+  private void ChickenItem1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChickenItem1MouseExited
+    // TODO add your handling code here:
+  }//GEN-LAST:event_ChickenItem1MouseExited
+
+  private void ChickenItem1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChickenItem1MouseEntered
+    // TODO add your handling code here:
+  }//GEN-LAST:event_ChickenItem1MouseEntered
+
+  private void ChickenItem2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChickenItem2MouseEntered
+    // TODO add your handling code here:
+  }//GEN-LAST:event_ChickenItem2MouseEntered
+
+  private void ChickenItem2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChickenItem2MouseExited
+    // TODO add your handling code here:
+  }//GEN-LAST:event_ChickenItem2MouseExited
+
+  private void ChickenItem3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChickenItem3MouseEntered
+    // TODO add your handling code here:
+  }//GEN-LAST:event_ChickenItem3MouseEntered
+
+  private void ChickenItem3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChickenItem3MouseExited
+    // TODO add your handling code here:
+  }//GEN-LAST:event_ChickenItem3MouseExited
+
+  private void ChickenItem4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChickenItem4MouseEntered
+    // TODO add your handling code here:
+  }//GEN-LAST:event_ChickenItem4MouseEntered
+
+  private void ChickenItem4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChickenItem4MouseExited
+    // TODO add your handling code here:
+  }//GEN-LAST:event_ChickenItem4MouseExited
+
+  private void ChickenItem5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChickenItem5MouseEntered
+    // TODO add your handling code here:
+  }//GEN-LAST:event_ChickenItem5MouseEntered
+
+  private void ChickenItem5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChickenItem5MouseExited
+    // TODO add your handling code here:
+  }//GEN-LAST:event_ChickenItem5MouseExited
+
+  private void ChickenItem6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChickenItem6MouseEntered
+    setcolor(ChickenItem4);
+  }//GEN-LAST:event_ChickenItem6MouseEntered
+
+  private void ChickenItem6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChickenItem6MouseExited
+    resetcolor(ChickenItem4);
+  }//GEN-LAST:event_ChickenItem6MouseExited
+
+  private void ComboItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComboItem1MouseClicked
+    setval(0);
+    CustomizeOrderFrame obj = new CustomizeOrderFrame();
+    obj.setVisible(true);
+  }//GEN-LAST:event_ComboItem1MouseClicked
+  String MenuOrderSize;
+  String MenuSpicy;
+  int MenuQuantity;
+  float MenuTotal;
+
+  //Global Variables
+  String comboitems[] = {"Combo 1", "Combo 2", "Combo 3", "Combo 4"};
+  float comboprice[] = {100, 20, 30, 40, 50, 60};
+  float total = 0;
+
+  public void setval(int index) {
+    DefaultTableModel tblmodel = (DefaultTableModel) tblOrderDetails.getModel();
+    tblmodel.addRow(new Object[]{comboitems[index], comboprice[index]});
+    total = total + comboprice[index];
+  }
+
+  void setcolor(JPanel p) {
+    p.setBackground(new Color(206, 251, 209));
+  }
+
+  void resetcolor(JPanel p) {
+    p.setBackground(Color.white);
+  }
+
+  public void ClickColorSwitch(JButton b1, JButton b2, JButton b3, JButton b4) {
+    b1.setBackground(new Color(12, 154, 119));
+    b1.setForeground(new Color(255, 255, 255));
+    btnlight(b2);
+    btnlight(b3);
+    btnlight(b4);
+  }
+
+  public void btnlight(JButton b2) {
+    b2.setBackground(new Color(255, 255, 255));
+    b2.setForeground(new Color(0, 0, 0));
+  }
 
   /**
    * @param args the command line arguments
    */
   public static void main(String args[]) {
-    /* Set default theme */
-    app.Global.setDefaultTheme();
+    /*
+     * Set the Nimbus look and feel
+     */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /*
+     * If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+     * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+     */
+    try {
+      for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+        if ("windows".equals(info.getName())) {
+          javax.swing.UIManager.setLookAndFeel(info.getClassName());
+          break;
+        }
+      }
+    } catch (ClassNotFoundException ex) {
+      java.util.logging.Logger.getLogger(MenuFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (InstantiationException ex) {
+      java.util.logging.Logger.getLogger(MenuFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (IllegalAccessException ex) {
+      java.util.logging.Logger.getLogger(MenuFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+      java.util.logging.Logger.getLogger(MenuFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
 
-    /* Create and display the form */
-    java.awt.EventQueue.invokeLater(() -> {
-      new MenuFrame().setVisible(true);
+    /*
+     * Create and display the form
+     */
+    java.awt.EventQueue.invokeLater(new Runnable() {
+      public void run() {
+        new MenuFrame().setVisible(true);
+      }
     });
   }
 
-  private void setTabTitle() {
-    int index = tabbedPane.getSelectedIndex();
-    String title = tabbedPane.getTitleAt(index);
-    lblHeaderTitle.setText(title);
-  }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JButton btnBack;
-  private javax.swing.JButton btnContinue;
-  private javax.swing.JButton btnItem1;
-  private javax.swing.JButton btnItem10;
-  private javax.swing.JButton btnItem11;
-  private javax.swing.JButton btnItem12;
-  private javax.swing.JButton btnItem13;
-  private javax.swing.JButton btnItem14;
-  private javax.swing.JButton btnItem15;
-  private javax.swing.JButton btnItem16;
-  private javax.swing.JButton btnItem17;
-  private javax.swing.JButton btnItem18;
-  private javax.swing.JButton btnItem19;
-  private javax.swing.JButton btnItem2;
-  private javax.swing.JButton btnItem3;
-  private javax.swing.JButton btnItem4;
-  private javax.swing.JButton btnItem5;
-  private javax.swing.JButton btnItem6;
-  private javax.swing.JButton btnItem7;
-  private javax.swing.JButton btnItem8;
-  private javax.swing.JButton btnItem9;
-  private javax.swing.JLabel lblHeaderTitle;
-  private javax.swing.JLabel lblOrder;
-  private javax.swing.JLabel lblTotal;
-  private javax.swing.JLabel lblTotalValue;
-  private javax.swing.JPanel pnlBeverages;
-  private javax.swing.JPanel pnlContent;
-  private javax.swing.JPanel pnlDesserts;
-  private javax.swing.JPanel pnlFooter;
-  private javax.swing.JPanel pnlHeader;
-  private javax.swing.JPanel pnlMealCombos;
-  private javax.swing.JPanel pnlOrder;
-  private javax.swing.JPanel pnlSides;
-  private javax.swing.JPanel pnlTotal;
-  private javax.swing.JScrollPane scpOrder;
-  private javax.swing.JTabbedPane tabbedPane;
-  private javax.swing.JTable tblOrder;
+  private javax.swing.JLabel BurgerImgHldr1;
+  private javax.swing.JLabel BurgerImgHldr2;
+  private javax.swing.JLabel BurgerImgHldr3;
+  private javax.swing.JLabel BurgerImgHldr4;
+  private javax.swing.JLabel BurgerImgHldr5;
+  private javax.swing.JLabel BurgerImgHldr6;
+  private javax.swing.JPanel BurgerItem1;
+  private javax.swing.JPanel BurgerItem2;
+  private javax.swing.JPanel BurgerItem3;
+  private javax.swing.JPanel BurgerItem4;
+  private javax.swing.JPanel BurgerItem5;
+  private javax.swing.JPanel BurgerItem6;
+  private javax.swing.JLabel BurgerTitle1;
+  private javax.swing.JLabel BurgerTitle2;
+  private javax.swing.JLabel BurgerTitle3;
+  private javax.swing.JLabel BurgerTitle4;
+  private javax.swing.JLabel BurgerTitle5;
+  private javax.swing.JLabel BurgerTitle6;
+  private javax.swing.JPanel Burgers;
+  private javax.swing.JButton BurgersBtn;
+  private javax.swing.JPanel Buttons;
+  private javax.swing.JPanel Chicken;
+  private javax.swing.JButton ChickenBtn;
+  private javax.swing.JLabel ChickenImgHldr1;
+  private javax.swing.JLabel ChickenImgHldr2;
+  private javax.swing.JLabel ChickenImgHldr3;
+  private javax.swing.JLabel ChickenImgHldr4;
+  private javax.swing.JLabel ChickenImgHldr5;
+  private javax.swing.JLabel ChickenImgHldr6;
+  private javax.swing.JPanel ChickenItem1;
+  private javax.swing.JPanel ChickenItem2;
+  private javax.swing.JPanel ChickenItem3;
+  private javax.swing.JPanel ChickenItem4;
+  private javax.swing.JPanel ChickenItem5;
+  private javax.swing.JPanel ChickenItem6;
+  private javax.swing.JLabel ChickenTitle1;
+  private javax.swing.JLabel ChickenTitle2;
+  private javax.swing.JLabel ChickenTitle3;
+  private javax.swing.JLabel ChickenTitle4;
+  private javax.swing.JLabel ChickenTitle5;
+  private javax.swing.JLabel ChickenTitle6;
+  private javax.swing.JLabel ComboImgHldr1;
+  private javax.swing.JLabel ComboImgHldr2;
+  private javax.swing.JLabel ComboImgHldr4;
+  private javax.swing.JLabel ComboImgHldr5;
+  private javax.swing.JPanel ComboItem1;
+  private javax.swing.JPanel ComboItem2;
+  private javax.swing.JPanel ComboItem4;
+  private javax.swing.JPanel ComboItem5;
+  private javax.swing.JLabel ComboTitle1;
+  private javax.swing.JLabel ComboTitle2;
+  private javax.swing.JLabel ComboTitle4;
+  private javax.swing.JLabel ComboTitle5;
+  private javax.swing.JPanel Combos;
+  private javax.swing.JButton CombosBtn;
+  private javax.swing.JPanel Fries;
+  private javax.swing.JButton FriesBtn;
+  private javax.swing.JLabel FriesImgHldr1;
+  private javax.swing.JLabel FriesImgHldr2;
+  private javax.swing.JLabel FriesImgHldr3;
+  private javax.swing.JLabel FriesImgHldr4;
+  private javax.swing.JLabel FriesImgHldr5;
+  private javax.swing.JLabel FriesImgHldr6;
+  private javax.swing.JPanel FriesItem1;
+  private javax.swing.JPanel FriesItem2;
+  private javax.swing.JPanel FriesItem3;
+  private javax.swing.JPanel FriesItem4;
+  private javax.swing.JPanel FriesItem5;
+  private javax.swing.JPanel FriesItem6;
+  private javax.swing.JLabel FriesTitle1;
+  private javax.swing.JLabel FriesTitle10;
+  private javax.swing.JLabel FriesTitle11;
+  private javax.swing.JLabel FriesTitle12;
+  private javax.swing.JLabel FriesTitle8;
+  private javax.swing.JLabel FriesTitle9;
+  private javax.swing.JPanel Main;
+  private javax.swing.JLabel MyOrders;
+  private javax.swing.JPanel Orders;
+  private javax.swing.JLayeredPane Panels;
+  private javax.swing.JPanel Sidebar;
+  private javax.swing.JScrollPane TableScrollPane;
+  private javax.swing.JLabel Title;
+  private javax.swing.JButton btnCancel;
+  private javax.swing.JButton btnDone;
+  private javax.swing.JLabel jLabel2;
+  private javax.swing.JLabel jLabel3;
+  private javax.swing.JLabel jLabel4;
+  private javax.swing.JTable tblOrderDetails;
   // End of variables declaration//GEN-END:variables
+
+  @Override
+  public void update(int index) {
+    DefaultTableModel tblmodel = (DefaultTableModel) tblOrderDetails.getModel();
+    tblmodel.addRow(new Object[]{comboitems[index], comboprice[index]});
+    total = total + comboprice[index];
+  }
 }

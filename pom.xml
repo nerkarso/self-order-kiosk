@@ -5,20 +5,13 @@
   <description>A self-checkout experience where customers can quickly place an order</description>
   <groupId>bca</groupId>
   <artifactId>self-order-kiosk</artifactId>
-  <version>0.1.0</version>
+  <version>0.0.0</version>
   <packaging>jar</packaging>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
-  <dependencies>
-    <dependency>
-      <groupId>com.formdev</groupId>
-      <artifactId>flatlaf</artifactId>
-      <version>0.42</version>
-    </dependency>
-  </dependencies>
   <build>
     <plugins>
       <plugin>
@@ -34,7 +27,7 @@
             <configuration>
               <archive>
                 <manifest>
-                  <mainClass>app.SplashFrame</mainClass>
+                  <mainClass>common.SplashFrame</mainClass>
                 </manifest>
               </archive>
               <descriptorRefs>
