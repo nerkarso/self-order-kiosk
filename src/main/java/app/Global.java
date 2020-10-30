@@ -35,8 +35,9 @@ public class Global {
     if (url != null && !url.isEmpty()) {
       try {
         java.net.URL imageUrl = new java.net.URL(url + "?fit=around%7C" + w + "%3A" + h + "&crop=" + w + "%3A" + h + "%3B%2A%2C%2A");
-        java.awt.Image imageIO = javax.imageio.ImageIO.read(imageUrl);
-        image = new javax.swing.ImageIcon(imageIO);
+        java.awt.Image resizedImage = javax.imageio.ImageIO.read(imageUrl);
+        resizedImage = resizedImage.getScaledInstance(w, h, java.awt.Image.SCALE_SMOOTH);
+        image = new javax.swing.ImageIcon(resizedImage);
       } catch (java.io.IOException e) {
         System.out.println(e);
       }

@@ -146,7 +146,7 @@ public class ItemsPanel extends javax.swing.JPanel {
         break;
       }
     }
-    setImagePreview(item.getImage());
+    lblItemImagePreview.setIcon(app.Global.getImagePreview(item.getImage(), 200, 200, this));
   }
 
   private void clearFields() {
@@ -155,27 +155,12 @@ public class ItemsPanel extends javax.swing.JPanel {
 
     tblItems.clearSelection();
 
-    setImagePreview(null);
+    lblItemImagePreview.setIcon(null);
 
     txtItemName.setText("");
     txtItemPrice.setText("");
     txtItemImage.setText("");
     cmbItemCategory.setSelectedIndex(0);
-  }
-
-  private void setImagePreview(String url) {
-    javax.swing.ImageIcon image = new javax.swing.ImageIcon(getClass().getResource("/icons/soup-bowl.png"));
-    if (url != null && !url.isEmpty()) {
-      try {
-        java.net.URL imageUrl = new java.net.URL(url + "?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A");
-        java.awt.Image resizedImage = javax.imageio.ImageIO.read(imageUrl);
-        resizedImage = resizedImage.getScaledInstance(150, 150, java.awt.Image.SCALE_SMOOTH);
-        image = new javax.swing.ImageIcon(resizedImage);
-      } catch (java.io.IOException e) {
-        System.out.println(e);
-      }
-    }
-    lblItemImagePreview.setIcon(image);
   }
 
   private void getAllItems() {
