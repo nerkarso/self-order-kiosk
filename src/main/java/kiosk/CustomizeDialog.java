@@ -385,7 +385,11 @@ public class CustomizeDialog extends javax.swing.JDialog implements StateObserva
   }
 
   private void calculateSubTotal() {
-    currentItem.setOrderPrice(currentItem.getPrice() + getSizeFee(currentItem.getSize()));
+    double priceAfterSize = getSizeFee(currentItem.getSize());
+    if (priceAfterSize < 1) {
+      priceAfterSize = 0.00;
+    }
+    currentItem.setOrderPrice(currentItem.getPrice() + priceAfterSize);
     currentItem.setSubTotal(currentItem.getOrderPrice() * currentItem.getQuantity());
     lblPriceValue.setText(app.Global.toCurrency(currentItem.getOrderPrice()));
     lblTotalValue.setText(app.Global.toCurrency(currentItem.getSubTotal()));
