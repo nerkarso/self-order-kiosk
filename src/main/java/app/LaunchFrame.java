@@ -5,13 +5,17 @@ package app;
 
 public class LaunchFrame extends javax.swing.JFrame {
 
+  private String appName;
+
   /**
    * Creates new form Splash
    */
   public LaunchFrame() {
     initComponents();
     app.Global.setAppIcon(this);
-    setAppName();
+    getAppName();
+    lblAppName.setText(appName);
+    setSystemTray();
   }
 
   /**
@@ -189,26 +193,14 @@ public class LaunchFrame extends javax.swing.JFrame {
     setTheme(evt, "dark");
   }//GEN-LAST:event_cmuDarkItemStateChanged
 
-  /**
-   * @param args the command line arguments
-   */
-  public static void main(String args[]) {
-    /* Set default theme */
-    app.Global.setDefaultTheme();
-
-    /* Create and display the form */
-    java.awt.EventQueue.invokeLater(() -> {
-      new LaunchFrame().setVisible(true);
-    });
-  }
-
-  private void setAppName() {
+  private void getAppName() {
     try {
       app.PropertiesReader reader = new app.PropertiesReader("properties-from-pom.properties");
       String name = reader.getProperty("name");
-      lblAppName.setText(name);
+      appName = name;
     } catch (java.io.IOException ex) {
-      java.util.logging.Logger.getLogger(LaunchFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      appName = "";
+      System.out.println(ex);
     }
   }
 
@@ -223,6 +215,54 @@ public class LaunchFrame extends javax.swing.JFrame {
         javax.swing.SwingUtilities.updateComponentTreeUI(window);
       }
     }
+  }
+
+  private void setSystemTray() {
+    java.awt.PopupMenu popupMenu = new java.awt.PopupMenu();
+    java.awt.TrayIcon trayIcon = new java.awt.TrayIcon(new javax.swing.ImageIcon(getClass().getResource("/app/app-logo-1x.png")).getImage());
+    java.awt.SystemTray systemTray = java.awt.SystemTray.getSystemTray();
+
+    java.awt.MenuItem menuItemAbout = new java.awt.MenuItem("About");
+    java.awt.MenuItem menuItemExit = new java.awt.MenuItem("Exit");
+    popupMenu.add(menuItemAbout);
+    popupMenu.add(menuItemExit);
+
+    trayIcon.setImageAutoSize(true);
+    trayIcon.setToolTip(appName);
+    trayIcon.setPopupMenu(popupMenu);
+
+    try {
+      systemTray.add(trayIcon);
+    } catch (java.awt.AWTException ex) {
+      System.out.println(ex);
+      return;
+    }
+
+    trayIcon.addActionListener((java.awt.event.ActionEvent evt) -> {
+      setState(javax.swing.JFrame.NORMAL);
+    });
+
+    menuItemAbout.addActionListener((java.awt.event.ActionEvent evt) -> {
+      new AboutDialog().setVisible(true);
+    });
+
+    menuItemExit.addActionListener((java.awt.event.ActionEvent evt) -> {
+      systemTray.remove(trayIcon);
+      System.exit(0);
+    });
+  }
+
+  /**
+   * @param args the command line arguments
+   */
+  public static void main(String args[]) {
+    /* Set default theme */
+    app.Global.setDefaultTheme();
+
+    /* Create and display the form */
+    java.awt.EventQueue.invokeLater(() -> {
+      new LaunchFrame().setVisible(true);
+    });
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
